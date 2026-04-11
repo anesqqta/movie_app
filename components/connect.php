@@ -1,5 +1,5 @@
 <?php 
-    $db_name = 'mysql:host=localhost;dbname=movie_web_db';
+    $db_name = 'mysql:host=localhost;dbname=movieweb_db';
     $user_name = 'root';
     $user_password = '';
 
