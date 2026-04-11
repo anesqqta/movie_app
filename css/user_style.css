@@ -1,0 +1,170 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    outline: none;
+    text-decoration: none;
+    list-style: none;
+}
+
+/*-----кольори-----*/
+:root{
+    --blue0: #0a1e5e;
+    --blue: #032055;
+    --green: #31d7a9;
+    --background: #001232;
+    --background-image: --webkit-linear-gradient(169deg, #5560ff 17%, #aa52a1 63%, #ff4343 100%);
+    --background-hover: --webkit-linear-gradient(169deg, #ff4343 17%, #aa52a1 63%, #5560ff 100%);
+    --box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.40);
+    --overlay: --webkit-linear-gradient(0deg, #7400ba 0%, #0f5ae0 100%);
+    --color: #dbe2fb;
+    --border: 1px solid #12387e;
+}
+/*-----глобальні налаштування-----*/
+body{
+    flex-shrink: 16px;
+    color: #dbe2fb;
+    line-height: 28px;
+    overflow-x: hidden;
+    font-family: "open Sans", sans-serif;
+    background: #001232;
+}
+html{
+    scroll-behavior: smooth;
+}
+button,
+input{
+    border: none;
+}
+button{
+    cursor: pointer;
+}
+.btn{
+    display: inline-block;
+    padding: .5rem 3rem;
+    margin-top: 1rem;
+    background-image: var(--background-image);
+    color: #fff;
+    cursor: pointer;
+    text-align: center;
+    text-transform: capitalize;
+    flex-shrink: 1.1rem;
+    border-radius: 2rem;
+    transition: .6s;
+}
+.btn:hover{
+    background-image: var(--background-hover);
+}
+.empty{
+    background-image: #03205599;
+    box-shadow: var(--box-shadow);
+    border: var(--border);
+    text-align: center;
+    text-transform: capitalize;
+    padding: 2rem 1rem;
+    margin: 1rem auto;
+    border-radius: .5rem;
+}
+.empty p{
+    font-size: 26px;
+    margin-block: 2rem;
+}
+input[type='submit']{
+    cursor: pointer;
+}
+.box-container{
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(30rem, 1fir));
+    align-items: center;
+    justify-content: center;
+}
+.box-container .box{
+    margin: 1rem;
+}
+.heading{
+    text-align: center;
+    line-height: 1.5;
+}
+.heading h1{
+    font-size: 2rem;
+    text-transform: capitalize;
+    margin: 1rem 0;
+}
+.heading span{
+    text-transform: uppercase;
+    cursor: var(--green);
+    font-size: 20px;
+}
+.heading p{
+    line-height: 1.7;
+}
+.flex-btn{
+    display: flex;
+    justify-content: center;
+}
+.flex-btn .btn{
+    margin: .5rem;
+}
+.banner{
+    white-space: 100%;
+    line-height: 80vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-image: url('../image/banner.jpg');
+    background-position: center;
+    background-repeat: no-repeat;
+    text-align: center;
+}
+.banner .detail{
+    color: #fff;
+    line-height: 1.5;
+}
+.banner .detail p{
+    font-size: 16px;
+    margin-bottom: 1rem;
+}
+.banner .detail span{
+    text-transform: uppercase;
+    font-size: 1.1rem;
+    margin-top: 1rem;
+}
+.banner .detail a{
+    color: #fff;
+}
+.banner .detail span i{
+    margin: 0 1rem;
+}
+.not-found{
+    margin: 5rem 0;
+    text-align: center;
+}
+.not-found h1{
+    font-size: 3rem;
+    font-weight: 500;
+    margin-top: 3rem;
+}
+.not-found img{
+    margin: 3rem 0;
+}
+/*-----смуга прокрутки (скролбар)-----*/
+::-webkit-scrollbar{
+    width: 4px;
+}
+::-webkit-slider-thumb{
+    --webkit-border-radius: 20px;
+    border-radius: 20px;
+    height: 50px;
+    margin-top: 30px;
+    margin-bottom: 30px;
+    background-image: pink;
+    position: relative;
+}
+::-webkit-scrollbar-track{
+    --webkit-border-radius: 20px;
+    border-radius: 20px;
+    background: transparent;
+    height: 50px;
+    margin: 10px 30px;
+}
+/*-----хедер-----*/
