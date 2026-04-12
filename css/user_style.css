@@ -188,21 +188,22 @@ input[type='submit']{
 }
 .header .flex .search_form{
     position: absolute;
-    top: 100%;
+    top: 110%;
+    right: 0;
     border-radius: 0;
     width: 30rem;
     padding: 1rem;
     display: flex;
     justify-content: space-between;
     border-top: 1px solid #ccc;
-    background-image: #fff;
+    background-color: #fff;
     clip-path: polygon(0 0, 100% 0, 100% 0, 0 0);
     transition: .5s linear;
 }
 .header .flex .search_form.active{
     clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
 }
-.header .flex .search_button{
+.header .flex .search_form button{
     font-size: 2rem;
     color: var(--blue);
     cursor: pointer;

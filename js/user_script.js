@@ -10,3 +10,9 @@ toggle.addEventListener('click', function() {
     const navbar = document.querySelector('.navbar');
     navbar.classList.toggle('active');
 })
+
+let searchFrom = document.querySelector('.header .flex .search_form');
+document.querySelector('#search_btn').onclick = () =>{
+    searchFrom.classList.toggle('active');
+    profile.classList.remove('active')
+}

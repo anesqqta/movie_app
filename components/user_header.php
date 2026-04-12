@@ -15,7 +15,7 @@
         </form>
         <div class="icons">
             <div id="menu-btn" class="bx bx-list-plus"></div>
-            <div id="search_id" class="bx bx-search-alt-2"></div>
+            <div id="search_btn" class="bx bx-search-alt-2"></div>
             <a href="wishlist.php"><i class="bx bx-heart"></i><sup>0</sup></a>
             <div id="user-btn" class="bx bxs-user"></div>
         </div>
