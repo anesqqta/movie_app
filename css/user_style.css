@@ -199,7 +199,7 @@ input[type='submit']{
     clip-path: polygon(0 0, 100% 0, 100% 0, 0 0);
     transition: .5s linear;
 }
-.header .flex .search_form .active{
+.header .flex .search_form.active{
     clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
 }
 .header .flex .search_button{
@@ -251,7 +251,7 @@ input[type='submit']{
     box-shadow: var(--box-shadow);
     text-transform: capitalize;
 }
-.header .flex .profile .active{
+.header .flex .profile.active{
     transform: scale(1.0);
     transition: .3s linear;
 }
@@ -284,4 +284,36 @@ input[type='submit']{
 }
 .header .flex .navbar a:hover{
     color: var(--green);
+}
+@media (max-width:991px){
+    #menu-btn{
+        display: inline-block;
+    }
+    .header .flex .navbar{
+        display: block;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        background-color: #fff;
+        border-top: 1px solid #fff3;
+        padding: 1rem 2rem;
+        clip-path: polygon(0 0, 100% 0, 100% 0, 0 0);
+        transition: .5s ease;
+    }
+    .header .flex .navbar.active{
+        clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+    }
+    .header .flex .navbar a{
+        display: block;
+        margin: 1.5rem 0;
+        padding: 1rem;
+        background-color: var(--background);
+        text-align: center;
+        border-radius: .5rem;
+        color: #fff;
+    }
+    .header .flex .navbar a:hover{
+        color: #000;
+    }
 }
