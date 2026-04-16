@@ -432,7 +432,7 @@ footer .bottom a{
     color: var(--color);
     font-weight: bold;
 }
-/*-----головна-----*/
+/*-----головна секція на головній сторінці-----*/
 .home-section{
     position: relative;
     margin-bottom: 2rem;
@@ -524,8 +524,41 @@ footer .bottom a{
 .left-arrow{
     left: 1rem;
 }
-
-
+/*-----друга секція на головній сторінці-----*/
+.counter{
+    padding: 5% 1%;
+}
+.counter .box-container{
+    grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
+}
+.counter .box-container .item{
+    background-color: #03205599;
+    box-shadow: var(--box-shadow);
+    border: var(--border);
+    text-align: center;
+    border-radius: .5rem;
+    padding: 2rem 1rem;
+    margin: 1rem;
+    line-height: 1.1;
+}
+.counter .box-container .item img{
+    width: 80px;
+}
+.counter .box-container .item h1{
+    color: var(--color);
+    margin-bottom: .5rem;
+    font-size: 45px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-transform: capitalize;
+}
+.counter .box-container .item p{
+    color: var(--color);
+    font-size: 20px;
+    text-transform: capitalize;
+    margin: .5rem;
+}
 
 
 

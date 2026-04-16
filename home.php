@@ -21,7 +21,7 @@
     <body>
 
     <?php include 'components/user_header.php'; ?>
-
+    <!-- головна секція -->
     <div class="home-section">
         <div class="slider">
             <div class="slider__slider slide1">
@@ -114,6 +114,36 @@
         </div>
     </div>
 
+    <!-- друга секція -->
+    <div class="counter">
+        <div class="heading">
+            <span>Швидкі факти</span>
+            <h1>Цікаві факти</h1>
+            <p>Щороку ми транслюємо тисячі годин захопливих історій, перетворюючи звичайний перегляд на незабутню подорож у світ кіно.</p>
+        </div>
+        <div class="box-container">
+            <div class="item">
+                <img src="image/h-icon.png">
+                <h1><span class="count" data-number="300"></span>M+</h1>
+                <p>читачів</p>
+            </div>
+            <div class="item">
+                <img src="image/h-icon0.png">
+                <h1><span class="count" data-number="100"></span>+</h1>
+                <p>учасників</p>
+            </div>
+            <div class="item">
+                <img src="image/h-icon1.png">
+                <h1><span class="count" data-number="690"></span>+</h1>
+                <p>читачів</p>
+            </div>
+            <div class="item">
+                <img src="image/h-icon.png">
+                <h1><span class="count" data-number="9060"></span>+</h1>
+                <p>підписників</p>
+            </div>
+        </div>
+    </div>
 
 
 
