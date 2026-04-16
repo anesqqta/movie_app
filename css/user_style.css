@@ -106,8 +106,8 @@ input[type='submit']{
     margin: .5rem;
 }
 .banner{
-    white-space: 100%;
-    line-height: 80vh;
+    width: 100%;
+    min-height: 80vh;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -119,10 +119,15 @@ input[type='submit']{
 .banner .detail{
     color: #fff;
     line-height: 1.5;
+    text-transform: capitalize;
+}
+.banner .detail h1{
+    font-size: 3rem;
 }
 .banner .detail p{
     font-size: 16px;
     margin-bottom: 1rem;
+    line-height: 2;
 }
 .banner .detail span{
     text-transform: uppercase;
@@ -695,8 +700,6 @@ footer .bottom a{
     color: var(--color);
     cursor: pointer;
 }
-
-
 
 
 /*-----адаптивка-----*/
