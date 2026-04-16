@@ -21,7 +21,7 @@
     <body>
 
     <?php include 'components/user_header.php'; ?>
-    <!--  секція -->
+    
     <div class="banner">
         <div class="detail">
             <h1>Про нас</h1>
@@ -30,6 +30,7 @@
         </div>
     </div>
 
+    <!-- секція дізнатися про нас -->
     <div class="who">
         <bov class="box-container">
             <div class="box">
@@ -48,6 +49,34 @@
                 <img src="image/about01.png" class="img">
             </div>
         </bov>
+    </div>
+
+    <!-- секція допомоги -->
+    <div class="help">
+        <div class="container">
+            <div class="heading">
+                <span>Якість & Захоплення</span>
+                <p>Якість та захоплення нашими послугами!</p>
+                <p>Тут має бути написано про Якість & Захоплення</p>
+            </div>
+            <div class="box-container">
+                <div class="box">
+                    <img src="image/icon0.png">
+                    <h1>100% безпечна оплата</h1>
+                    <p>тут має бути щось написано про безпечну оплату</p>
+                </div>
+                <div class="box">
+                    <img src="image/icon.png">
+                    <h1>Бот-помічник</h1>
+                    <p>тут має бути щось написано про бота-помічника</p>
+                </div>
+                <div class="box">
+                    <img src="image/icon1.png">
+                    <h1>Центр допомоги</h1>
+                    <p>тут має бути щось написано про Центр допомоги</p>
+                </div>
+            </div>
+        </div>
     </div>
 
 

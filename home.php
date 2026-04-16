@@ -239,8 +239,8 @@
      <div class="team">
         <div class="heading">
             <span>зустрітися з найбільш цінним</span>
-            <h1>Члени команди експертів</h1>
-            <p>Світ прагне зробити участь у заході вільною від домагань для всіх, <br> незалежно від рівня досвіду, статі, гендерної приналежності та самовираження</p>
+            <h1>Члени команди</h1>
+            <p>тут має бути написано про членів команди</p>
         </div>
         <div class="box-container">
             <div class="box">
@@ -310,7 +310,7 @@
      </div>
 
 
-     
+
     <?php include 'components/user_footer.php'; ?>
 
         <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
