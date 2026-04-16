@@ -700,6 +700,34 @@ footer .bottom a{
     color: var(--color);
     cursor: pointer;
 }
+/*-----сторінка про нас-----*/
+.who{
+    padding: 6% 0%;
+}
+.who .box{
+    text-align: center;
+}
+.who .img{
+    width: 100%;
+}
+.who .box span{
+    font-size: 1.4rem;
+    color: var(--green);
+}
+.who .box h1{
+    font-size: 2rem;
+    color: #fff;
+}
+.who .box p{
+    font-size: 1.2rem;
+    line-height: 1.7;
+    color: var(--color);
+    margin-bottom: 2rem;
+}
+
+
+
+
 
 
 /*-----адаптивка-----*/

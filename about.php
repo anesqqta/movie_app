@@ -30,6 +30,26 @@
         </div>
     </div>
 
+    <div class="who">
+        <bov class="box-container">
+            <div class="box">
+                <div class="heading">
+                    <span>Ми — boleto</span>
+                    <h1>дізнайтеся про нас</h1>
+                </div>
+                <p>тут треба щось написати</p>
+                <p>тут треба щось написати</p>
+                <div class="flex-btn">
+                    <a href="fetch_movie.php" class="btn">переглянути більше фільмів</a>
+                    <a href="fetch_movie.php" class="btn">відвідайте наші списки</a>
+                </div>
+            </div>
+            <div class="box">
+                <img src="image/about01.png" class="img">
+            </div>
+        </bov>
+    </div>
+
 
 
 
