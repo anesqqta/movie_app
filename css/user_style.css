@@ -16,7 +16,7 @@
     --background-image: linear-gradient(169deg, #5560ff 17%, #aa52a1 63%, #ff4343 100%);
     --background-hover: linear-gradient(169deg, #ff4343 17%, #aa52a1 63%, #5560ff 100%);
     --box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.40);
-    --overlay: --webkit-linear-gradient(0deg, #7400ba 0%, #0f5ae0 100%);
+    --overlay: linear-gradient(0deg, #7400ba 0%, #0f5ae0 100%);
     --color: #dbe2fb;
     --border: 1px solid #12387e;
 }
@@ -734,7 +734,9 @@ footer .bottom a{
 }
 .help .container{
     padding: 6%;
-    background-image: var(--overlay);
+    background-image: -webkit-linear-gradient(0deg, #7400ba 0%, #0f5ae0 100%);
+    opacity: .8;
+
 }
 .help .box-container{
     grid-template-columns: repeat(auto-fit, 25rem);

@@ -79,6 +79,37 @@
         </div>
     </div>
 
+    <!-- секція  -->
+    <div class="counter">
+        <div class="heading">
+            <span>Швидкі факти</span>
+            <h1>З популярних</h1>
+            <p>Щороку ми транслюємо тисячі годин захопливих історій, перетворюючи звичайний перегляд на незабутню подорож у світ кіно.</p>
+        </div>
+        <div class="box-container">
+            <div class="item">
+                <img src="image/about-counter01.png">
+                <h1><span class="count" data-number="300"></span>M+</h1>
+                <p>Клієнтів</p>
+            </div>
+            <div class="item">
+                <img src="image/about-counter02.png">
+                <h1><span class="count" data-number="100"></span>+</h1>
+                <p>Країни</p>
+            </div>
+            <div class="item">
+                <img src="image/about-counter03.png">
+                <h1><span class="count" data-number="690"></span>+</h1>
+                <p>Міста</p>
+            </div>
+            <div class="item">
+                <img src="image/about-counter04.png">
+                <h1><span class="count" data-number="960"></span>+</h1>
+                <p>Екрани</p>
+            </div>
+        </div>
+    </div>
+
 
 
 
@@ -96,7 +127,25 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
 
         <script type="text/javascript">
-            <?php include 'js/user_script.js'; ?>
+            //лічильник
+            let count = document.querySelectorAll('.count');
+            let arr = Array.from(count);
+
+            arr.map(function(item){
+                let startnumber = 0;
+
+                function counterUp(){
+                    startnumber++
+                    item.innerHTML = startnumber
+
+                    if (startnumber == item.dataset.number) {
+                        clearInterval(stop)
+                    }
+                }
+                let stop = setInterval(function(){
+                    counterUp();
+                }, 50)
+            })
         </script>
 
 
