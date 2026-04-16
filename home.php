@@ -235,7 +235,79 @@
         </div>
      </div>
 
-    
+    <!-- п'ята секція -->
+     <div class="team">
+        <div class="heading">
+            <span>зустрітися з найбільш цінним</span>
+            <h1>Члени команди експертів</h1>
+            <p>Світ прагне зробити участь у заході вільною від домагань для всіх, <br> незалежно від рівня досвіду, статі, гендерної приналежності та самовираження</p>
+        </div>
+        <div class="box-container">
+            <div class="box">
+                <img src="image/team.webp" class="img">
+                <div class="content">
+                    <h2>Фіона Едвардс</h2>
+                    <p>менеджер команди</p>
+                    <div class="icons">
+                        <i class="bx bxl-facebook"></i>
+                        <i class="bx bxl-instagram-alt"></i>
+                        <i class="bx bxl-linkedin"></i>
+                        <i class="bx bxl-twitter"></i>
+                        <i class="bx bxl-pinterest-alt"></i>
+                    </div>
+                </div>
+            </div>
+            <!-- кінець першої карточки людини -->
+
+            <div class="box">
+                <img src="image/team0.webp" class="img">
+                <div class="content">
+                    <h2>Ральф Едвардс</h2>
+                    <p>менеджер команди</p>
+                    <div class="icons">
+                        <i class="bx bxl-facebook"></i>
+                        <i class="bx bxl-instagram-alt"></i>
+                        <i class="bx bxl-linkedin"></i>
+                        <i class="bx bxl-twitter"></i>
+                        <i class="bx bxl-pinterest-alt"></i>
+                    </div>
+                </div>
+            </div>
+            <!-- кінець другої карточки людини -->
+
+            <div class="box">
+                <img src="image/team1.webp" class="img">
+                <div class="content">
+                    <h2>Фіона Едвардс</h2>
+                    <p>менеджер команди</p>
+                    <div class="icons">
+                        <i class="bx bxl-facebook"></i>
+                        <i class="bx bxl-instagram-alt"></i>
+                        <i class="bx bxl-linkedin"></i>
+                        <i class="bx bxl-twitter"></i>
+                        <i class="bx bxl-pinterest-alt"></i>
+                    </div>
+                </div>
+            </div>
+            <!-- кінець третьої карточки людини -->
+
+            <div class="box">
+                <img src="image/team2.webp" class="img">
+                <div class="content">
+                    <h2>Ральф Едвардс</h2>
+                    <p>менеджер команди</p>
+                    <div class="icons">
+                        <i class="bx bxl-facebook"></i>
+                        <i class="bx bxl-instagram-alt"></i>
+                        <i class="bx bxl-linkedin"></i>
+                        <i class="bx bxl-twitter"></i>
+                        <i class="bx bxl-pinterest-alt"></i>
+                    </div>
+                </div>
+            </div>
+            <!-- кінець четвретої карточки людини -->
+        </div>
+     </div>
 
 
 

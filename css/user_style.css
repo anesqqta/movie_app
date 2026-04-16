@@ -656,9 +656,45 @@ footer .bottom a{
     margin: 1rem 0;
     text-align: center;
 }
-
-
-
+/*-----п'ята секція на головній сторінці-----*/
+.team{
+    padding: 100px, 1%;
+}
+.team .box-container{
+    grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr));
+}
+.team .box-container .box{
+    overflow: hidden;
+}
+.team .box-container .box .img{
+    width: 100%;
+    transition: .5s;
+}
+.team .box-container .box:hover .img{
+    transform: scale(1.1);
+}
+.team .box-container .box .content{
+    background-color: var(--blue);
+    text-align: center;
+    text-transform: capitalize;
+    line-height: 1.7;
+    padding: 1rem 0;
+}
+.team .box-container .box .content p{
+    font-size: 1.3rem;
+    color: var(--color);
+}
+.team .box-container .box .icons{
+    margin-top: .5rem;
+}
+.team .box-container .box i{
+    font-size: 1.3rem;
+    padding: .3rem;
+    border: 1px solid var(--color);
+    margin: .2rem;
+    color: var(--color);
+    cursor: pointer;
+}
 
 
 
