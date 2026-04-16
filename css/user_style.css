@@ -724,15 +724,17 @@ footer .bottom a{
     color: var(--color);
     margin-bottom: 2rem;
 }
-/*-----секція допомоги-----*/
-.help{
+/*-----секція допомоги та клієнтів-----*/
+.help,
+.testimonial-container{
     background-image: url('../image/bg0.jpg');
     background-attachment: fixed;
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
 }
-.help .container{
+.help .container,
+.testimonial-container .testimonial{
     padding: 6%;
     background-image: -webkit-linear-gradient(0deg, #7400ba 0%, #0f5ae0 100%);
     opacity: .8;
@@ -762,6 +764,91 @@ footer .bottom a{
 .help .box-container .box p{
     color: var(--color);
     line-height: 2;
+}
+.testimonial-container .container{
+    position: relative;
+    perspective: 1000;
+    padding-top: 2rem;
+}
+.testimonial-container .container .testimonial-item{
+    position: relative;
+    background-color: #03205599;
+    box-shadow: var(--box-shadow);
+    border: var(--border);
+    max-width: 60vw;
+    margin: 0 auto;
+    text-align: center;
+    display: none;
+    transform-style: preserve-3d;
+    animation: slide .4s linear;
+    outline: .1rem solid var(--green);
+    outline-offset: -.5rem;
+    padding: 1rem;
+}
+@keyframes slide{
+    0%{
+        transform: rotateX('180deg');
+    }
+}
+#quote{
+    position: absolute;
+    top: -10%;
+    right: 2%;
+    font-size: 5rem;
+    color: var(--blue0);
+}
+.testimonial-container .container .testimonial-item > *{
+    animation: slidecontent .2s linear .4s backwards;
+}
+@keyframes slidecontent{
+    0%{
+        transform: scale(.5);
+        opacity: 0;
+    }
+}
+.testimonial-container .container .testimonial-item.active{
+    display: block;
+}
+.testimonial-container .container .testimonial-item h1{
+    color: var(--green);
+    font-size: 1.5rem;
+    padding-block: .5rem;
+    text-transform: capitalize;
+}
+.testimonial-container .container .testimonial-item p{
+    line-height: 1.8;
+    font-size: 1.1rem;
+}
+.testimonial-container .container .testimonial-item img{
+    width: 140px;
+    height: 140px;
+    border-radius: 50%;
+    padding: .5rem;
+    z-index: 100;
+}
+.testimonial-container .container .left-arrow,
+.testimonial-container .container .right-arrow{
+    position: absolute;
+    top: 40%;
+    transform: translateY(-50%);
+    font-size: 1.3rem;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    line-height: 40px;
+    text-align: center;
+    color: #fff;
+    background-image: var(--background-image);
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.testimonial-container .container .left-arrow{
+    left: 3rem;
+}
+.testimonial-container .container .right-arrow{
+    right: 3rem;
 }
 
 

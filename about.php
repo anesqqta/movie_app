@@ -79,7 +79,7 @@
         </div>
     </div>
 
-    <!-- секція  -->
+    <!-- секція з лічильником -->
     <div class="counter">
         <div class="heading">
             <span>Швидкі факти</span>
@@ -110,18 +110,53 @@
         </div>
     </div>
 
+    <!-- секція з клієнтами -->
+    <div class="testimonial-container">
+        <div class="testimonial">
+            <div class="heading">
+                <span>Клієнти з</span>
+                <h1>привідом для посмішки</h1>
+            </div>
+            <div class="container">
+                <div class="testimonial-item active">
+                    <i class="bx bxs-quote-right" id="quote"></i>
+                    <img src="image/ourteam0.webp">
+                    <h1>Джон Сміт</h1>
+                    <p>тут має щось писати</p>
+                </div>
+                <!-- кінець одного slide -->
+
+                <div class="testimonial-item">
+                    <i class="bx bxs-quote-right" id="quote"></i>
+                    <img src="image/ourteam.webp">
+                    <h1>Джон Сміт</h1>
+                    <p>тут має щось писати</p>
+                </div>
+                <!-- кінець одного slide -->
+
+                <div class="testimonial-item">
+                    <i class="bx bxs-quote-right" id="quote"></i>
+                    <img src="image/ourteam1.webp">
+                    <h1>Джон Сміт</h1>
+                    <p>тут має щось писати</p>
+                </div>
+                <!-- кінець одного slide -->
+
+                <div class="testimonial-item">
+                    <i class="bx bxs-quote-right" id="quote"></i>
+                    <img src="image/ourteam2.webp">
+                    <h1>Алвена Сміт</h1>
+                    <p>тут має щось писати</p>
+                </div>
+                <!-- кінець одного slide -->
+
+                <div class="left-arrow" onclick="rightSlide()"><i class="bx bxs-left-arrow-alt"></i></div>
+                <div class="right-arrow" onclick="leftSlide()"><i class="bx bxs-right-arrow-alt"></i></div>
+            </div>
+        </div>
+    </div>
 
 
-
-
-
-
-
-
-
-
-
-     
     <?php include 'components/user_footer.php'; ?>
 
         <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
@@ -146,6 +181,21 @@
                     counterUp();
                 }, 50)
             })
+
+            let slide = document.querySelectorAll('.testimonial-item');
+            let index = 0;
+
+            function rightSlide(){
+                slide[index].classList.remove('active');
+                index = (index + 1) % slide.length;
+                slide[index].classList.add('active');
+            }
+
+            function leftSlide(){
+                slide[index].classList.remove('active');
+                index = (index - 1 + slide.length) % slide.length;
+                slide[index].classList.add('active');
+            }
         </script>
 
 
