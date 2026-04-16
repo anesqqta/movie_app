@@ -559,7 +559,6 @@ footer .bottom a{
     text-transform: capitalize;
     margin: .5rem;
 }
-
 .sub-banner{
     position: relative;
     margin: 1rem auto;
@@ -570,6 +569,7 @@ footer .bottom a{
 .sub-banner img{
     width: 100%;
 }
+/*-----третя секція на головній сторінці-----*/
 .show-movie{
     padding: 5% 2%;
 }
@@ -615,9 +615,47 @@ footer .bottom a{
 .show-movie .box-container .box .btn{
     width: 100%;
 }
-
-
-
+/*-----четверта секція на головній сторінці-----*/
+.about{
+    background-image: url('../image/bg1.jpg');
+    background-size: cover;
+    background-position: center;
+}
+.about .box-container{
+    background-image: -webkit-linear-gradient(0deg, #7400ba99, #0f5ae099);
+    min-height: 100vh;
+    padding: 0 5%;
+}
+.about .box-container .detail .box{
+    background-color: #03205599;
+    box-shadow: var(--box-shadow);
+    border: var(--border);
+    text-align: center;
+    border-radius: .5rem;
+    padding: 2rem 1rem;
+    margin: 1rem;
+}
+.about .box-container .detail .img-box{
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+.about .box-container .detail .img-box img{
+    width: 50px;
+    height: 50px;
+    background-color: #fff;
+    border-radius: 50%;
+    padding: .1rem;
+}
+.about p{
+    color: #fff;
+    line-height: 1.6;
+    font-size: 18px;
+    margin: 1rem 0;
+    text-align: center;
+}
 
 
 
