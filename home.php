@@ -156,6 +156,55 @@
         </div>
     </div>
 
+    <div class="show-movie">
+        <div class="heading">
+            <span>Фільми</span>
+            <h1>найкращі фільми в кінотеатрах</h1>
+            <p>у кінотеатрі Boleto та театрах</p>
+        </div>
+        <div class="box-container">
+            <?php
+                $select_movies = $conn->prepare("SELECT * FROM movies WHERE status = ?");
+                $select_movies->execute(['active']);
+
+                if ($select_movies->rowCount() > 0) {
+                    while($fetch_movie = $select_movies->fetch(PDO::FETCH_ASSOC)){
+                        // code ...
+            ?>
+            <form action="" method="post" class="box">
+                <img src="uploaded_files/<?= $fetch_movie['thumbnail']; ?>" class="img1">
+                <div class="content">
+                    <div class="button">
+                        <div><h3><?= $fetch_movie['title']; ?></h3></div>
+                        <div>
+                            <button type="submit" name="add_to_wishlist"><img src="image/heart.png"></button>
+                            <a href="<?= $fetch_movie['trailer_url']; ?>" class="bx bx-play"></a>
+                            <a href="view_movie.php?pid=<?= $fetch_movie['id']; ?>" class="bx bxs-show"></a>
+                        </div>
+                    </div>
+                    <div class="rate">
+                        <p><span><img src="image/tomato.png"></span>88%</p>
+                        <p><img src="image/cake.png">8%</p>
+                    </div>
+                    <input type="hidden" name="movie_id" value="<?= $fetch_movie['id']; ?>">
+                    <a href="select-language?movie_id=<?=$fetch_movie['id']; ?>" class="btn">бронювати квиток</a>
+                </div>
+            </form> 
+            <?php
+                    }
+                }
+                else{
+                    echo '
+                    <div class="empty">
+                        <p>no movie added yet!</p>
+                    </div>
+                    ';
+                }
+            ?>
+            
+        </div>
+    </div>
+
 
 
 

@@ -570,6 +570,51 @@ footer .bottom a{
 .sub-banner img{
     width: 100%;
 }
+.show-movie{
+    padding: 5% 2%;
+}
+.show-movie .box-container{
+    grid-template-columns: repeat(auto-fit, 20rem);
+}
+.show-movie .box-container .img1{
+    height: 25rem;
+    width: 100%;
+}
+.show-movie .box-container .box{
+    background-color: var(--blue);
+    border-radius: none;
+    color: var(--color);
+}
+.show-movie .box-container .box .content{
+    padding: 1em;
+}
+.show-movie .box-container .box .button{
+    display: flex;
+    justify-content: space-between;
+}
+.show-movie .box-container .box h3{
+    text-transform: capitalize;
+    font-size: 1.2rem;
+    font-weight: 400;
+}
+.show-movie .box-container .box button,
+.show-movie .box-container .box a{
+    background-color: transparent;
+    font-size: 1.5rem;
+    color: var(--color);
+}
+.show-movie .box-container .box .rate{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-radius: 1px dotted #11326f;
+}
+.show-movie .box-container .box .rate img{
+    width: 20px;
+}
+.show-movie .box-container .box .btn{
+    width: 100%;
+}
 
 
 
