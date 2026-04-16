@@ -145,7 +145,16 @@
         </div>
     </div>
 
-
+    <div class="box-container">
+        <div class="sub-banner">
+            <div class="overlay"></div>
+            <img src="image/banner_1.jpg">
+        </div>
+        <div class="sub-banner">
+            <div class="overlay"></div>
+            <img src="image/banner_2.jpg">
+        </div>
+    </div>
 
 
 

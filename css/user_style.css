@@ -560,6 +560,17 @@ footer .bottom a{
     margin: .5rem;
 }
 
+.sub-banner{
+    position: relative;
+    margin: 1rem auto;
+}
+.sub-banner .overlay{
+    opacity: .5;
+}
+.sub-banner img{
+    width: 100%;
+}
+
 
 
 
