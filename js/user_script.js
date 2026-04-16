@@ -16,3 +16,50 @@ document.querySelector('#search_btn').onclick = () =>{
     searchFrom.classList.toggle('active');
     profile.classList.remove('active')
 }
+//головна сторілка slider
+"use strict"
+const leftArrow = document.querySelector('.left-arrow .bxs-left-arrow'),
+      rightArrow = document.querySelector('.right-arrow .bxs-right-arrow'),
+      slider = document.querySelector('.slider');
+//стрілка вправо
+    function scrollRight(){
+        if (slider.scrollWidth - slider.clientWidth === slider.scrollLeft){
+            slider.scrollTo({
+                left: 0,
+                behavior: "smooth"
+            });
+        }else{
+            slider.scrollBy({
+                left:window.innerWidth,
+                behavior: "smooth"
+            })
+        }
+    }
+//стрілка вліво
+    function scrollLeft(){
+        slider.scrollBy({
+                left: -window.innerWidth,
+                behavior: "smooth"
+        })
+    }
+
+let timerId = setInterval(scrollRight, 7000);
+//скинути таймер для прокручування праворуч
+    function resetTimer(){
+        clearInterval(timerId);
+        timerId = setInterval(scrollRight, 7000);
+    }
+//подія прокручування
+slider.addEventListener("click", function(ev){
+    if (ev.target === leftArrow){
+        scrollLeft();
+        resetTimer();
+    }
+})
+
+slider.addEventListener("click", function(ev){
+    if (ev.target === rightArrow){
+        scrollRight();
+        resetTimer();
+    }
+})

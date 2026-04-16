@@ -21,6 +21,118 @@
     <body>
 
     <?php include 'components/user_header.php'; ?>
+
+    <div class="home-section">
+        <div class="slider">
+            <div class="slider__slider slide1">
+                <div class="overlay"></div>
+                <div class="slider-detail">
+                    <h1>забронюйте квиток <br>на <span>Тор любов і грім</span></h1>
+                    <div class="detail">
+                        <p>тривалість : 2год : 20хв</p>
+                        <p>рік випуску : 20 травня 2026</p>
+                    </div>
+                    <div class="detail">
+                        <p>мова : українська | англійська | телугу | таймільська</p>
+                        <p>пригода | бойовик | комедія | наукова фантастика</p>
+                    </div>
+                    <a href="fetch_movie.php" class="btn">забронювати квиток зараз</a>
+                </div>
+            </div>
+            <!-- кінець slide -->
+
+            <div class="slider__slider slide2">
+                <div class="overlay"></div>
+                <div class="slider-detail">
+                    <h1>забронюйте квиток <br>на <span>якесь кіно</span></h1>
+                    <div class="detail">
+                        <p>тривалість : 2год : 20хв</p>
+                        <p>рік випуску : 20 травня 2026</p>
+                    </div>
+                    <div class="detail">
+                        <p>мова : українська | англійська | телугу | таймільська</p>
+                        <p>пригода | бойовик | комедія | наукова фантастика</p>
+                    </div>
+                    <a href="fetch_movie.php" class="btn">забронювати квиток зараз</a>
+                </div>
+            </div>
+            <!-- кінець slide -->
+
+            <div class="slider__slider slide3">
+                <div class="overlay"></div>
+                <div class="slider-detail">
+                    <h1>забронюйте квиток <br>на <span>якесь кіно</span></h1>
+                    <div class="detail">
+                        <p>тривалість : 2год : 20хв</p>
+                        <p>рік випуску : 20 травня 2026</p>
+                    </div>
+                    <div class="detail">
+                        <p>мова : українська | англійська | телугу | таймільська</p>
+                        <p>пригода | бойовик | комедія | наукова фантастика</p>
+                    </div>
+                    <a href="fetch_movie.php" class="btn">забронювати квиток зараз</a>
+                </div>
+            </div>
+            <!-- кінець slide -->
+
+            <div class="slider__slider slide4">
+                <div class="overlay"></div>
+                <div class="slider-detail">
+                    <h1>забронюйте квиток <br>на <span>якесь кіно</span></h1>
+                    <div class="detail">
+                        <p>тривалість : 2год : 20хв</p>
+                        <p>рік випуску : 20 травня 2026</p>
+                    </div>
+                    <div class="detail">
+                        <p>мова : українська | англійська | телугу | таймільська</p>
+                        <p>пригода | бойовик | комедія | наукова фантастика</p>
+                    </div>
+                    <a href="fetch_movie.php" class="btn">забронювати квиток зараз</a>
+                </div>
+            </div>
+            <!-- кінець slide -->
+
+            <div class="slider__slider slide5">
+                <div class="overlay"></div>
+                <div class="slider-detail">
+                    <h1>забронюйте квиток <br>на <span>якесь кіно</span></h1>
+                    <div class="detail">
+                        <p>тривалість : 2год : 20хв</p>
+                        <p>рік випуску : 20 травня 2026</p>
+                    </div>
+                    <div class="detail">
+                        <p>мова : українська | англійська | телугу | таймільська</p>
+                        <p>пригода | бойовик | комедія | наукова фантастика</p>
+                    </div>
+                    <a href="fetch_movie.php" class="btn">забронювати квиток зараз</a>
+                </div>
+            </div>
+            <!-- кінець slide -->
+             
+            <div class="left-arrow"><i class="bx bxs-left-arrow"></i></div>
+            <div class="right-arrow"><i class="bx bxs-right-arrow"></i></div>
+        </div>
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     <?php include 'components/user_footer.php'; ?>
 
         <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
