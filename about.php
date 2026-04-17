@@ -156,6 +156,56 @@
         </div>
     </div>
 
+    <!-- секція гарантії-->
+    <div class="mission">
+        <div class="box-container">
+            <div class="box">
+                <div class="heading">
+                    <span>Загляньте в наш магазин</span>
+                    <h1>Гарантії, яким ви можете довіряти</h1>
+                </div>
+                <div class="detail">
+                    <div class="img-box">
+                        <img src="image/icon01.png">
+                    </div>
+                    <div>
+                        <h1>отримати гарантію</h1>
+                        <p>тут має щось писати</p>
+                    </div>
+                </div>
+                <div class="detail">
+                    <div class="img-box">
+                        <img src="image/icon02.png">
+                    </div>
+                    <div>
+                        <h1>гарантія відповідності ціни</h1>
+                        <p>тут має щось писати</p>
+                    </div>
+                </div>
+                <div class="detail">
+                    <div class="img-box">
+                        <img src="image/icon03.png">
+                    </div>
+                    <div>
+                        <h1>забронювати квиток онлайн</h1>
+                        <p>тут має щось писати</p>
+                    </div>
+                </div>
+                <div class="detail">
+                    <div class="img-box">
+                        <img src="image/s-icon (1).png">
+                    </div>
+                    <div>
+                        <h1>підтримка 24/7</h1>
+                        <p>тут має щось писати</p>
+                    </div>
+                </div>
+            </div>
+            <div class="box">
+                <img src="image/tour.png" class="img">
+            </div>
+        </div>
+    </div>
 
     <?php include 'components/user_footer.php'; ?>
 

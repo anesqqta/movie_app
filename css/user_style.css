@@ -850,6 +850,48 @@ footer .bottom a{
 .testimonial-container .container .right-arrow{
     right: 3rem;
 }
+/*-----секція гарантії-----*/
+.mission{
+    padding: 3% 0;
+    padding-left: 4%;
+    position: relative;
+    overflow-x: hidden;
+}
+.mission .box-container .box span{
+    color: var(--green);
+    font-size: 1.5rem;
+}
+.mission .box-container .box .detail{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 1rem 0;
+}
+.mission .box-container .box .detail h1{
+    text-transform: capitalize;
+    margin-bottom: .5rem;
+    font-size: 1.4rem;
+    font-weight: 400;
+}
+.mission .box-container .box .detail p{
+    color: var(--color);
+    line-height: 1.5;
+}
+.mission .box-container .box .detail .img-box{
+    text-align: center;
+    margin-right: 1rem;
+}
+.mission .box-container .box .detail .img-box img{
+    width: 60px;
+}
+.mission .box-container .box .img{
+    width: 100%;
+}
+
+
+
+
+
 
 
 
