@@ -92,7 +92,7 @@ input[type='submit']{
 }
 .heading span{
     text-transform: uppercase;
-    cursor: var(--green);
+    color: var(--green);
     font-size: 20px;
 }
 .heading p{
