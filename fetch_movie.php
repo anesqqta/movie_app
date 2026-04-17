@@ -30,6 +30,53 @@
         </div>
     </div>
 
+    <!-- секція всіх фільмів -->
+    <div class="show-movie">
+        <div class="heading">
+            <span>movie listings</span>
+            <h1>movies listings in boleto</h1>
+        </div>
+        <div class="box-container">
+            <?php
+                $select_movies = $conn->prepare("SELECT * FROM movies WHERE status = ?");
+                $select_movies->execute(['active']);
+
+                if($select_movies->rowCount() > 0){
+                    while($fetch_movie = $select_movies->fetch(PDO::FETCH_ASSOC)){
+                        
+            ?>
+            <form action="" method="post" class="box">
+                <img src="uploaded_files/<?= $fetch_movie['thumbnail'] ?>"  class="img1">
+
+                <div class="content">
+                    <div class="button">
+                        <div><h3><?= $fetch_movie['title'] ?></h3></div>
+                        <div>
+                            <button type="submit" name="add_to_wishlist"><img src="image/heart.png"></button>
+                            <a href="<?= $fetch_movie['trailer_url'] ?>" class="bx bx-play"></a>
+                            <a href="view_movie.php?pid=<?= $fetch_movie['id'] ?>" class="bx bx-show"></a>
+                        </div>
+                    </div>
+                    <div class="rate">
+                        <p><span><img src="image/tomato.png"></span>88%</p>
+                        <p><img src="image/cake.png">98%</p>
+                    </div>
+                    <input type="hidden" name="movie_id" value="<?= $fetch_movie['id']; ?>">
+                    <a href="select-language.php?movie_id=<?=$fetch_movie['id']; ?>" class="btn">бронювати квиток</a>
+                </div>
+            </form>
+            <?php 
+                    }
+                }else{
+                    echo '
+                    <div class="empty">
+                        <p>no movie added yet!</p>
+                    </div>
+                    ';
+                }
+            ?>
+        </div>
+    </div>
 
     <?php include 'components/user_footer.php'; ?>
 
