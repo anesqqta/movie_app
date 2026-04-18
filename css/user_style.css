@@ -291,6 +291,120 @@ input[type='submit']{
 .header .flex .navbar a:hover{
     color: var(--green);
 }
+/*-----реєстрація-----*/
+.form-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    position: relative;
+    padding: 5% 0;
+}
+.form-img{
+    position: absolute;
+    left: 0;
+    width: 30%;
+    z-index: -3;
+}
+.form-container form{
+    width: 100%;
+    padding: 60px 45px;
+    margin: 0 auto;
+    background-color: rgb(3, 32, 85);
+    -webkit-box-shadow: 0px 0px 29.4px 0.6px rgb(0, 0, 0, 0.5);
+    box-shadow: 0px 0px 29.4px 0.6px rgb(0, 0, 0, 0.5);
+    border-radius: .5rem;
+    padding: 2rem;
+}
+input:focus{
+    background-color: transparent;
+}
+input::placeholder{
+    color: var(--color);
+    text-transform: capitalize;
+}
+.form-area{
+    background-image: url('../image/account-bg.jpg');
+    background-attachment: fixed;
+}
+.form-area p{
+    padding-top: 1.2rem;
+}
+.form-container .login{
+    width: 40rem;
+}
+.form-container .register{
+    width: 60rem;
+}
+.form-container .register .img-box img{
+    width: 180px;
+    height: 180px;
+    border-radius: 50%;
+    text-align: center;
+    padding: 10px;
+    background-color: var(--blue0);
+}
+.form-container form h3{
+    text-transform: capitalize;
+    text-align: center;
+    font-size: 2rem;
+    margin: 1.5rem 0; 
+    font-weight: 400;
+}
+.form-container form p{
+    padding-top: 1rem;
+    font-size: 1.2rem;
+    color: var(--color);
+    text-transform: capitalize;
+    margin-bottom: 1rem;
+}
+.form-container form .link{
+    padding-top: 1rem;
+    font-size: 1.2rem;
+    text-transform: capitalize;
+}
+.form-container form .link a{
+    color: var(--green);
+}
+.form-container form .box{
+    width: 100%;
+    height: 50px;
+    border: var(--border);
+    border-radius: .5rem;
+    padding-left: 20px;
+    color: #fff;
+    background-color: transparent;
+}
+.form-container form textarea{
+    height: 20rem;
+    resize: none;
+}
+.form-container .flex{
+    display: flex;
+    gap: 2rem;
+}
+.review .form-container .col{
+    display: flex;
+}
+.form-container .flex .col,
+.review .form-container .input-field{
+    flex: 1 1 25rem;
+    margin: 0 .4rem;
+}
+.form-container .btn{
+    width: 100%;
+}
+.form-container .btn:hover{
+    background-color: var(--background-hover);
+}
+.form-container .image{
+    height: 30rem;
+}
+.post-editor .image{
+    width: 100%;
+    height: 100%;
+}
+
 /*-----футер-----*/
 .newletter{
     width: 100%;
