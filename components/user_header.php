@@ -28,7 +28,7 @@
                     $fetch_profile = $select_profile->fetch(PDO::FETCH_ASSOC);
                 
             ?>
-            <img src="uploaded_file/<?= $fetch_profile['image']; ?>">
+            <img src="uploaded_files/<?= $fetch_profile['image']; ?>">
             <h3 style="margin-bottom: 1rem;"><?= $fetch_profile['name']; ?></h3>
             <div class="flex-btn">
                 <a href="profile.php" class="btn">Переглянути профіль</a>
