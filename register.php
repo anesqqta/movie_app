@@ -80,9 +80,9 @@
 
     <div class="banner">
         <div class="detail">
-            <h1>Зареєструватися зараз</h1>
+            <h1>Зареєструватися</h1>
             <p>Написати про нас</p>
-            <span><a href="home.php">Головна</a><i class="bx bxs-right-arrow-alt"></i>зареєструватися зараз</span>
+            <span><a href="home.php">Головна</a><i class="bx bxs-right-arrow-alt"></i>зареєструватися</span>
         </div>
     </div>
 
@@ -120,8 +120,8 @@
                     </div>
                 </div>
             </div>
-            <p class="link">Вже є обліковий запис ? <a href="login.php">Увійти зараз</a></p>
-            <button type="submit" name="register" class="btn">зареєструватися зараз</button>
+            <p class="link">Вже є обліковий запис ? <a href="login.php">Увійти</a></p>
+            <button type="submit" name="register" class="btn">зареєструватися</button>
         </form>
     </div>
     
