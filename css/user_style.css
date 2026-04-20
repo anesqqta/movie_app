@@ -1038,7 +1038,33 @@ footer .bottom a{
 .contact img{
     width: 95%;
 }
-
+/*-----секція адреси-----*/
+.address{
+    background-image: url('../image/bg.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    padding: 6% 4%;
+    min-height: 60vh;
+}
+.address .box-container .box{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-image: var(--overlay);
+    line-height: 2;
+    padding: 1rem 0;
+    margin: 1rem;
+}
+.address .box-container .box h4{
+    text-transform: uppercase;
+    color: var(--color);
+    font-size: 1.5rem;
+}
+.address .box-container .box img{
+    width: 100px;
+    margin-right: 1rem;
+}
 
 
 

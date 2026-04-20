@@ -127,6 +127,39 @@
             </div>
         </div>
     </div>
+
+    <!-- секція адреси -->
+    <div class="address">
+        <div class="heading">
+            <h1>Наші контактні деталі</h1>
+            <p>написати щось</p>
+        </div>
+        <div class="box-container">
+            <div class="box">
+                <img src="image/ip-adress.png">
+                <div>
+                    <h4>Адреса</h4>
+                    <p>Едельвейсів 495, Коломия <br>Україна, 78203</p>
+                </div>
+            </div>
+            <div class="box">
+                <img src="image/contact01.png">
+                <div>
+                    <h4>Номер телефону</h4>
+                    <p>+380 98 67 08 240</p>
+                    <p>+380 66 52 98 691</p>
+                </div>
+            </div>
+            <div class="box">
+                <img src="image/contact02.png">
+                <div>
+                    <h4>email</h4>
+                    <p>boleto@gmail.com</p>
+                    <p>boleto@kpk-lp.com.ua</p>
+                </div>
+            </div>
+        </div>
+    </div>
     
     
 
