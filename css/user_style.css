@@ -1001,9 +1001,33 @@ footer .bottom a{
 .mission .box-container .box .img{
     width: 100%;
 }
-
-
-
+/*-----секція сервісу-----*/
+.service{
+    padding: 4%;
+    min-height: 100vh;
+}
+.service .box-container,
+.address .box-container{
+    margin-top: 3rem;
+    grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr));
+}
+.service .box-container .box{
+    background-image: var(--overlay);
+    opacity: .8;
+    box-shadow: var(--box-shadow);
+    text-align: center;
+    padding: 1rem .5rem;
+}
+.service .box-container .box img{
+    width: 120px;
+    padding: 1rem;
+    object-fit: contain;
+}
+.service .box-container .box h1{
+    font-size: 24px;
+    color: var(--color);
+    margin: .5rem 0;text-transform: capitalize;
+}
 
 
 
