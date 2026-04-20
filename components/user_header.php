@@ -16,7 +16,13 @@
         <div class="icons">
             <div id="menu-btn" class="bx bx-list-plus"></div>
             <div id="search_btn" class="bx bx-search-alt-2"></div>
-            <a href="wishlist.php"><i class="bx bx-heart"></i><sup>0</sup></a>
+
+            <?php 
+                $count_wishlist = $conn->prepare("SELECT * FROM wishlist WHERE user_id = ?");
+                $count_wishlist->execute([$user_id]);
+                $total_wishlist = $count_wishlist->rowCount();
+            ?>
+            <a href="wishlist.php"><i class="bx bx-heart"></i><sup><?= $total_wishlist; ?></sup></a>
             <div id="user-btn" class="bx bxs-user"></div>
         </div>
         <div class="profile">

@@ -9,12 +9,12 @@
             $verify_wishlist->execute([$user_id, $movie_id]);
 
             if ($verify_wishlist->rowCount() > 0){
-                $warning_msg[] = 'Фільм вже є у вашому кошику';
+                $warning_msg[] = 'Фільм вже є у вашому списку бажаного';
             }else{
                 $insert_movie = $conn->prepare("INSERT INTO wishlist (id, user_id, movie_id) VALUES (?, ?, ?)");
                 $insert_movie->execute([$id, $user_id, $movie_id]);
 
-                $success_msg[] = 'Фільм додано до кошика';
+                $success_msg[] = 'Фільм додано до списку бажаного';
             }
         }else{
             $warning_msg[] = 'Увійдіть спочатку';
