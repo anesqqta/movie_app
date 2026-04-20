@@ -31,14 +31,14 @@
             <img src="uploaded_files/<?= $fetch_profile['image']; ?>">
             <h3 style="margin-bottom: 1rem;"><?= $fetch_profile['name']; ?></h3>
             <div class="flex-btn">
-                <a href="profile.php" class="btn">Переглянути профіль</a>
-                <a href="components.user_logout.php" onclick="return confirm('Вийти з профілю');">logout</a>
+                <a href="profile.php" class="btn">Профіль</a>
+                <a href="components.user_logout.php" onclick="return confirm('Вийти з профілю');" class="btn">Увійти</a>
             </div>
             <?php }else{ ?>
             <img src="image/user.png">
-            <h3 style="margin-bottom: 1rem;">Ввійдіть або зареєструйтесь</h3>
+            <h3 style="margin-bottom: 1rem;">Увійдіть або зареєструйтесь</h3>
             <div class="flex-btn">
-                <a href="login.php" class="btn">Ввійти</a>
+                <a href="login.php" class="btn">Увійти</a>
                 <a href="register.php" class="btn">зареєструватись</a>
             </div>
             <?php } ?>
