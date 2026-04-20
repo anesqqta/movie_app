@@ -356,7 +356,10 @@ input::placeholder{
     font-size: 1.2rem;
     color: var(--color);
     text-transform: capitalize;
-    margin-bottom: 1rem;
+    margin-bottom: .5rem;
+}
+.form-container form span{
+    color: red;
 }
 .form-container form .link{
     padding-top: 1rem;
@@ -1004,7 +1007,7 @@ footer .bottom a{
 /*-----секція сервісу-----*/
 .service{
     padding: 4%;
-    min-height: 100vh;
+    min-height: 70vh;
 }
 .service .box-container,
 .address .box-container{
@@ -1028,7 +1031,13 @@ footer .bottom a{
     color: var(--color);
     margin: .5rem 0;text-transform: capitalize;
 }
-
+/*-----секція контактів-----*/
+.contact{
+    overflow-x: auto;
+}
+.contact img{
+    width: 95%;
+}
 
 
 
