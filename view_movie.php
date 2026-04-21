@@ -69,7 +69,7 @@
                     <h1>synopsis</h1>
                     <p class="description"><?= $fetch_movie['description']; ?></p>
                     <h1>cast</h1>
-                    <div class="cast">
+                    <div class="cast-section">
                         <?php
                             //1. get actors ids (comma separated)
                             $stmt = $conn->prepare("SELECT actor_id FROM movie_actors WHERE movie_id = ?");
@@ -99,6 +99,38 @@
                                     </div><br>
                                     <h2><?= $actor['name'] ?></h2>
                                     <p><?= $actor['role'] ?></p>
+                                </div>
+                        <?php } ?>
+                    </div>
+                    <h1>crew</h1>
+                    <div class="cast-section">
+                        <?php 
+                            //1. fetch comma-separated crew IDs
+                            $stmt = $conn->prepare("SELECT director_id FROM movie_directors WHERE movie_id = ?");
+                            $stmt->execute([$pid]);
+                            $row = $stmt->fetch();
+
+                            $crewIDs = $row['director_id']; //"2,3,4";
+
+                            //2. convert to array
+                            $crewArray = explode(',', $crewIDs);
+
+                            //3. prepare IN list placeholders
+                            $placeholders = implode(',', array_fill(0, count($crewArray), '?'));
+
+                            //4. fetch crew members
+                            $sql = "SELECT * FROM crew_members WHERE id IN ($placeholders)";
+                            $stmt = $conn->prepare($sql);
+                            $stmt->execute($crewArray);
+                            $crews = $stmt->fetchAll();
+
+                            foreach ($crews as $crew) { ?>
+                                <div class="detail">
+                                    <div class="img-box">
+                                        <img src="uploaded_files/actors/<?= $crew['image']; ?>">
+                                    </div><br>
+                                    <h2><?= $crew['name'] ?></h2>
+                                    <p><?= $crew['role'] ?></p>
                                 </div>
                         <?php } ?>
                     </div>
