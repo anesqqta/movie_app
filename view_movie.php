@@ -47,50 +47,50 @@
             ?>
             <form action="" method="post" class="box">
                 <input type="hidden" name="movie_id" value="<?= $fetch_movie['id']; ?>">
-                <div class="big-img">
+                <div class="big-image">
                     <img src="uploaded_files/<?= $fetch_movie['poster']; ?>" class="poster">
                 </div>
 
                 <div class="head">
                     <div class="title">movie : <span><?= $fetch_movie['title']; ?></span></div>
-                    <div class="title">language : <span><?= $fetch_movie['language']; ?></span></div>
+                    <div class="title">мова : <span><?= $fetch_movie['language']; ?></span></div>
                     <div class="title"><i class="bx bxs-calendar"></i><span><?= $fetch_movie['release_year']; ?></span></div>
                     <div class="title"><i class="bx bxs-stopwatch"></i><span><?= $fetch_movie['duration']; ?></span></div>
                     <a href="<?= $fetch_movie['trailer_url']; ?>"><img src="image/play-button.png"></a>
                 </div>
 
                 <div class="content">
-                    <h1>screen shorts</h1>
+                    <h1>Знімки з фільму</h1>
                     <div class="screenshot">
                         <?php foreach(json_decode($fetch_movie['movie_thumb']) as $image) : ?>
                             <img src="uploaded_files/<?= $image ?>" width="100">
                         <?php endforeach; ?>
                     </div>
-                    <h1>synopsis</h1>
+                    <h1>Опис</h1>
                     <p class="description"><?= $fetch_movie['description']; ?></p>
-                    <h1>cast</h1>
+                    <h1>Акторський склад</h1>
                     <div class="cast-section">
                         <?php
-                            //1. get actors ids (comma separated)
+                            //1.отримати ідентифікатори акторів (розділені комами)
                             $stmt = $conn->prepare("SELECT actor_id FROM movie_actors WHERE movie_id = ?");
                             $stmt->execute([$pid]);
                             $row = $stmt->fetch();
 
                             $actorIDs = $row['actor_id']; //"3,7,12"
 
-                            //2. convert to array
+                            //2.перетворити на масив
                             $actorArray = explode(',', $actorIDs);
 
-                            //3. create placeholders for IN()
+                            //3.створіть заповнювачі для IN()
                             $placeholders = implode(',', array_fill(0, count($actorArray), '?'));
 
-                            //4.fetch actor details
+                            //4.отримати інформацію про актора
                             $sql = "SELECT * FROM actors WHERE id IN ($placeholders)";
                             $stmt = $conn->prepare($sql);
                             $stmt->execute($actorArray);
                             $actors = $stmt->fetchAll();
 
-                            //5. display names
+                            //5.відображаються імена
                             foreach ($actors as $actor) { ?>
 
                                 <div class="detail">
@@ -102,23 +102,22 @@
                                 </div>
                         <?php } ?>
                     </div>
-                    <h1>crew</h1>
+                    <h1>Команда</h1>
                     <div class="cast-section">
                         <?php 
-                            //1. fetch comma-separated crew IDs
+                            //1.отримати ідентифікатори екіпажу, розділені комами
                             $stmt = $conn->prepare("SELECT director_id FROM movie_directors WHERE movie_id = ?");
                             $stmt->execute([$pid]);
                             $row = $stmt->fetch();
 
                             $crewIDs = $row['director_id']; //"2,3,4";
 
-                            //2. convert to array
+                            //2.перетворити на масив
                             $crewArray = explode(',', $crewIDs);
 
-                            //3. prepare IN list placeholders
+                            //3.підготуйте заповнювачі списку IN
                             $placeholders = implode(',', array_fill(0, count($crewArray), '?'));
 
-                            //4. fetch crew members
                             $sql = "SELECT * FROM crew_members WHERE id IN ($placeholders)";
                             $stmt = $conn->prepare($sql);
                             $stmt->execute($crewArray);
@@ -134,17 +133,26 @@
                                 </div>
                         <?php } ?>
                     </div>
+                    <div class="flex-btn">
+                        <a href="select-language.php?movie_id=<?= $fetch_movie['id']; ?>" class="btn">Бронювати квиток</a>
+                        <button type="submit" name="add_to_wishlist" class="btn">Додати до списку бажаного</button>
+                        <a href="fetch_movie.php?movie_id=<?= $fetch_movie['id']; ?>" class="btn">Повернутись назад</a>
+                    </div>
                 </div>
             </form>
             <?php
                     }
+                }else{
+                    echo '
+                    <div class="empty">
+                        <p>no movie added yet!</p>
+                    </div>
+                    ';
                 }
             ?>
         </div>
      </div>
     
-    
-
     <?php include 'components/user_footer.php'; ?>
 
         <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
