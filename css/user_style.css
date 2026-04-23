@@ -1181,8 +1181,49 @@ footer .bottom a{
 .read-movie .btn{
     width: 33%;
 }
-
-
+/*-----секція вибору мови на фільм-----*/
+.select-container{
+    max-width: 50rem;
+    margin: 2rem auto;
+    background-color: var(--blue0);
+    box-shadow: var(--box-shadow);
+}
+.select-container img{
+    width: 100%;
+    height: 22rem;
+}
+.select-container .flex{
+    display: flex;
+    gap: 2rem;
+}
+.select-container .flex .col{
+    flex: 1 1 25rem;
+    margin: 0 .4rem;
+}
+.select-container p{
+    text-transform: capitalize;
+    margin: 1rem 0;
+}
+.select-container p span{
+    color: red;
+}
+.select-container .flex .box{
+    background-image: linear-gradient(90deg, #0f5ae0 0%, #7400ba 100%);
+    width: 100%;
+    padding: 1rem;
+    border-radius: .5rem;
+    border: var(--border);
+    color: var(--color);
+    font-size: 1.1rem;
+}
+form option{
+    color: #000;
+    font-size: 1rem;
+}
+.select-container .btn{
+    width: 100%;
+    font-size: 1.3rem;
+}
 
 
 
