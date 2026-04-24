@@ -80,7 +80,7 @@
                     <div class="col">
                         <div class="input-field">
                             <p>Виберіть час показу <span>*</span></p>
-                            <select name="formate" required class="box">
+                            <select name="time" required class="box">
                                 <option selected disabled>Виберіть час показу</option>
                                 <?php
                                     $select_time = $conn->prepare("SELECT * FROM show_time");
@@ -105,7 +105,7 @@
                 </div>
                 <div class="flex-btn">
                     <a href="fetch_movie.php" class="btn">Повернутись назад</a>
-                    <button type="submit" class="btn">Наступний</button>
+                    <button type="submit" class="btn">Далі</button>
                 </div>
             </form>
             

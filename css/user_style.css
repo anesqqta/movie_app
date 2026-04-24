@@ -1182,13 +1182,15 @@ footer .bottom a{
     width: 33%;
 }
 /*-----секція вибору мови на фільм-----*/
-.select-container{
+.select-container,
+.show-container{
     max-width: 50rem;
     margin: 2rem auto;
     background-color: var(--blue0);
     box-shadow: var(--box-shadow);
 }
-.select-container img{
+.select-container img,
+.show-container img{
     width: 100%;
     height: 22rem;
 }
@@ -1223,6 +1225,55 @@ form option{
 .select-container .btn{
     width: 100%;
     font-size: 1.3rem;
+}
+/*-----секція вибору сеансу-----*/
+.show-container{
+    max-width: 70rem;
+    position: relative;
+}
+.show-container .movie-detail{
+    position: absolute;
+    top: 10%;
+    left: 5%;
+    text-transform: capitalize;
+    text-align: center;
+    line-height: 2;
+}
+.show-container .movie-detail p{
+    font-size: .9rem;
+    text-transform: uppercase;
+}
+.show-container .head{
+    background-color: #001232;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+    text-transform: capitalize;
+    margin-top: -.5rem;
+}
+.show-container .detail{
+    display: grid;
+    grid-template-columns: repeat(auto-fit, 15rem);
+    align-items: center;
+    justify-content: space-evenly;
+    padding: 2rem 1rem;
+}
+.show-container .detail p{
+    background-color: #03205599;
+    box-shadow: var(--box-shadow);
+    border: var(--border);
+    text-transform: capitalize;
+    margin: .5rem;
+    padding: .5rem;
+    border-radius: 1.5rem;
+    text-align: center;
+}
+.show-container span{
+    color: var(--green);
+}
+.show-container .detail .btn{
+    padding: 1rem;
 }
 
 
