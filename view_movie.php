@@ -27,7 +27,7 @@
     <div class="banner">
         <div class="detail">
             <h1>Деталі фільму</h1>
-            <p>Написати про нас</p>
+            <p>Ознайомтеся з описом фільму, перегляньте трейлер, розклад сеансів та оберіть найкращий час для перегляду</p>
             <span><a href="home.php">Головна</a><i class="bx bxs-right-arrow-alt"></i>Деталі фільму</span>
         </div>
     </div>
@@ -160,7 +160,6 @@
         <script type="text/javascript">
             <?php include 'js/user_script.js'; ?>
         </script>
-
 
         <?php include 'components/alert.php'; ?>
     </body>

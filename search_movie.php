@@ -25,7 +25,7 @@
     <div class="banner">
         <div class="detail">
             <h1>Результати пошуку</h1>
-            <p>Написати про нас</p>
+            <p>Перегляньте знайдені фільми, оберіть потрібний сеанс та швидко забронюйте квитки онлайн</p>
             <span><a href="home.php">Головна</a><i class="bx bxs-right-arrow-alt"></i>результати пошуку</span>
         </div>
     </div>
@@ -33,8 +33,8 @@
     <!-- секція пошуку фільмів -->
     <div class="show-movie">
         <div class="heading">
-            <span>movie listings</span>
-            <h1>movies listings in boleto</h1>
+            <span>списки фільмів</span>
+            <h1>списки фільмів в boleto</h1>
         </div>
         <div class="box-container">
             <?php
@@ -44,9 +44,7 @@
                     $select_movies->execute(['active']);
 
                     if ($select_movies->rowCount() > 0) {
-                        while($fetch_movie = $select_movies->fetch(PDO::FETCH_ASSOC)){
-
-                       
+                        while($fetch_movie = $select_movies->fetch(PDO::FETCH_ASSOC)){      
             ?>
             <form action="" method="post" class="box">
                 <img src="uploaded_files/<?= $fetch_movie['thumbnail'] ?>"  class="img1">
@@ -92,7 +90,6 @@
         <script type="text/javascript">
             <?php include 'js/user_script.js'; ?>
         </script>
-
 
         <?php include 'components/alert.php'; ?>
     </body>

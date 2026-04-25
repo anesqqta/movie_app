@@ -42,7 +42,7 @@
     <div class="banner">
         <div class="detail">
             <h1>Список бажаного</h1>
-            <p>Написати про нас</p>
+            <p>Зберігайте улюблені фільми, щоб швидко повертатися до них та бронювати квитки у зручний для вас час</p>
             <span><a href="home.php">Головна</a><i class="bx bxs-right-arrow-alt"></i>список бажаного</span>
         </div>
     </div>
@@ -99,8 +99,6 @@
         </div>
      </div>
 
-
-
     <?php include 'components/user_footer.php'; ?>
 
         <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
@@ -108,7 +106,6 @@
         <script type="text/javascript">
             <?php include 'js/user_script.js'; ?>
         </script>
-
 
         <?php include 'components/alert.php'; ?>
     </body>
