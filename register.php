@@ -81,7 +81,7 @@
     <div class="banner">
         <div class="detail">
             <h1>Зареєструватися</h1>
-            <p>Написати про нас</p>
+            <p>Створіть акаунт, щоб швидко бронювати квитки, отримувати персональні пропозиції та слідкувати за новими кінопрем’єрами</p>
             <span><a href="home.php">Головна</a><i class="bx bxs-right-arrow-alt"></i>зареєструватися</span>
         </div>
     </div>
@@ -125,7 +125,6 @@
         </form>
     </div>
     
-
     <?php include 'components/user_footer.php'; ?>
 
         <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
@@ -133,7 +132,6 @@
         <script type="text/javascript">
             <?php include 'js/user_script.js'; ?>
         </script>
-
 
         <?php include 'components/alert.php'; ?>
     </body>

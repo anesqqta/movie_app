@@ -36,7 +36,6 @@
             <?php include 'js/user_script.js'; ?>
         </script>
 
-
         <?php include 'components/alert.php'; ?>
     </body>
 </html>

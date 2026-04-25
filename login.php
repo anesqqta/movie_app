@@ -43,7 +43,7 @@
     <div class="banner">
         <div class="detail">
             <h1>Увійти</h1>
-            <p>Написати про нас</p>
+            <p>Увійдіть у свій акаунт, щоб бронювати квитки, переглядати замовлення та зберігати улюблені фільми</p>
             <span><a href="home.php">Головна</a><i class="bx bxs-right-arrow-alt"></i>Увійти</span>
         </div>
     </div>
@@ -65,7 +65,6 @@
             <button type="submit" name="login" class="btn">увійти</button>
         </form>
     </div>
-    
 
     <?php include 'components/user_footer.php'; ?>
 
@@ -74,7 +73,6 @@
         <script type="text/javascript">
             <?php include 'js/user_script.js'; ?>
         </script>
-
 
         <?php include 'components/alert.php'; ?>
     </body>
