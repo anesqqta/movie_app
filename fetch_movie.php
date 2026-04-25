@@ -27,7 +27,7 @@
     <div class="banner">
         <div class="detail">
             <h1>Всі фільми</h1>
-            <p>Написати про нас</p>
+            <p>Переглядайте актуальні кінопрем’єри, обирайте улюблені фільми та бронюйте квитки онлайн швидко й зручно</p>
             <span><a href="home.php">Головна</a><i class="bx bxs-right-arrow-alt"></i>всі фільми</span>
         </div>
     </div>
@@ -35,8 +35,8 @@
     <!-- секція всіх фільмів -->
     <div class="show-movie">
         <div class="heading">
-            <span>movie listings</span>
-            <h1>movies listings in boleto</h1>
+            <span>списки фільмів</span>
+            <h1>списки фільмів в boleto</h1>
         </div>
         <div class="box-container">
             <?php
@@ -87,7 +87,6 @@
         <script type="text/javascript">
             <?php include 'js/user_script.js'; ?>
         </script>
-
 
         <?php include 'components/alert.php'; ?>
     </body>
