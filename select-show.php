@@ -49,7 +49,7 @@
     <div class="banner">
         <div class="detail">
             <h1>Виберіть сеанс</h1>
-            <p>Написати про нас</p>
+            <p>Оберіть зручний час показу фільму та забронюйте квитки на найкращі місця у кінозалі</p>
             <span><a href="home.php">Головна</a><i class="bx bxs-right-arrow-alt"></i>виберіть сеанс</span>
         </div>
     </div>
@@ -65,7 +65,7 @@
         </div>
         <div class="head">
             <p>Мова : <?= $language; ?></p>
-            <p>Experience : <?= $formate; ?></p>
+            <p>Формат : <?= $formate; ?></p>
             <p>Час : <?= $time; ?></p>
             <p>Дата : <?= $date; ?></p>
         </div>
@@ -111,9 +111,6 @@
             }
         ?>
     </div>
-    
-
-
 
     <?php include 'components/user_footer.php'; ?>
 
@@ -122,7 +119,6 @@
         <script type="text/javascript">
             <?php include 'js/user_script.js'; ?>
         </script>
-
 
         <?php include 'components/alert.php'; ?>
     </body>

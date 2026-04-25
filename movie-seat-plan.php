@@ -74,7 +74,7 @@
     <div class="banner">
         <div class="detail">
             <h1>Виберіть місце</h1>
-            <p>Написати про нас</p>
+            <p>Оберіть зручні місця у кінозалі та завершіть бронювання квитків для комфортного перегляду фільму</p>
             <span><a href="home.php">Головна</a><i class="bx bxs-right-arrow-alt"></i>виберіть місце</span>
         </div>
     </div>
@@ -82,7 +82,7 @@
         <!-- секція вибору місця -->
         <div class="select-seat">
             <div class="heading">
-                <h1>екран</h1>
+                <h1>Екран</h1>
             </div>
             <img src="image/screen-thumb.png">
             <div class="seat-map">
@@ -130,8 +130,6 @@
         </div>
     </div>
 
-    
-    
     <?php include 'components/user_footer.php'; ?>
 
         <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
@@ -192,7 +190,6 @@
                 document.getElementById('total-price-input').value =totalPrice;
             }
         </script>
-
 
         <?php include 'components/alert.php'; ?>
     </body>

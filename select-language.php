@@ -45,7 +45,7 @@
     <div class="banner">
         <div class="detail">
             <h1>Виберіть мову</h1>
-            <p>Написати про нас</p>
+            <p>Оберіть зручну мову перегляду фільму, щоб отримати максимальне задоволення від кінопрем’єри</p>
             <span><a href="home.php">Головна</a><i class="bx bxs-right-arrow-alt"></i>виберіть мову</span>
         </div>
     </div>
@@ -107,14 +107,10 @@
                     <a href="fetch_movie.php" class="btn">Повернутись назад</a>
                     <button type="submit" class="btn">Далі</button>
                 </div>
-            </form>
-            
+            </form>  
         </div>
      </div>
     
-
-
-
     <?php include 'components/user_footer.php'; ?>
 
         <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
@@ -122,7 +118,6 @@
         <script type="text/javascript">
             <?php include 'js/user_script.js'; ?>
         </script>
-
 
         <?php include 'components/alert.php'; ?>
     </body>
