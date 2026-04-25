@@ -49,7 +49,7 @@
         <div class="box">
             <h3>Зв'яжіться з нами</h3>
             <p><i class="bx bxs-phone"></i>+380986708240</p>
-            <p><i class="bx bxs-envelope"></i>anastasiya.semeniuk@gmail.com</p>
+            <p><i class="bx bxs-envelope"></i>boleto@gmail.com</p>
             <p><i class="bx bxs-location-plus"></i>м.Коломия вул.Едельвейсів 495</p>
             <div class="icons">
                 <i class="bx bxl-facebook"></i>
