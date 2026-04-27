@@ -6,22 +6,66 @@
         $user_id = '';
     }
 
-    if (isset($_POST['login'])) {
-        $email = $_POST['email'];
-        $email = filter_var($email, FILTER_SANITIZE_STRING);
+    session_start();
 
-        $pass = sha1($_POST['pass']);
-        $pass = filter_var($pass, FILTER_SANITIZE_STRING);
+    //get show_id from url first, fallback to session
+    if (isset($_GET['show_id'])) {
+        $show_id = $_GET['show_id'];
+    }elseif(isset($_SESSION['booking']['show_id'])){
+        $show_id = $_SESSION['booking']['show_id'];
+    }else{
+        die('Сеанс не вибрано');
+    }
 
-        $select_user = $conn->prepare("SELECT * FROM users WHERE email = ?");
-        $select_user->execute([$email]);
-        $row = $select_user->fetch(PDO::FETCH_ASSOC);
+    //fetch session values
+    $language = $_SESSION['booking']['language'];
+    $formate = $_SESSION['booking']['formate'];
+    $time = $_SESSION['booking']['time'];
+    $date = $_SESSION['booking']['date'];
+    $movie_id = $_SESSION['booking']['movie_id'];
 
-        if ($select_user->rowCount() > 0) {
-            setcookie('user_id', $row['id'], time() + 60*60+24, '/');
-            header('location:home.php');
-        }else{
-            $warning_msg[] = 'Некоректний пароль або email';
+    //fetch movie name
+    $movie_stmt = $conn->prepare("SELECT * FROM movies WHERE id = ?");
+    $movie_stmt->execute([$movie_id]);
+
+    if ($movie_stmt->rowCount() > 0) {
+        while($fetch_movie = $movie_stmt->fetch(PDO::FETCH_ASSOC)){
+            $fetch_img = $fetch_movie['thumbnail'];
+            $movie_name = $fetch_movie['title'];
+        }
+    }
+    
+    //fetch show details
+    $show_stmt = $conn->prepare("SELECT * FROM shows WHERE id = ?");
+    $show_stmt->execute([$show_id]);
+
+    if ($show_stmt->rowCount() > 0) {
+        while($fetch_show = $show_stmt->fetch(PDO::FETCH_ASSOC)){
+            $hall_id = $fetch_show['hail_id'];
+
+            $select_hall = $conn->prepare("SELECT * FROM halls WHERE id = ?");
+            $select_hall->execute([$hall_id]);
+
+            if ($select_hall->rowCount() > 0) {
+                while($fetch_hall = $select_hall->fetch(PDO::FETCH_ASSOC)){
+                    $hall_name = $fetch_hall['name'];
+                    $hall_location = $fetch_hall['location'];
+                    $hall_city = $fetch_hall['city'];
+                }
+            }
+        }
+    }
+
+    //fetch seat details
+    $select_seat = $conn->prepare("SELECT * FROM seat_details WHERE user_id = ?");
+    $select_seat->execute([$user_id]);
+
+    if ($select_seat->rowCount() > 0) {
+        while($fetch_seat = $select_seat->fetch(PDO::FETCH_ASSOC)){
+            $seat_detail_id = $fetch_seat['id'];
+            $total_seats = $fetch_seat['total_seat'];
+            $seat_detail = $fetch_seat['selected_seats'];
+            $total_price = $fetch_seat['amount'];
         }
     }
 ?>
@@ -43,13 +87,69 @@
     <div class="banner">
         <div class="detail">
             <h1>Бронювання</h1>
-            <p>Написати про нас</p>
+            <p>Завершіть оформлення бронювання квитків та підготуйтеся до незабутнього перегляду улюбленого фільму</p>
             <span><a href="home.php">Головна</a><i class="bx bxs-right-arrow-alt"></i>Бронювання</span>
         </div>
     </div>
 
     <!-- секція бронювання -->
-    
+    <div class="booking-movie-detail">
+        <img src="uploaded_files/<?= $fetch_img; ?>">
+        <p>Назва фільму : <span><?= $movie_name; ?></span></p>
+    </div>
+    <div class="booking-summary">
+        <h3>сумарне бронювання</h3>
+        <div class="detail">
+            <p>Мова : <span><?= $language; ?></span></p>
+            <p>Формат : <span><?= $formate; ?></span></p>
+            <p>Дата : <span><?= $date; ?></span></p>
+            <p>Час : <span><?= $time; ?></span></p>
+            <p>Назва залу : <span><?= $hall_name; ?></span></p>
+            <p>Розташування : <span><?= $hall_location; ?></span></p>
+            <p>Місто : <span><?= $hall_city; ?></span></p>
+            <p>Загальна кількість місць : <span><?= $total_seats; ?></span></p>
+            <p>Деталі місця : <span><?= $seat_detail; ?></span></p>
+            <p>Загальна сума : <span>$<?= $total_price; ?>/-</span></p>
+        </div>
+    </div>
+    <div class="booking form-container">
+        <h3>Введіть дані вашої картки</h3>
+        <form action="" method="post" class="register">
+            <div class="flex">
+                <div class="col">
+                    <div class="input-field">
+                        <p>Варіант оплати <span>*</span></p>
+                        <select name="paynent_method" class="box" required>
+                            <option selected disabled>Виберіть метод оплати</option>
+                            <option value="credit card">Кредитна картка</option>
+                            <option value="debit card">Дебетова картка</option>
+                            <option value="paypal">PayPal</option>
+                            <option value="credit card">кредитна картка</option>
+                        </select>
+                    </div>
+                    <div class="input-field">
+                        <p>реквізити картки <span>*</span></p>
+                        <input type="number" name="card-details" class="box" required>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="input-field">
+                        <p>номер картки <span>*</span></p>
+                        <input type="text" name="card-name" class="box" required>
+                    </div>
+                    <div class="input-field">
+                        <p>закінчення терміну дії <span>*</span></p>
+                        <input type="date" name="expiration" min="<?php echo date('Y-m-d') ?>" class="box" required>
+                    </div>
+                </div>
+            </div>
+            <div class="input-field">
+                <p>cvv <span>*</span></p>
+                <input type="text" name="cvv" class="box" required>
+            </div>
+            <button type="submit" name="booking" class="btn">Оплатити</button>
+        </form>
+    </div>
     
 
     <?php include 'components/user_footer.php'; ?>
