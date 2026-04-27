@@ -8,7 +8,7 @@
 
     session_start();
 
-    //get show_id from url first, fallback to session
+    //спочатку отримати show_id з URL-адреси, повернутися до сеансу
     if (isset($_GET['show_id'])) {
         $show_id = $_GET['show_id'];
     }elseif(isset($_SESSION['booking']['show_id'])){
@@ -17,14 +17,14 @@
         die('Сеанс не вибрано');
     }
 
-    //fetch session values
+    //отримати значення сеансу
     $language = $_SESSION['booking']['language'];
     $formate = $_SESSION['booking']['formate'];
     $time = $_SESSION['booking']['time'];
     $date = $_SESSION['booking']['date'];
     $movie_id = $_SESSION['booking']['movie_id'];
 
-    //fetch movie name
+    //отримати назву фільму
     $movie_stmt = $conn->prepare("SELECT * FROM movies WHERE id = ?");
     $movie_stmt->execute([$movie_id]);
 
@@ -35,7 +35,7 @@
         }
     }
     
-    //fetch show details
+    //отримати деталі сеансу
     $show_stmt = $conn->prepare("SELECT * FROM shows WHERE id = ?");
     $show_stmt->execute([$show_id]);
 
@@ -56,7 +56,7 @@
         }
     }
 
-    //fetch seat details
+    //отримати деталі місця
     $select_seat = $conn->prepare("SELECT * FROM seat_details WHERE user_id = ?");
     $select_seat->execute([$user_id]);
 
@@ -66,6 +66,36 @@
             $total_seats = $fetch_seat['total_seat'];
             $seat_detail = $fetch_seat['selected_seats'];
             $total_price = $fetch_seat['amount'];
+        }
+    }
+
+    //запит на бронювання
+    if (isset($_POST['booking'])) {
+        if ($user_id != '') {
+
+            $id = unique_id();
+
+            $payment_method = $_POST['payment_method'];
+            $payment_method = filter_var($payment_method, FILTER_SANITIZE_STRING);
+
+            $cars_details = $_POST['cars_details'];
+            $cars_details = filter_var($cars_details, FILTER_SANITIZE_STRING);
+
+            $card_name = $_POST['card_name'];
+            $card_name = filter_var($card_name, FILTER_SANITIZE_STRING);
+
+            $expiration = $_POST['expiration'];
+            $expiration = filter_var($expiration, FILTER_SANITIZE_STRING);
+
+            $cvv = $_POST['cvv'];
+            $cvv = filter_var($cvv, FILTER_SANITIZE_STRING);
+
+            $insert_booking = $conn->prepare("INSERT INTO booking (id, user_id, show_id, movie_id, language, formate, date, time, seat_detail_id, total_seat, seat_details, amount, payment_method, nameon_card, card_details, expiration, cvv) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+            $insert_booking->execute([$id, $user_id, $show_id, $movie_id, $language, $formate, $date, $time, $seat_detail_id, $total_seats, $seat_detail, $total_price, $payment_method, $card_name, $card_details, $expiration, $cvv]);
+
+            header('location:my_booking.php');
+        }else{
+            $warning_msg[] = 'Увійдіть спочатку';
         }
     }
 ?>

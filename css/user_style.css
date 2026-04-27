@@ -295,7 +295,7 @@ input[type='submit']{
     display: flex;
     justify-content: center;
     align-items: center;
-    min-height: 100vh;
+    min-height: 80vh; 
     position: relative;
     padding: 5% 0;
 }
@@ -1429,8 +1429,14 @@ form option{
 .booking-summary .detail p span{
     color: var(--green);
 }
-
-
+.booking{
+    flex-direction: column;
+}
+.booking h3{
+    text-transform: capitalize;
+    font-size: 2rem;
+    margin-bottom: 2rem;
+}
 
 
 
