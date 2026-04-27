@@ -78,8 +78,8 @@
             $payment_method = $_POST['payment_method'];
             $payment_method = filter_var($payment_method, FILTER_SANITIZE_STRING);
 
-            $cars_details = $_POST['cars_details'];
-            $cars_details = filter_var($cars_details, FILTER_SANITIZE_STRING);
+            $card_details = $_POST['card_details'];
+            $card_details = filter_var($card_details, FILTER_SANITIZE_STRING);
 
             $card_name = $_POST['card_name'];
             $card_name = filter_var($card_name, FILTER_SANITIZE_STRING);
@@ -149,23 +149,22 @@
                 <div class="col">
                     <div class="input-field">
                         <p>Варіант оплати <span>*</span></p>
-                        <select name="paynent_method" class="box" required>
+                        <select name="payment_method" class="box" required>
                             <option selected disabled>Виберіть метод оплати</option>
                             <option value="credit card">Кредитна картка</option>
                             <option value="debit card">Дебетова картка</option>
                             <option value="paypal">PayPal</option>
-                            <option value="credit card">кредитна картка</option>
                         </select>
                     </div>
                     <div class="input-field">
                         <p>реквізити картки <span>*</span></p>
-                        <input type="number" name="card-details" class="box" required>
+                        <input type="number" name="card_details" class="box" required>
                     </div>
                 </div>
                 <div class="col">
                     <div class="input-field">
-                        <p>номер картки <span>*</span></p>
-                        <input type="text" name="card-name" class="box" required>
+                        <p>Ім'я картки <span>*</span></p>
+                        <input type="text" name="card_name" class="box" required>
                     </div>
                     <div class="input-field">
                         <p>закінчення терміну дії <span>*</span></p>
