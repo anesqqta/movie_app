@@ -1618,6 +1618,18 @@ form option{
     border-radius: 50%;
     border: 4px solid var(--green);
 }
+.review .form-container form{
+    margin-top: 0;
+}
+.review .form-container form p{
+    margin-bottom: 1rem;
+}
+.review .form-container form .flex-btn{
+    margin-top: 1.5rem;
+}
+.review .form-container form .flex-btn .btn{
+    width: 50%;
+}
 
 
 /*-----адаптивка-----*/
