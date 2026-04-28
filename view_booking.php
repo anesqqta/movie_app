@@ -127,7 +127,7 @@
                     <form action="" method="post" class="flex-btn">
                         <button type="submit" name="canceled" class="btn" onclick="return confirm('Ви хочете скасувати бронювання?')">Скасувати</button>
                         <a href="my_booking.php?post_id=<?= $fetch_booking['id']; ?>"class="btn">Повернутись назад</a>
-                        <a href="rating.php?get_id=<?= $fetch_movie['id'] ?>" class="btn">Написати відгук</a>
+                        <a href="rating.php?get_id=<?= $fetch_booking['id'] ?>" class="btn">Написати відгук</a>
                 </form>
                 <?php } ?>
             </div>
