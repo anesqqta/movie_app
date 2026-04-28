@@ -747,7 +747,6 @@ footer .bottom a{
     background-position: center;
 }
 .about .box-container{
-    background-image: -webkit-linear-gradient(0deg, #7400ba99, #0f5ae099);
     min-height: 100vh;
     padding: 0 5%;
 }
@@ -856,9 +855,7 @@ footer .bottom a{
 .help .container,
 .testimonial-container .testimonial{
     padding: 6%;
-    background-image: -webkit-linear-gradient(0deg, #7400ba 0%, #0f5ae0 100%);
     opacity: .8;
-
 }
 .help .box-container{
     grid-template-columns: repeat(auto-fit, 25rem);
