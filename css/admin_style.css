@@ -19,6 +19,8 @@
     --overlay: linear-gradient(0deg, #7400ba 0%, #0f5ae0 100%);
     --color: #dbe2fb;
     --border: 1px solid #12387e;
+    --while-alfa-25: rgba(255, 255, 255, 0.25);
+    --while-alfa-40: rgba(255, 255, 255, 0.40);
 }
 /*-----глобальні налаштування-----*/
 body{
@@ -289,4 +291,171 @@ input::placeholder{
 }
 .form-container .img-box{
     text-align: center;
+}
+/*-----хедер-----*/
+header{
+    padding: .5rem 4%;
+    background-color: var(--blue);
+    border-bottom: 1px solid #fff9;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+header .right{
+    display: flex;
+}
+#user-btn,
+.toggle-btn{
+    font-size: 2rem;
+    color: var(--color);
+    cursor: pointer;
+}
+header .profile{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: absolute;
+    top: 120%;
+    right: 5rem;
+    background-color: #fff;
+    border-radius: .5rem;
+    padding: 1rem;
+    text-align: center;
+    width: 25rem;
+    transform: scale(0);
+    transform-origin: top right;
+    box-shadow: var(--box-shadow);
+    text-transform: capitalize;
+}
+header .profile.active{
+    transform: scale(1.0);
+    transition: .3s linear;
+}
+header .profile img{
+    width: 6rem;
+    height: 6rem;
+    border-radius: 50%;
+    object-fit: contain;
+    margin-bottom: .5rem;
+    padding: .3rem;
+    background-image: var(--background-image);
+}
+header .profile h3{
+    font-size: 1.3rem;
+    color: var(--green);
+}
+header p{
+    color: red;
+    font-size: 1.1rem;
+}
+header .btn{
+    padding: .4rem 1.5rem;
+}
+.sidebar{
+    background-color: #032055;
+    box-shadow: var(--box-shadow);
+    border: var(--border);
+    padding-top: 0;
+    width: 20rem;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: -30rem;
+    width: 0rem;
+    overflow: auto;
+    z-index: 1200;
+    transition: .5s;
+}
+.sidebar.active{
+    left: 0;
+    width: 20rem;
+}
+.sidebar h5{
+    text-transform: uppercase;
+    color: var(--green);
+    padding: .5rem 1rem;
+    margin: .5rem 0;
+}
+.sidebar .profile{
+    margin: .5rem auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: .5rem;
+}
+.sidebar .logo-img{
+    width: 130px;
+    height: 130px;
+    border-radius: 50%;
+    padding: .5rem;
+    border: 2px solid var(--green);
+}
+.sidebar .profile h3{
+    margin-top: .5rem;
+    text-transform: uppercase;
+    color: var(--green);
+    font-size: 1.3rem;
+}
+.sidebar ul li{
+    padding: 1rem;
+    background-color: var(--while-alfa-25);
+    border: 2px solid var(--while-alfa-40);
+    box-shadow: var(--box-shadow);
+    backdrop-filter: blur(10px);
+    position: relative;
+    transition: .5s;
+    margin: .5rem 0;
+}
+.sidebar ul li::before{
+    position: absolute;
+    content: "";
+    left: 0;
+    top: 0;
+    height: 0%;
+    width: 5px;
+    background-color: var(--green);
+    transition: all 200ms linear;
+}
+.sidebar ul li:hover::before{
+    height: 100%;
+}
+.sidebar ul li i{
+    color: var(--green);
+    font-size: 20px;
+    margin-right: 2rem;
+}
+.sidebar ul li a{
+    text-transform: uppercase;
+    color: var(--color);
+    font-size: 12px;
+    font-weight: bold;
+}
+.sidebar ul li a:hover{
+    color: var(--green);
+}
+.social-links{
+    padding-bottom: 2.5rem;
+}
+.social-links i{
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    line-height: 40px;
+    text-align: center;
+    background-color: var(--while-alfa-25);
+    border: 2px solid var(--while-alfa-40);
+    box-shadow: var(--box-shadow);
+    cursor: pointer;
+    transition: .5s;
+    color: var(--color);
+    margin: 0 .5rem;
+}
+.social-links i:hover{
+    background-color: var(--green);
 }
