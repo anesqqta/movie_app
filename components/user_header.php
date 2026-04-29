@@ -38,7 +38,7 @@
             <h3 style="margin-bottom: 1rem;"><?= $fetch_profile['name']; ?></h3>
             <div class="flex-btn">
                 <a href="profile.php" class="btn">Профіль</a>
-                <a href="components.user_logout.php" onclick="return confirm('Вийти з профілю');" class="btn">Вийти</a>
+                <a href="components/user_logout.php" onclick="return confirm('Вийти з профілю');" class="btn">Вийти</a>
             </div>
             <?php }else{ ?>
             <img src="image/user.png">
