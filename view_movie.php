@@ -145,13 +145,15 @@
                 }else{
                     echo '
                     <div class="empty">
-                        <p>no movie added yet!</p>
+                        <p>Фільм ще не додано!</p>
                     </div>
                     ';
                 }
             ?>
         </div>
      </div>
+
+    <?php include 'reviews.php'; ?>
     
     <?php include 'components/user_footer.php'; ?>
 
