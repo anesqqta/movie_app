@@ -13,12 +13,12 @@
         $pass = sha1($_POST['pass']);
         $pass = filter_var($pass, FILTER_SANITIZE_STRING);
 
-        $select_user = $conn->prepare("SELECT * FROM users WHERE email = ?");
-        $select_user->execute([$email]);
+        $select_user = $conn->prepare("SELECT * FROM users WHERE email = ? AND password = ?");
+        $select_user->execute([$email, $pass]);
         $row = $select_user->fetch(PDO::FETCH_ASSOC);
 
         if ($select_user->rowCount() > 0) {
-            setcookie('user_id', $row['id'], time() + 60*60+24, '/');
+            setcookie('user_id', $row['id'], time() + 60*60*24, '/');
             header('location:home.php');
         }else{
             $warning_msg[] = 'Некоректний пароль або email';
