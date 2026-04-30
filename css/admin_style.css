@@ -261,6 +261,7 @@ input::placeholder{
     width: 100%;
     height: 50px;
     border: var(--border);
+    box-shadow: var(--box-shadow);
     border-radius: .5rem;
     padding-left: 20px;
     color: #fff;
@@ -297,6 +298,50 @@ input::placeholder{
 }
 .form-container .img-box{
     text-align: center;
+}
+.dropdown{
+    position: relative;
+    display: inline-block;
+    height: 50px;
+    background-color: #03205599;
+    box-shadow: var(--box-shadow);
+    border: var(--border);
+    width: 100%;
+    border-radius: .5rem;
+    margin: .5rem 0;
+    font-size: 18px;
+    color: var(--color);
+    background-color: transparent;
+    padding: .5rem;
+}
+.dropdown span{
+    color: var(--color)!important;
+}
+.dropdown-btn{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    cursor: pointer;
+}
+.dropdown-content{
+    display: none;
+    position: absolute;
+    background-color: var(--blue0);
+    border: var(--border);
+    width: 100%;
+    max-height: 200px;
+    overflow-y: auto;
+    z-index: 100;
+}
+.dropdown-content label{
+    display: block;
+    padding: 8px 0;
+    cursor: pointer;
+    border-bottom: 1px solid #12387e;
+}
+.dropdown-content label:hover{
+    background-color: #f1f1f1;
+    color: var(--blue);
 }
 /*-----хедер-----*/
 header{
