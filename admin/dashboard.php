@@ -107,7 +107,7 @@
 
     
 
-            
+    <?php include '../components/fetch_movie.php'; ?>   
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
 

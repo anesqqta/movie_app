@@ -492,3 +492,41 @@ header .btn{
     font-size: 1.8rem;
     text-transform: capitalize;
 }
+
+.dashboard-movies{
+    padding: 4% 2%;
+}
+.dashboard-movies .box-container{
+    grid-template-columns: repeat(auto-fit, 40rem);
+}
+.dashboard-movies .box-container .box{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: .5rem;
+    text-transform: capitalize;
+}
+.dashboard-movies .box-container .box .btn{
+    padding: .5rem;
+}
+.dashboard-movies .box-container .box .img-box{
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    border: 1px solid var(--green);
+    padding: 5px;
+    margin-right: 1rem;
+}
+.dashboard-movies .box-container .box img{
+    width: 90px;
+    height: 90px;
+    border-radius: 50%;
+    border: var(--border);
+}
+.dashboard-movies .box-container .box a{
+    color: var(--color);
+    font-size: 1.5rem;
+}
+.dashboard-movies .box-container .box a:hover{
+    color: var(--green);
+}
