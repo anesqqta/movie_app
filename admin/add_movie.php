@@ -8,7 +8,7 @@
     }
 
     if (isset($_POST['uploade'])) {
-        $movie_id = unique_id();
+        //$movie_id = unique_id();
 
         $name = $_POST['title'];
         $name = filter_var($name, FILTER_SANITIZE_STRING);
@@ -88,8 +88,10 @@
         if ($select_image->rowCount() > 0 AND $image != '') {
             $warning_msg[] = 'Перейменуйте зображення';
         }else{
-            $insert_movie = $conn->prepare("INSERT INTO movies (id, title, description, language, genre, release_year, duration, poster, thumbnail, trailer_url, movie_thumb, status) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
-            $insert_movie->execute([$movie_id, $name, $content, $language, $genre, $release_year, $duration, $image, $thumbnail, $trailer_url, $fileArray, $status]);
+            $insert_movie = $conn->prepare("INSERT INTO movies (title, description, language, genre, release_year, duration, poster, thumbnail, trailer_url, movie_thumb, status) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+            $insert_movie->execute([$name, $content, $language, $genre, $release_year, $duration, $image, $thumbnail, $trailer_url, $fileArray, $status]);
+
+            $movie_id = $conn->lastInsertId();
 
             move_uploaded_file($thumbnail_tmp_name, $thumbnail_folder);
         }
@@ -137,11 +139,11 @@
                 <div class="col">
                     <div class="input-field">
                         <p>Назва <span>*</span></p>
-                        <input type="text" name="title" required maxlength="100" placeholder="movie title" class="box">
+                        <input type="text" name="title" required maxlength="100" placeholder="Назва фільму" class="box">
                     </div>
                     <div class="input-field">
                         <p>Мова <span>*</span></p>
-                        <input type="text" name="language" required maxlength="100" placeholder="movie title" class="box">
+                        <input type="text" name="language" required maxlength="100" placeholder="Мова фільму" class="box">
                     </div>
                     <div class="input-field">
                         <p>Команда <span>*</span></p>
@@ -166,7 +168,7 @@
                     </div>
                     <div class="input-field">
                         <p>Жанр <span>*</span></p>
-                        <input type="text" name="genre" required maxlength="100" placeholder="movie title" class="box">
+                        <input type="text" name="genre" required maxlength="100" placeholder="Жанр фільму" class="box">
                     </div>
                     <div class="input-field">
                         <p>Знімки з фільму <span>*</span></p>
@@ -197,15 +199,15 @@
                     </div>
                     <div class="input-field">
                         <p>Рік випуску <span>*</span></p>
-                        <input type="text" name="release_year" required maxlength="100" placeholder="movie title" class="box">
+                        <input type="text" name="release_year" required maxlength="100" placeholder="Рік випуску фільму" class="box">
                     </div>
                     <div class="input-field">
                         <p>Трейлер <span>*</span></p>
-                        <input type="text" name="trailer_url" required maxlength="100" placeholder="movie title" class="box">
+                        <input type="text" name="trailer_url" required maxlength="100" placeholder="Трейлер фільму" class="box">
                     </div>
                     <div class="input-field">
                         <p>Тривалість <span>*</span></p>
-                        <input type="text" name="duration" required maxlength="100" placeholder="movie title" class="box">
+                        <input type="text" name="duration" required maxlength="100" placeholder="Тривалість фільму" class="box">
                     </div>
                     <div class="input-field">
                         <p>Постер фільму <span>*</span></p>
@@ -219,7 +221,7 @@
             </div>
             <div class="input-field">
                 <p>Опис фільму <span>*</span></p>
-                <textarea name="content" required style="height: 20rem;" class="box" placeholder="movie description"></textarea>
+                <textarea name="content" required style="height: 20rem;" class="box" placeholder="Опис фільму"></textarea>
             </div>
             <button type="submit" name="uploade" class="btn">Завантажити</button>
         </form>
