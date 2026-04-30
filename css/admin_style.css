@@ -492,7 +492,7 @@ header .btn{
     font-size: 1.8rem;
     text-transform: capitalize;
 }
-
+/*-----активні фільми на панельі керування-----*/
 .dashboard-movies{
     padding: 4% 2%;
 }
@@ -529,4 +529,24 @@ header .btn{
 }
 .dashboard-movies .box-container .box a:hover{
     color: var(--green);
+}
+/*-----заброньовані місця на панельі керування-----*/
+.researved-seat{
+    padding: 5% 2%;
+}
+.researved-seat .box-container{
+    grid-template-columns: repeat(auto-fit, 40rem);
+}
+.researved-seat table{
+    background-color: var(--blue0);
+    margin: 1rem;
+    text-align: center;
+    border-radius: .5rem;
+    box-shadow: var(--box-shadow);
+}
+.researved-seat table th, 
+.researved-seat table td{
+    border: var(--border);
+    padding: .3rem;
+    text-transform: capitalize;
 }
