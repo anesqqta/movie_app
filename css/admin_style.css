@@ -633,3 +633,146 @@ header .btn{
 .show-movies .box-container .box a{
     padding: .2rem 1rem!important;
 }
+/*-----сторінка деталі фільму-----*/
+.read-movies{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-radius: .5rem;
+    max-width: 1100px;
+    margin: 1rem auto;
+}
+.read-movies .container{
+    width: 100%;
+}
+.read-movies .box{
+    width: 100%;
+    background-color: #03205599;
+    box-shadow: var(--box-shadow);
+    border: var(--border);
+    position: relative;
+    margin: 1rem;
+    padding-bottom: 2rem;
+}
+.big-img{
+    height: 70vh;
+    width: 100%;
+}
+.big-img img{
+    height: 70vh;
+    width: 100%;
+    object-fit: cover;
+}
+.read-movies .status{
+    background-image: var(--background-image);
+    box-shadow: var(--box-shadow);
+    border: var(--border);
+    padding: .2rem 1rem;
+    border-radius: 1.5rem;
+    text-transform: capitalize;
+    color: var(--color);
+}
+.read-movies .head{
+    padding: 3rem .5rem;
+    background-color: #032055;
+    margin-top: -.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    text-transform: capitalize;
+}
+.read-movies .head .title{
+    font-weight: 400;
+    font-size: 1.2rem;
+}
+.read-movies .head .title span{
+    color: var(--green);
+}
+.read-movies .content{
+    padding: 0 3rem;
+}
+.read-movies h1{
+    text-transform: capitalize;
+    margin: 3rem 0;
+    position: relative;
+    line-height: 2;
+    text-align: center;
+}
+.read-movies h1::before,
+.read-movies h1::after{
+    position: absolute;
+    content: "";
+    background-color: rgba(49, 215, 169, 0.5);
+    width: 100%;
+    height: 1px;
+    left: -2%;
+}
+.read-movies h1::before{
+    top: 0;
+}
+.read-movies h1::after{
+    bottom: 0;
+}
+.read-movies .screenshot{
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(25rem, 1fr));
+    gap: 1rem;
+}
+.read-movies .screenshot img{
+    width: 100%;
+    height: 15rem;
+    object-fit: cover;
+}
+.read-movies .description{
+    text-align: left;
+    line-height: 2;
+}
+.read-movies .cast-section{
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(10rem, 1fr));
+    align-items: center;
+    justify-content: center;
+}
+.read-movies .cast-section .detail{
+    margin: .1rem;
+    text-align: center;
+}
+.read-movies .cast-section .detail h2{
+    font-weight: 400;
+    font-size: 1.1rem;
+    text-transform: capitalize;
+}
+.read-movies .cast-section .detail p{
+    color: var(--green);
+    text-transform: capitalize;
+}
+.read-movies .cast-section .img-box{
+    width: 130px;
+    height: 130px;
+    border-radius: 50%;
+    border: 1px solid rgba(49, 215, 169, 0.5);
+    margin: 0 auto;
+    padding: .5px;
+}
+.read-movies .cast-section .img-box img{
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    border: 4px solid var(--green);
+    object-fit: cover;
+}
+.read-movies .btn{
+    width: 33%;
+}
+.form-container .flex-box{ 
+    display: grid; 
+    grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr)); 
+    gap: 1rem; 
+} 
+.form-container .flex-box img{ 
+    width: 100%; 
+}
+.read-movies .flex-btn{
+    margin-top: 2rem;
+}

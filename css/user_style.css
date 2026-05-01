@@ -1103,7 +1103,7 @@ footer .bottom a{
     text-transform: capitalize;
 }
 .read-movie .head .title{
-    font-width: 400;
+    font-weight: 400;
     font-size: 1.2rem;
 }
 .read-movie .head .title span{

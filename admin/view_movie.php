@@ -62,16 +62,16 @@
 
     <div class="banner">
         <div class="detail">
-            <h1>Переглянути фільмів</h1>
+            <h1>Переглянути фільми</h1>
             <p>Переглядайте додані фільми, редагуйте інформацію та керуйте каталогом кінопрем’єр у системі</p>
-            <span><a href="dashboard.php">Адмін</a><i class="bx bxs-right-arrow-alt"></i>Переглянути фільмів</span>
+            <span><a href="dashboard.php">Адмін</a><i class="bx bxs-right-arrow-alt"></i>Переглянути фільми</span>
         </div>
     </div>
 
     <!-- секція перегляду фільмів-->
     <div class="show-movies">
         <div class="heading">
-            <h1>Переглянути фільмів</h1>
+            <h1>Переглянути фільми</h1>
             <a href="add_movie.php" class="btn">+</a>
         </div>
         <div class="box-container">
@@ -88,7 +88,7 @@
                     <div><h3><?= $fetch_movie['title']; ?></h3></div>
                     <input type="hidden" name="movie_id" value="<?= $fetch_movie['id']; ?>">
                     <button type="submit" name="delete" onclick="return confirm('Видалити цей фільм?');" class="btn">Видалити</button>
-                    <a href="read_movie.php?get_id=<?= $fetch_movie['id']; ?>" class="btn">Читати</a>
+                    <a href="read_movie.php?get_id=<?= $fetch_movie['id']; ?>" class="btn">Деталі</a>
                     <a href="edit_movie.php?get_id=<?= $fetch_movie['id']; ?>" class="btn">Редагувати<i class="bx bxs-edit"></i></a>
                 </div>
             </form> 
