@@ -7,6 +7,43 @@
         header('location:login.php');
     }
 
+    //видалення фільму з бази даниих
+    if (isset($_POST['delete'])) {
+        $delete_id = $_POST['movie_id'];
+        $delete_id = filter_var($delete_id, FILTER_SANITIZE_STRING);
+
+        $verify_delete = $conn->prepare("SELECT * FROM movies WHERE id = ?");
+        $verify_delete->execute([$delete_id]);
+
+        if ($verify_delete->rowCount() > 0) {
+            $select_images = $conn->prepare("SELECT * FROM movies WHERE id = ?");
+            $select_images->execute([$delete_id]);
+
+            while($fetch_images = $select_images->fetch(PDO::FETCH_ASSOC)){
+                $thumbnail = $fetch_images['thumbnail'];
+                $poster = $fetch_images['poster'];
+
+                unlink('../uploaded_files/'.$thumbnail);
+
+                if (!empty($poster)) {
+                    unlink('../uploaded_files/'.$poster);
+                }
+                foreach(json_decode($fetch_images['movie_thumb']) as $image){
+                    $movie_thumb = $image;
+
+                    if (!empty($image)) {
+                        unlink('../uploaded_files/'.$image);
+                    }
+                }
+            }
+            $delete_movie = $conn->prepare("DELETE FROM movies WHERE id = ?");
+            $delete_movie->execute([$delete_id]);
+            $success_msg[] = 'Фільм видалено';
+        }else{
+            $warning_msg[] = 'Фільм уже видалено';
+        }
+    }
+
 ?>
 
 <!DOCTYPE html>
