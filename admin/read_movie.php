@@ -7,7 +7,7 @@
         header('location:login.php');
     }
 
-    //getting movie id from url
+    //отримання id  фільму з url
     $get_id = $_GET['get_id'];
 
     //видалення фільму з бази даниих
