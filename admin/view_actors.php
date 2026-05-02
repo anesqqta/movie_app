@@ -7,6 +7,31 @@
         header('location:login.php');
     }
 
+    //видалення актора з бази даниих
+    if (isset($_POST['delete'])) {
+        $delete_id = $_POST['actor_id'];
+        $delete_id = filter_var($delete_id, FILTER_SANITIZE_STRING);
+
+        $verify_delete = $conn->prepare("SELECT * FROM actors WHERE id = ?");
+        $verify_delete->execute([$delete_id]);
+
+        if ($verify_delete->rowCount() > 0) {
+            $select_images = $conn->prepare("SELECT * FROM actors WHERE id = ?");
+            $select_images->execute([$delete_id]);
+
+            while($fetch_image = $select_images->fetch(PDO::FETCH_ASSOC)){
+                $image = $fetch_image['image'];
+
+                unlink('../uploaded_files/actors/'.$image);
+
+            }
+            $delete_actor = $conn->prepare("DELETE FROM actors WHERE id = ?");
+            $delete_actor->execute([$delete_id]);
+            $success_msg[] = 'Актора видалено';
+        }else{
+            $warning_msg[] = 'Актора уже видалено';
+        }
+    }
 ?>
 
 <!DOCTYPE html>
