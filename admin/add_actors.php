@@ -7,6 +7,40 @@
         header('location:login.php');
     }
 
+    if (isset($_POST['add_actor'])) {
+
+        $actor_name = $_POST['actor_name'];
+        $actor_name = filter_var($actor_name, FILTER_SANITIZE_STRING);
+        
+        $actor_role = $_POST['role'];
+        $actor_role = filter_var($actor_role, FILTER_SANITIZE_STRING);
+
+        $actor_bio = $_POST['bio'];
+        $actor_bio = filter_var($actor_bio, FILTER_SANITIZE_STRING);
+
+        $image = $_FILES['image']['name'];
+        $image = filter_var($image, FILTER_SANITIZE_STRING);
+        $ext = pathinfo($image, PATHINFO_EXTENSION);
+        $rename = unique_id().'.'.$ext;
+        $image_size = $_FILES['image']['size'];
+        $image_tmp_name = $_FILES['image']['tmp_name'];
+        $image_folder = '../uploaded_files/actors/'.$rename;
+
+        $select_actor = $conn->prepare("SELECT * FROM actors WHERE name = ?");
+        $select_actor->execute([$actor_name]);
+
+        if ($select_actor->rowCount() > 0) {
+            $warning_msg[] = 'Актор вже існує';
+        }else{
+            $insert_actor = $conn->prepare("INSERT INTO actors (name, role, bio, image) VALUES (?, ?, ?, ?)");
+            $insert_actor->execute([$actor_name, $actor_role, $actor_bio, $rename]);
+            move_uploaded_file($image_tmp_name, $image_folder);
+
+            $success_msg[] = 'Актора успішно додано';
+            header('location:view_actors.php');
+        }
+    }
+
 ?>
 
 <!DOCTYPE html>
