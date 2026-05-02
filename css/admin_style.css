@@ -776,3 +776,39 @@ header .btn{
 .read-movies .flex-btn{
     margin-top: 2rem;
 }
+/*-----сторінка перегляд акторів-----*/
+.gride{
+    padding: 4% 0;
+}
+.gride .box-container{
+    grid-template-columns: repeat(auto-fit, 25rem);
+}
+.gride .box-container .box{
+    text-align: center;
+    padding: 2rem;
+}
+.gride .box-container .box img{
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+}
+.gride .box-container .box h2{
+    text-transform: capitalize;
+    font-weight: 500;
+    font-size: 1.2rem;
+    line-height: 2;
+}
+.gride .box-container .box p{
+    line-height: 1.5;
+    padding: .5rem 0;
+    font-size: 1.1rem;
+    color: var(--color);
+    text-transform: capitalize;
+}
+.gride .box-container .box span{
+    color: var(--green);
+    text-transform: capitalize;
+}
+.gride .box-container .box p a:hover{
+    text-decoration: underline;
+}
