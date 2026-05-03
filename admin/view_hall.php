@@ -7,6 +7,22 @@
         header('location:login.php');
     }
 
+    //видалення зали з бази даниих
+    if (isset($_POST['delete'])) {
+        $delete_id = $_POST['hall_id'];
+        $delete_id = filter_var($delete_id, FILTER_SANITIZE_STRING);
+
+        $verify_delete = $conn->prepare("SELECT * FROM halls WHERE id = ?");
+        $verify_delete->execute([$delete_id]);
+
+        if ($verify_delete->rowCount() > 0) {
+            $delete_hall = $conn->prepare("DELETE FROM halls WHERE id = ?");
+            $delete_hall->execute([$delete_id]);
+            $success_msg[] = 'Зал видалено';
+        }else{
+            $warning_msg[] = 'Зал уже видалено';
+        }
+    }
 ?>
 
 <!DOCTYPE html>
