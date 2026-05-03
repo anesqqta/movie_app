@@ -23,6 +23,28 @@
             $warning_msg[] = 'Зал уже видалено';
         }
     }
+
+    //редагування 
+    if (isset($_POST['edit_hall'])) {
+        $update_id = $_POST['update_id'];
+        $update_id = filter_var($update_id, FILTER_SANITIZE_STRING);
+
+        $hall_name = $_POST['hall_name'];
+        $hall_name = filter_var($hall_name, FILTER_SANITIZE_STRING);
+        
+        $hall_location = $_POST['location'];
+        $hall_location = filter_var($hall_location, FILTER_SANITIZE_STRING);
+
+        $city = $_POST['city'];
+        $city = filter_var($city, FILTER_SANITIZE_STRING);
+
+        $update_hall = $conn->prepare("UPDATE halls SET name = ?, location = ?, city = ? WHERE id = ?");
+        $update_hall->execute([$hall_name, $hall_location, $city, $update_id]);
+
+        $success_msg[] = 'Зал оновлено!';
+        
+        header('location:view_hall.php');
+    }
 ?>
 
 <!DOCTYPE html>
@@ -92,6 +114,45 @@
                 }
             ?>
         </div>
+    </div>
+
+    <div class="update-container">
+        <?php
+            if (isset($_GET['get_id'])) {
+                $edit_id = $_GET['get_id'];
+                $edit_query = $conn->prepare("SELECT * FROM halls WHERE id = ?");
+                $edit_query->execute([$edit_id]);
+
+                if ($edit_query->rowCount() > 0) {
+                    while($fetch_edit = $edit_query->fetch(PDO::FETCH_ASSOC)) {
+        ?>
+        <div class="update-container">
+            <div class="form-container">
+                <form action="" method="post" enctype="multipart/form-data" class="login">
+                    <h3>Редагувати зал</h3>
+                    <input type="hidden" name="update_id" value="<?= $fetch_edit['id']; ?>">    
+                    <div class="input-field">
+                        <p>Назва залу <span>*</span></p>
+                        <input type="text" name="hall_name" maxlength="100" placeholder="<?= $fetch_edit['name']; ?>" class="box">
+                    </div>
+                    <div class="input-field">
+                        <p>Розташування залу <span>*</span></p>
+                        <input type="text" name="location" maxlength="100" placeholder="<?= $fetch_edit['location']; ?>" class="box">
+                    </div>
+                    <div class="input-field">
+                        <p>Місто <span>*</span></p>
+                        <input type="text" name="city" maxlength="100" placeholder="<?= $fetch_edit['city']; ?>" class="box">
+                    </div>
+                    <button type="submit" name="edit_hall" class="btn">Редагувати зал</button>
+                </form>
+            </div>
+        </div>
+        <?php 
+                    }
+                }
+                echo "<script>document.querySelector('.update-container').style.display='block'</script>";
+            }
+        ?>
     </div>
     
     
