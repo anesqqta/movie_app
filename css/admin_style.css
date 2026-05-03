@@ -819,3 +819,28 @@ header .btn{
 .gride .box-container .box p a:hover{
     text-decoration: underline;
 }
+/*-----сторінка перегляд зали-----*/
+.hall-container{
+    padding: 4%;
+}
+.hall-container table{
+    background-color: #03205599;
+    box-shadow: var(--box-shadow);
+    border: var(--border); 
+    text-align: center;
+    margin: 1rem;
+    border-radius: .5rem;
+}
+.hall-container th,
+.hall-container td{
+    border: var(--border);
+    padding: .6rem .7rem;
+    text-transform: capitalize;
+    border-collapse: collapse;
+}
+.hall-container table .btn{
+    padding: .3rem .8rem;
+    font-size: 0.9rem;
+    min-width: 80px;
+    text-align: center;
+}
