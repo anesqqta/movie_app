@@ -37,7 +37,6 @@
             move_uploaded_file($image_tmp_name, $image_folder);
 
             $success_msg[] = 'Актора успішно додано';
-            header('location:view_actors.php');
         }
     }
 
