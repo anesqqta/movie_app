@@ -7,6 +7,22 @@
         header('location:login.php');
     }
 
+    if (isset($_POST['delete'])) {
+        $delete_id = $_POST['delete_id'];
+        $delete_id = filter_var($delete_id, FILTER_SANITIZE_STRING);
+
+        $verify_delete = $conn->prepare("SELECT * FROM reviews WHERE id = ?");
+        $verify_delete->execute([$delete_id]);
+
+        if ($verify_delete->rowCount() > 0) {
+            $delete_user = $conn->prepare("DELETE FROM reviews WHERE id = ?");
+            $delete_user->execute([$delete_id]);
+            $success_msg[] = 'Відгук видалено';
+        }else{
+            $warning_msg[] = 'Відгук уже видалено';
+        }
+    }
+
 ?>
 
 <!DOCTYPE html>
