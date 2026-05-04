@@ -844,3 +844,48 @@ header .btn{
     min-width: 80px;
     text-align: center;
 }
+/*-----сторінка профілю-----*/
+.profile{
+    padding: 5%;
+    max-width: 50rem;
+    margin: 4rem auto;
+    text-align: center;
+    background-color: var(--blue);
+}
+.profile .img-box{
+    margin-bottom: 2rem;
+}
+.profile .img-box h3{
+    text-transform: capitalize;
+    font-size: 1.1rem;
+}
+.profile .img-box img{
+    width: 10rem;
+    height: 10rem;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: .5rem;
+    padding: .5rem;
+    background-image: var(--background-image);
+}
+.profile .details{
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
+}
+.profile .details img{
+    width: 50px;
+}
+.profile .details div{
+    background-color: #03205599;
+    box-shadow: var(--box-shadow);
+    border: var(--border);
+    text-align: center;
+    border-radius: 1.5rem;
+    padding: 1rem;
+    margin: .5rem;
+    text-transform: capitalize;
+    font-size: 1.1rem;
+}
+.profile .details p span{
+    color: var(--green);
+}
