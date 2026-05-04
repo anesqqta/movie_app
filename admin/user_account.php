@@ -72,7 +72,7 @@
                 <?php
                         }
                     }elseif(isset($_POST['search_box']) OR isset($_POST['search_btn'])) {
-                        header('location:notfound');
+                        header('location:notfound.php');
                     }else{
                         echo '
                         <div class="empty">
