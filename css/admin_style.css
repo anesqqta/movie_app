@@ -889,3 +889,66 @@ header .btn{
 .profile .details p span{
     color: var(--green);
 }
+/*-----сторінка зареєстрованих користувачів-----*/
+.search_form{
+    max-width: 35rem;
+    margin: 0 auto;
+    border-radius: .5rem;
+    padding: .5rem;
+    display: flex;
+    gap: 2rem;
+    margin-bottom: 2rem;
+    height: 50px;
+    background-color: #03205599;
+    box-shadow: var(--box-shadow);
+    border: var(--border);
+}
+.search_form input::placeholder{
+    color: var(--color);
+}
+.search_form input{
+    width: 100%;
+    font-size: 1.2rem;
+    color: var(--color);
+    background-color: transparent;
+}
+.search_form button{
+    background: none;
+    cursor: pointer;
+    font-size: 1.4rem;
+    color: var(--green);
+}
+.user-container .box-container{
+    grid-template-columns: repeat(auto-fit, 25rem);
+}
+.user-container .box-container .box{
+    text-align: center;
+    text-transform: capitalize;
+    position: relative;
+    padding: 0;
+}
+.user-container .box-container .box:hover .detail{
+    height: 13rem;
+    padding: 1rem 0;
+    padding-bottom: 1rem;
+}
+.user-container .box-container .box .detail{
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    background-color: #fff;
+    width: 100%;
+    height: 0;
+    overflow: hidden;
+    transition: .5s;
+    line-height: 2;
+}
+.user-container .box-container .box span{
+    text-transform: none;
+    color: var(--green);
+}
+.user-container .box-container .box img{
+    width: 100%;
+    height: 28rem;
+    border-radius: .5rem;
+}
