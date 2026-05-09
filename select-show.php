@@ -13,8 +13,7 @@
     $time = $_SESSION['booking']['time'];
     $date = $_SESSION['booking']['date'];
 
-    $movie_id = $_GET['movie_id'];
-    $_SESSION['booking']['movie_id'];
+    $movie_id = $_SESSION['booking']['movie_id'];
 
     //отримати назву фільму та банер
     $movie_stmt = $conn->prepare("SELECT * FROM movies WHERE id = ?");
@@ -70,46 +69,41 @@
             <p>Дата : <?= $date; ?></p>
         </div>
         <?php
-            $select_show = $conn->prepare("SELECT * FROM shows WHERE movie_id = ?");
-            $select_show->execute([$movie_id]);
+    $select_show = $conn->prepare("
+        SELECT shows.*, halls.name, halls.city, halls.location
+        FROM shows
+        JOIN halls ON shows.hall_id = halls.id
+        WHERE shows.movie_id = ?
+        AND shows.show_time = ?
+        AND shows.show_date = ?
+        AND halls.status = ?
+    ");
+    $select_show->execute([$movie_id, $time, $date, 'active']);
 
-            if ($select_show->rowCount() > 0) {
-                while($fetch_show = $select_show->fetch(PDO::FETCH_ASSOC)){
-                    $hall_id = $fetch_show['hail_id'];
+    if ($select_show->rowCount() > 0) {
+        while($fetch_show = $select_show->fetch(PDO::FETCH_ASSOC)){
+?>
+<form action="save-step2.php" method="post">
+    <input type="hidden" name="show_id" value="<?= $fetch_show['id']; ?>">
 
-                    $select_hall = "
-                        SELECT DISTINCT halls.name, halls.city, halls.location
-                        FROM halls
-                        JOIN shows ON shows.hail_id = halls.id
-                        WHERE shows.movie_id = ?
-                    ";
+    <div class="detail">
+        <p>Назва залу : <span><?= $fetch_show['name']; ?></span></p>
+        <p>Розташування : <span><?= $fetch_show['location']; ?></span></p>
+        <p>Місто : <span><?= $fetch_show['city']; ?></span></p>
 
-                    $fetch_hall = $conn->prepare($select_hall);
-                    $fetch_hall->execute([$movie_id]);
-
-                    while($hall = $fetch_hall->fetch(PDO::FETCH_ASSOC)){
-        ?>
-        <form action="save-step2.php" method="post">
-            <input type="hidden" name="show_id" value="<?= $fetch_show['id']; ?>">
-            <div class="detail">
-                <p>Назва залу : <span><?= $hall['name']; ?></span></p>
-                <p>Розташування : <span><?= $hall['location']; ?></span></p>
-                <p>Місто : <span><?= $hall['city']; ?></span></p>
-
-                <button type="submit" class="btn">Вибрати</button>
-            </div>
-        </form>
-        <?php
-                    }
-                }
-            }else{
-                echo '
-                <div class="empty">
-                    <p>Немає доступних сеансів для цього фільму!</p>
-                </div>
-                ';
-            }
-        ?>
+        <button type="submit" class="btn">Вибрати</button>
+    </div>
+</form>
+<?php
+        }
+    }else{
+        echo '
+        <div class="empty">
+            <p>Немає доступних сеансів для цього фільму!</p>
+        </div>
+        ';
+    }
+?>
     </div>
 
     <?php include 'components/user_footer.php'; ?>

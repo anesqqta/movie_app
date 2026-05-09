@@ -30,7 +30,7 @@
 
     if ($show_stmt->rowCount() > 0) {
         while($fetch_show = $show_stmt->fetch(PDO::FETCH_ASSOC)){
-            $hall_id = $fetch_show['hail_id'];
+            $hall_id = $fetch_show['hall_id'];
 
             $select_hall = $conn->prepare("SELECT * FROM halls WHERE id = ?");
             $select_hall->execute([$hall_id]);
