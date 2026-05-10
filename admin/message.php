@@ -40,7 +40,7 @@
     <?php include '../components/admin_header.php'; ?>
 
     <div class="banner">
-        <div class="detail">already deleted
+        <div class="detail">
             <h1>Повідомлення</h1>
             <p>Переглядайте повідомлення від користувачів, відповідайте на запити та керуйте зворотним зв’язком у системі</p>
             <span><a href="dashboard.php">Адмін</a><i class="bx bxs-right-arrow-alt"></i>Повідомлення</span>
@@ -51,12 +51,7 @@
     <div class="gride">
         <div class="heading">
             <span>Повідомлення</span>
-            <h1>Зареєстровані клієнти</h1>
         </div>
-        <form action="" method="post" class="search_form">
-            <input type="text" name="search_box" placeholder="Пошук користувачів..." maxlength="100" required>
-            <button type="submit" name="search_btn" class="bx bxs-search-alt-2"></button>
-        </form>
             <div class="box-container">
                 <?php
                     if (isset($_POST['search_box']) OR isset($_POST['search_btn'])) {
