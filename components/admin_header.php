@@ -52,7 +52,7 @@
             <li><a href="view_hall.php"><i class="bx bxs-home-smile"></i>Переглянути зали</a></li>
             <li><a href="view_booking.php"><i class="bx bxs-home-smile"></i>Переглянути бронювання</a></li>
             <li><a href="view_actors.php"><i class="bx bxs-user"></i>Переглянути акторів</a></li>
-            <li><a href="view_crew.php"><i class="bx bxs-user"></i>Переглянути команду</a></li>
+            <li><a href="view_crew.php"><i class="bx bxs-user"></i>Переглянути знімальну групу</a></li>
             <li><a href="message.php"><i class="bx bxs-envelope"></i>Повідомлення</a></li>
             <li><a href="user_account.php"><i class="bx bxs-user"></i>Клієнти</a></li>
             <li><a href="reserved_seat.php"><i class="bx bxs-user"></i>Зарезервовані місця</a></li>
