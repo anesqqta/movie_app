@@ -41,6 +41,10 @@ input{
 button{
     cursor: pointer;
 }
+select.box option{
+    background: #001232;
+    color: #fff;
+}
 .btn{
     display: inline-block;
     padding: .5rem 3rem;
