@@ -23,7 +23,7 @@
             $warning_msg[] = 'Сеанс уже видалено';
         }
     }
-    
+
 ?>
 
 <!DOCTYPE html>
@@ -49,66 +49,57 @@
     </div>
 
     <!-- секція перегляду сеансів-->
-    <div class="hall-container">
-        <div class="heading">
-            <h1>Деталі сеансу</h1>
-            <a href="add_show.php" class="btn">+</a>
-        </div> 
-        <div class="box-container">
-            <?php
-                $select_shows = $conn->prepare("SELECT * FROM shows");
-                $select_shows->execute();
+    <div class="hall-container" style="overflow-x: auto;">
+        <?php
+            $select_shows = $conn->prepare("
+                SELECT shows.*, movies.title AS movie_title, halls.name AS hall_name
+                FROM shows
+                JOIN movies ON shows.movie_id = movies.id
+                JOIN halls ON shows.hall_id = halls.id
+                ORDER BY shows.show_date ASC, shows.show_time ASC
+            ");
+            $select_shows->execute();
 
-                if ($select_shows->rowCount() > 0) {
-                    while($fetch_show = $select_shows->fetch(PDO::FETCH_ASSOC)) {
-                        $movie_id = $fetch_show['movie_id'];
+            if ($select_shows->rowCount() > 0) {
+        ?>
 
-                        //отримати фільм
-                        $select_movie = $conn->prepare("SELECT title FROM movies WHERE id = ?");
-                        $select_movie->execute([$movie_id]);
-                        $movie_title = $select_movie->fetchColumn();
+        <table cellspacing="0" style="width: 100%;">
+            <tr>
+                <th>Назва</th>
+                <th>Дата</th>
+                <th>Час</th>
+                <th>Зал</th>
+                <th>Кількість місць</th>
+                <th>Дія</th>
+            </tr>
 
-                        //отримати назву залу
-                        $hall_id = $fetch_show['hall_id'];
-                        $select_hall = $conn->prepare("SELECT name FROM halls WHERE id = ?");
-                        $select_hall->execute([$hall_id]);
-                        $hall_title = $select_hall->fetchColumn();
-            ?>
-            <table cellspacing="0">
-                <tr>
-                    <th>Назва</th>
-                    <th>Дата</th>
-                    <th>Час</th>
-                    <th>Зал</th>
-                    <th>Кількість місць</th>
-                    <th>Дія</th>
-                </tr>
-                <tr>
-                    <td><?= $movie_title; ?></td>
-                    <td><?= $hall_title; ?></td>
-                    <td><?= date('d.m.Y', strtotime($fetch_show['show_date'])); ?></td>
-                    <td><?= $fetch_show['show_time']; ?></td>
-                    <td><?= $fetch_show['seat_no']; ?></td>
-                    <td>
-                        <form action="" method="post">
-                            <input type="hidden" name="show_id" value="<?= $fetch_show['id']; ?>">
-                            <a href="edit_show.php?get_id=<?= $fetch_show['id']; ?>" class="btn">Редагувати</a>
-                            <button type="submit" name="delete" onclick="return confirm('Видалити цей сеанс?');" class="btn">Видалити</button>
-                        </form>
-                    </td>
-                </tr>
-            </table>
-            <?php 
-                    }
-                }else{
-                    echo '
-                    <div class="empty">
-                        <p>Сеанс ще не додано!<br><a href="add_show.php" class="btn">Додати сеанс</a></p>
-                    </div>
-                    ';
-                }
-            ?>
-        </div>
+            <?php while($fetch_show = $select_shows->fetch(PDO::FETCH_ASSOC)){ ?>
+            <tr>
+                <td><?= $fetch_show['movie_title']; ?></td>
+                <td><?= date('d.m.Y', strtotime($fetch_show['show_date'])); ?></td>
+                <td><?= $fetch_show['show_time']; ?></td>
+                <td><?= $fetch_show['hall_name']; ?></td>
+                <td><?= $fetch_show['seat_no']; ?></td>
+                <td>
+                    <form action="" method="post">
+                        <input type="hidden" name="show_id" value="<?= $fetch_show['id']; ?>">
+                        <a href="edit_show.php?get_id=<?= $fetch_show['id']; ?>" class="btn">Редагувати</a>
+                        <button type="submit" name="delete" onclick="return confirm('Видалити цей сеанс?');" class="btn">Видалити</button>
+                    </form>
+                </td>
+            </tr>
+            <?php } ?>
+        </table>
+
+        <?php
+            }else{
+                echo '
+                <div class="empty">
+                    <p>Сеанс ще не додано!<br><a href="add_show.php" class="btn">Додати сеанс</a></p>
+                </div>
+                ';
+            }
+        ?>
     </div>
     
     

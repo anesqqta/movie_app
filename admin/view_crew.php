@@ -94,32 +94,67 @@
         </div>
     </div>
 
-    <!-- секція перегляду акторів-->
-    <div class="gride">
+    <!-- секція перегляду членів команди-->
+    <div class="hall-container">
         <div class="heading">
             <h1>Всі члени команди</h1>
             <a href="add_crew.php" class="btn">+</a>
         </div>
-        <div class="box-container">
+
+        <div class="box-container" style="overflow-x: auto;">
             <?php
-                $select_crew = $conn->prepare("SELECT * FROM crew_members");
+                $select_crew = $conn->prepare("SELECT * FROM crew_members ORDER BY id DESC");
                 $select_crew->execute();
 
                 if ($select_crew->rowCount() > 0) {
-                    while($fetch_crew = $select_crew->fetch(PDO::FETCH_ASSOC)) {
             ?>
-            <form action="" method="post" class="box">
-                <input type="hidden" name="crew_id" value="<?= $fetch_crew['id']; ?>">
-                <img src="../uploaded_files/actors/<?= $fetch_crew['image']; ?>">
-                <h2><?= $fetch_crew['name']; ?></h2>
-                <span><?= $fetch_crew['role']; ?></span>
-                <div class="flex-btn">
-                    <button type="submit" name="delete" onclick="return confirm('Видалити цього члена команди?');" class="btn">Видалити</button>
-                    <a href="view_crew.php?get_id=<?= $fetch_crew['id']; ?>" class="btn">Редагувати</a>
-                </div>
-            </form>
-            <?php 
-                    }
+
+            <table cellspacing="0" style="width: 100%;">
+                <tr>
+                    <th>Фото</th>
+                    <th>Ім’я</th>
+                    <th>Посада</th>
+                    <th>Біографія</th>
+                    <th>Дія</th>
+                </tr>
+
+                <?php while($fetch_crew = $select_crew->fetch(PDO::FETCH_ASSOC)){ ?>
+                <tr>
+
+                    <td>
+                        <img src="../uploaded_files/actors/<?= $fetch_crew['image']; ?>" 
+                        style="width: 70px; height: 90px; object-fit: cover; border-radius: .5rem;">
+                    </td>
+
+                    <td><?= $fetch_crew['name']; ?></td>
+
+                    <td><?= $fetch_crew['role']; ?></td>
+
+                    <td style="max-width: 350px;">
+                        <?= mb_strimwidth($fetch_crew['bio'], 0, 120, '...'); ?>
+                    </td>
+
+                    <td>
+                        <form action="" method="post">
+                            <input type="hidden" name="crew_id" value="<?= $fetch_crew['id']; ?>">
+
+                            <a href="edit_crew.php?get_id=<?= $fetch_crew['id']; ?>" class="btn">
+                                Редагувати
+                            </a>
+
+                            <button type="submit" name="delete" 
+                            onclick="return confirm('Видалити цього члена команди?');" class="btn">
+                                Видалити
+                            </button>
+                        </form>
+                    </td>
+
+                </tr>
+                <?php } ?>
+
+            </table>
+
+            <?php
                 }else{
                     echo '
                     <div class="empty">

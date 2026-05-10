@@ -95,31 +95,64 @@
     </div>
 
     <!-- секція перегляду акторів-->
-    <div class="gride">
+    <div class="hall-container">
         <div class="heading">
             <h1>Всі актори</h1>
             <a href="add_actors.php" class="btn">+</a>
         </div>
-        <div class="box-container">
+
+        <div class="box-container" style="overflow-x: auto;">
             <?php
-                $select_actors = $conn->prepare("SELECT * FROM actors");
+                $select_actors = $conn->prepare("SELECT * FROM actors ORDER BY id DESC");
                 $select_actors->execute();
 
                 if ($select_actors->rowCount() > 0) {
-                    while($fetch_actors = $select_actors->fetch(PDO::FETCH_ASSOC)) {
             ?>
-            <form action="" method="post" class="box">
-                <input type="hidden" name="actor_id" value="<?= $fetch_actors['id']; ?>">
-                <img src="../uploaded_files/actors/<?= $fetch_actors['image']; ?>">
-                <h2><?= $fetch_actors['name']; ?></h2>
-                <span><?= $fetch_actors['role']; ?></span>
-                <div class="flex-btn">
-                    <button type="submit" name="delete" onclick="return confirm('Видалити цього актора?');" class="btn">Видалити</button>
-                    <a href="view_actors.php?get_id=<?= $fetch_actors['id']; ?>" class="btn">Редагувати</a>
-                </div>
-            </form>
-            <?php 
-                    }
+
+            <table cellspacing="0" style="width: 100%;">
+                <tr>
+                    <th>Фото</th>
+                    <th>Ім’я</th>
+                    <th>Роль</th>
+                    <th>Біографія</th>
+                    <th>Дія</th>
+                </tr>
+
+                <?php while($fetch_actors = $select_actors->fetch(PDO::FETCH_ASSOC)){ ?>
+                <tr>
+                    <td>
+                        <img src="../uploaded_files/actors/<?= $fetch_actors['image']; ?>" 
+                        style="width: 70px; height: 90px; object-fit: cover; border-radius: .5rem;">
+                    </td>
+
+                    <td><?= $fetch_actors['name']; ?></td>
+
+                    <td><?= $fetch_actors['role']; ?></td>
+
+                    <td style="max-width: 350px;">
+                        <?= mb_strimwidth($fetch_actors['bio'], 0, 120, '...'); ?>
+                    </td>
+
+                    <td>
+                        <form action="" method="post">
+                            <input type="hidden" name="actor_id" value="<?= $fetch_actors['id']; ?>">
+
+                            <a href="edit_actor.php?get_id=<?= $fetch_actors['id']; ?>" class="btn">
+                                Редагувати
+                            </a>
+
+                            <button type="submit" name="delete" 
+                            onclick="return confirm('Видалити цього актора?');" class="btn">
+                                Видалити
+                            </button>
+                        </form>
+                    </td>
+                </tr>
+                <?php } ?>
+
+            </table>
+
+            <?php
                 }else{
                     echo '
                     <div class="empty">
