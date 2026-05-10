@@ -11,7 +11,7 @@
         $b_id = filter_var($_POST['booking_id'], FILTER_SANITIZE_STRING);
         $seat_id = filter_var($_POST['seat_id'], FILTER_SANITIZE_STRING);
         
-        //check booking exists
+        //бронювання існує
         $check = $conn->prepare("SELECT id FROM booking WHERE id = ?");
         $check->execute([$b_id]);
 
@@ -19,7 +19,7 @@
             $delete_booking = $conn->prepare("DELETE FROM booking WHERE id = ?");
             $delete_booking->execute([$b_id]);
 
-            //delete seat details
+            //видалити деталі місця
             $delete_seat = $conn->prepare("DELETE FROM seat_details WHERE id = ?");
             $delete_seat->execute([$seat_id]);
 

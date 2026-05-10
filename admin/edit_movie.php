@@ -252,7 +252,7 @@
             }else{
                 echo '
                 <div class="empty">
-                    <p>no movie added yet!<br><a href="add_movie.php" class="btn">Додати фільм</a></p>
+                    <p>Фільм ще не додано!<br><a href="add_movie.php" class="btn">Додати фільм</a></p>
                 </div>
                 ';
             }
