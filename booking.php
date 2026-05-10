@@ -73,8 +73,6 @@
     if (isset($_POST['booking'])) {
         if ($user_id != '') {
 
-            $id = unique_id();
-
             $payment_method = $_POST['payment_method'];
             $payment_method = filter_var($payment_method, FILTER_SANITIZE_STRING);
 
@@ -90,8 +88,8 @@
             $cvv = $_POST['cvv'];
             $cvv = filter_var($cvv, FILTER_SANITIZE_STRING);
 
-            $insert_booking = $conn->prepare("INSERT INTO booking (id, user_id, show_id, movie_id, language, formate, date, time, seat_detail_id, total_seat, seat_details, amount, payment_method, nameon_card, card_details, expiration, cvv) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
-            $insert_booking->execute([$id, $user_id, $show_id, $movie_id, $language, $formate, $date, $time, $seat_detail_id, $total_seats, $seat_detail, $total_price, $payment_method, $card_name, $card_details, $expiration, $cvv]);
+            $insert_booking = $conn->prepare("INSERT INTO booking (user_id, show_id, movie_id, language, formate, date, time, seat_detail_id, total_seat, seat_details, amount, payment_method, nameon_card, card_details, expiration, cvv) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+            $insert_booking->execute([$user_id, $show_id, $movie_id, $language, $formate, $date, $time, $seat_detail_id, $total_seats, $seat_detail, $total_price, $payment_method, $card_name, $card_details, $expiration, $cvv]);
 
             header('location:my_booking.php');
         }else{
