@@ -354,6 +354,37 @@ input::placeholder{
     border: 3px solid var(--green);
     padding: .5rem;
 }
+.search-form{
+    width: 90%;
+    margin: 3rem auto 2rem;
+}
+
+.search-form form{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+}
+
+.search-form select{
+    width: 25rem;
+    padding: 1rem;
+    border-radius: .8rem;
+    background: #032055;
+    color: #fff;
+    border: 1px solid #204a9b;
+    font-size: 1rem;
+}
+
+.search-form select option{
+    background: #032055;
+    color: #fff;
+}
+
+.search-form .btn{
+    width: 12rem;
+    text-align: center;
+}
 /*-----хедер-----*/
 header{
     padding: .5rem 4%;

@@ -48,20 +48,59 @@
         </div>
     </div>
 
+    <div class="search-form">
+        <form action="" method="get">
+            <select name="movie_id">
+                <option value="">Всі фільми</option>
+                <?php
+                    $select_movies = $conn->prepare("SELECT id, title FROM movies ORDER BY title ASC");
+                    $select_movies->execute();
+
+                    while($fetch_movie = $select_movies->fetch(PDO::FETCH_ASSOC)){
+                        $selected = (isset($_GET['movie_id']) && $_GET['movie_id'] == $fetch_movie['id']) ? 'selected' : '';
+                ?>
+                <option value="<?= $fetch_movie['id']; ?>" <?= $selected; ?>>
+                    <?= $fetch_movie['title']; ?>
+                </option>
+                <?php } ?>
+            </select>
+
+            <button type="submit" class="btn">Застосувати</button>
+            <a href="view_show.php" class="btn">Скинути</a>
+        </form>
+    </div>
+    
+
+    <?php
+    $movie_filter = isset($_GET['movie_id']) ? $_GET['movie_id'] : '';
+    $movie_filter = filter_var($movie_filter, FILTER_SANITIZE_STRING);
+
+    if (!empty($movie_filter)) {
+        $select_shows = $conn->prepare("
+            SELECT shows.*, movies.title AS movie_title, halls.name AS hall_name
+            FROM shows
+            JOIN movies ON shows.movie_id = movies.id
+            JOIN halls ON shows.hall_id = halls.id
+            WHERE shows.movie_id = ?
+            ORDER BY shows.show_date ASC, shows.show_time ASC
+        ");
+        $select_shows->execute([$movie_filter]);
+    }else{
+        $select_shows = $conn->prepare("
+            SELECT shows.*, movies.title AS movie_title, halls.name AS hall_name
+            FROM shows
+            JOIN movies ON shows.movie_id = movies.id
+            JOIN halls ON shows.hall_id = halls.id
+            ORDER BY shows.show_date ASC, shows.show_time ASC
+        ");
+        $select_shows->execute();
+    }
+?>
+
     <!-- секція перегляду сеансів-->
     <div class="hall-container" style="overflow-x: auto;">
-        <?php
-            $select_shows = $conn->prepare("
-                SELECT shows.*, movies.title AS movie_title, halls.name AS hall_name
-                FROM shows
-                JOIN movies ON shows.movie_id = movies.id
-                JOIN halls ON shows.hall_id = halls.id
-                ORDER BY shows.show_date ASC, shows.show_time ASC
-            ");
-            $select_shows->execute();
-
-            if ($select_shows->rowCount() > 0) {
-        ?>
+        
+        <?php if ($select_shows->rowCount() > 0) { ?>
 
         <table cellspacing="0" style="width: 100%;">
             <tr>
@@ -95,7 +134,7 @@
             }else{
                 echo '
                 <div class="empty">
-                    <p>Сеанс ще не додано!<br><a href="add_show.php" class="btn">Додати сеанс</a></p>
+                    <p>Сеанс не знайдено!<br><a href="add_show.php" class="btn">Додати сеанс</a></p>
                 </div>
                 ';
             }
