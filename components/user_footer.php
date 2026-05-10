@@ -27,17 +27,17 @@
         </div>
         <div class="box">
             <h3>Наш акаунт</h3>
-            <a href=""><i class="bx bx-chevron-right"></i>Наш акаунт</a>
-            <a href=""><i class="bx bx-chevron-right"></i>Історія замовлень</a>
-            <a href=""><i class="bx bx-chevron-right"></i>Кошик</a>
-            <a href=""><i class="bx bx-chevron-right"></i>Розсилка</a>
+            <a href="profile.php"><i class="bx bx-chevron-right"></i>Наш акаунт</a>
+            <a href="my_booking.php"><i class="bx bx-chevron-right"></i>Історія замовлень</a>
+            <a href="wishlist.php"><i class="bx bx-chevron-right"></i>Кошик</a>
+            <a href="home.php"><i class="bx bx-chevron-right"></i>Розсилка</a>
         </div>
         <div class="box">
             <h3>Інформація</h3>
-            <a href=""><i class="bx bx-chevron-right"></i>Про нас</a>
-            <a href=""><i class="bx bx-chevron-right"></i>Зв'яжіться з нами</a>
-            <a href=""><i class="bx bx-chevron-right"></i>Політика конфіденційність</a>
-            <a href=""><i class="bx bx-chevron-right"></i>Умови та положення</a>
+            <a href="about.php"><i class="bx bx-chevron-right"></i>Про нас</a>
+            <a href="contact.php"><i class="bx bx-chevron-right"></i>Зв'яжіться з нами</a>
+            <a href="about.php"><i class="bx bx-chevron-right"></i>Політика конфіденційність</a>
+            <a href="about.php"><i class="bx bx-chevron-right"></i>Умови та положення</a>
         </div>
         <div class="box">
             <h3>Додаткові послуги</h3>
