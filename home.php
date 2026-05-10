@@ -29,14 +29,14 @@
             <div class="slider__slider slide1">
                 <div class="overlay"></div>
                 <div class="slider-detail">
-                    <h1>забронюйте квиток <br>на <span>Тор любов і грім</span></h1>
+                    <h1>забронюйте квиток <br>на <span>Тор: кохання і грім</span></h1>
                     <div class="detail">
                         <p>тривалість : 2год : 20хв </p>
-                        <p>рік випуску : 20 травня 2026</p>
+                        <p>рік випуску : 2022</p>
                     </div>
                     <div class="detail">
-                        <p>мова : українська | англійська | телугу | таймільська </p>
-                        <p>пригода | бойовик | комедія | наукова фантастика</p>
+                        <p>мова : українська | англійська </p>
+                        <p> комедія | мелодрама | фантастика | фентезі | бойовик | пригоди</p>
                     </div>
                     <a href="fetch_movie.php" class="btn">забронювати квиток зараз</a>
                 </div>
@@ -46,14 +46,14 @@
             <div class="slider__slider slide2">
                 <div class="overlay"></div>
                 <div class="slider-detail">
-                    <h1>забронюйте квиток <br>на <span>якесь кіно</span></h1>
+                    <h1>забронюйте квиток <br>на <span>Месники</span></h1>
                     <div class="detail">
-                        <p>тривалість : 2год : 20хв </p>
-                        <p>рік випуску : 20 травня 2026</p>
+                        <p>тривалість : 2год : 23хв </p>
+                        <p> рік випуску : 2021</p>
                     </div>
                     <div class="detail">
-                        <p>мова : українська | англійська | телугу | таймільська </p>
-                        <p>пригода | бойовик | комедія | наукова фантастика</p>
+                        <p>мова : українська | англійська </p>
+                        <p> фантастика | бойовик | пригоди</p>
                     </div>
                     <a href="fetch_movie.php" class="btn">забронювати квиток зараз</a>
                 </div>
@@ -63,31 +63,14 @@
             <div class="slider__slider slide3">
                 <div class="overlay"></div>
                 <div class="slider-detail">
-                    <h1>забронюйте квиток <br>на <span>якесь кіно</span></h1>
+                    <h1>забронюйте квиток <br>на <span>Рапунцель</span></h1>
                     <div class="detail">
-                        <p>тривалість : 2год : 20хв </p>
-                        <p>рік випуску : 20 травня 2026</p>
+                        <p>тривалість : 1год : 40хв </p>
+                        <p> рік випуску : 2010</p>
                     </div>
                     <div class="detail">
-                        <p>мова : українська | англійська | телугу | таймільська </p>
-                        <p>пригода | бойовик | комедія | наукова фантастика</p>
-                    </div>
-                    <a href="fetch_movie.php" class="btn">забронювати квиток зараз</a>
-                </div>
-            </div>
-            <!-- кінець slide -->
-
-            <div class="slider__slider slide4">
-                <div class="overlay"></div>
-                <div class="slider-detail">
-                    <h1>забронюйте квиток <br>на <span>якесь кіно</span></h1>
-                    <div class="detail">
-                        <p>тривалість : 2год : 20хв </p>
-                        <p>рік випуску : 20 травня 2026</p>
-                    </div>
-                    <div class="detail">
-                        <p>мова : українська | англійська | телугу | таймільська </p>
-                        <p>пригода | бойовик | комедія | наукова фантастика</p>
+                        <p>мова : українська | англійська </p>
+                        <p> дитячий | мюзикл</p>
                     </div>
                     <a href="fetch_movie.php" class="btn">забронювати квиток зараз</a>
                 </div>
@@ -97,14 +80,14 @@
             <div class="slider__slider slide5">
                 <div class="overlay"></div>
                 <div class="slider-detail">
-                    <h1>забронюйте квиток <br>на <span>якесь кіно</span></h1>
+                    <h1>забронюйте квиток <br>на <span>Вартові галактики</span></h1>
                     <div class="detail">
-                        <p>тривалість : 2год : 20хв </p>
-                        <p>рік випуску : 20 травня 2026</p>
+                        <p>тривалість : 2год : 1хв </p>
+                        <p><br>рік випуску : 2014</p>
                     </div>
                     <div class="detail">
-                        <p>мова : українська | англійська | телугу | таймільська </p>
-                        <p>пригода | бойовик | комедія | наукова фантастика</p>
+                        <p>мова : українська | англійська </p>
+                        <p> фантастика | бойовик | пригоди | комедія</p>
                     </div>
                     <a href="fetch_movie.php" class="btn">забронювати квиток зараз</a>
                 </div>
@@ -187,10 +170,10 @@
                     </div>
                     <div class="rate">
                         <p><span><img src="image/tomato.png"></span>88%</p>
-                        <p><img src="image/cake.png">8%</p>
+                        <p><img src="image/cake.png">88%</p>
                     </div>
                     <input type="hidden" name="movie_id" value="<?= $fetch_movie['id']; ?>">
-                    <a href="select-language?movie_id=<?=$fetch_movie['id']; ?>" class="btn">бронювати квиток</a>
+                    <a href="select-language.php?movie_id=<?=$fetch_movie['id']; ?>" class="btn">бронювати квиток</a>
                 </div>
             </form> 
             <?php
