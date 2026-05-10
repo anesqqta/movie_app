@@ -7,6 +7,7 @@
     }
 
     session_start();
+    $movie_id = $_SESSION['booking']['movie_id'];
 
     $language = $_SESSION['booking']['language'];
     $formate = $_SESSION['booking']['formate'];

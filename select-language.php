@@ -61,8 +61,8 @@
                             <p>мова <span>*</span></p>
                             <select name="language" required class="box">
                                 <option selected disabled>Виберіть мову</option>
-                                <option value="Ukraine">Українська</option>
-                                <option value="English">Англійська</option>
+                                <option value="Українська">Українська</option>
+                                <option value="Англійська">Англійська</option>
                             </select>
                         </div>
                         <div class="input-field">
