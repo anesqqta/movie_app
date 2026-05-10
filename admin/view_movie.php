@@ -69,31 +69,54 @@
     </div>
 
     <!-- секція перегляду фільмів-->
-    <div class="show-movies">
+    <div class="hall-container">
         <div class="heading">
             <h1>Переглянути фільми</h1>
             <a href="add_movie.php" class="btn">+</a>
         </div>
-        <div class="box-container">
+
+        <div class="box-container" style="overflow-x: auto;">
             <?php
-                $select_movies = $conn->prepare("SELECT * FROM movies");
+                $select_movies = $conn->prepare("SELECT * FROM movies ORDER BY id DESC");
                 $select_movies->execute();
 
                 if ($select_movies->rowCount() > 0) {
-                    while ($fetch_movie = $select_movies->fetch(PDO::FETCH_ASSOC)) {
-            ?>  
-            <form action="" method="post" class="box">
-                <img src="../uploaded_files/<?= $fetch_movie['thumbnail']; ?>" class="img1">
-                <div class="content">
-                    <div><h3><?= $fetch_movie['title']; ?></h3></div>
-                    <input type="hidden" name="movie_id" value="<?= $fetch_movie['id']; ?>">
-                    <button type="submit" name="delete" onclick="return confirm('Видалити цей фільм?');" class="btn">Видалити</button>
-                    <a href="read_movie.php?get_id=<?= $fetch_movie['id']; ?>" class="btn">Деталі</a>
-                    <a href="edit_movie.php?get_id=<?= $fetch_movie['id']; ?>" class="btn">Редагувати<i class="bx bxs-edit"></i></a>
-                </div>
-            </form> 
-            <?php 
-                    }
+            ?>
+
+            <table cellspacing="0" style="width: 100%;">
+                <tr>
+                    <th>Постер</th>
+                    <th>Назва</th>
+                    <th>Жанр</th>
+                    <th>Рік</th>
+                    <th>Тривалість</th>
+                    <th>Статус</th>
+                    <th>Дія</th>
+                </tr>
+
+                <?php while($fetch_movie = $select_movies->fetch(PDO::FETCH_ASSOC)){ ?>
+                <tr>
+                    <td>
+                        <img src="../uploaded_files/<?= $fetch_movie['thumbnail']; ?>" style="width: 70px; height: 90px; object-fit: cover; border-radius: .5rem;">
+                    </td>
+                    <td><?= $fetch_movie['title']; ?></td>
+                    <td><?= $fetch_movie['genre']; ?></td>
+                    <td><?= $fetch_movie['release_year']; ?></td>
+                    <td><?= $fetch_movie['duration']; ?></td>
+                    <td><?= $fetch_movie['status']; ?></td>
+                    <td>
+                        <form action="" method="post">
+                            <input type="hidden" name="movie_id" value="<?= $fetch_movie['id']; ?>">
+                            <a href="read_movie.php?get_id=<?= $fetch_movie['id']; ?>" class="btn">Деталі</a>
+                            <a href="edit_movie.php?get_id=<?= $fetch_movie['id']; ?>" class="btn">Редагувати</a>
+                            <button type="submit" name="delete" onclick="return confirm('Видалити цей фільм?');" class="btn">Видалити</button>
+                        </form>
+                    </td>
+                </tr>
+                <?php } ?>
+            </table>
+
+            <?php
                 }else{
                     echo '
                     <div class="empty">
