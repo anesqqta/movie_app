@@ -104,6 +104,8 @@
             <table cellspacing="0">
                 <tr>
                     <th>Назва</th>
+                    <th>Дата</th>
+                    <th>Час</th>
                     <th>Зал</th>
                     <th>Кількість місць</th>
                     <th>Дія</th>
@@ -111,6 +113,8 @@
                 <tr>
                     <td><?= $movie_title; ?></td>
                     <td><?= $hall_title; ?></td>
+                    <td><?= date('d.m.Y', strtotime($fetch_show['show_date'])); ?></td>
+                    <td><?= $fetch_show['show_time']; ?></td>
                     <td><?= $fetch_show['seat_no']; ?></td>
                     <td>
                         <form action="" method="post">

@@ -150,7 +150,7 @@
         </div>
         <div class="box-container">
             <?php
-                $select_movies = $conn->prepare("SELECT * FROM movies WHERE status = ?");
+                $select_movies = $conn->prepare("SELECT * FROM movies WHERE status = ? ORDER BY id DESC LIMIT 4");
                 $select_movies->execute(['active']);
 
                 if ($select_movies->rowCount() > 0) {
