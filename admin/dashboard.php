@@ -79,7 +79,7 @@
                 ?>
                 <h3><?= $total_bookings ?></h3>
                 <p>Загальна кількість бронювань</p>
-                <a href="admin_bookings.php" class="btn">Переглянути бронювання</a>
+                <a href="view_booking.php" class="btn">Переглянути бронювання</a>
             </div>
             
             <div class="box">
