@@ -1650,56 +1650,124 @@ form option{
 }
 .my-booking .box-container{
     grid-template-columns: repeat(auto-fit, 20rem);
+    align-items: stretch;
 }
 .my-booking .box-container .box{
     background-color: var(--blue);
-    border-radius: none;
     color: var(--color);
     position: relative;
+    overflow: hidden;
+    border: var(--border);
+    box-shadow: var(--box-shadow);
 }
+.booking-card{
+    display: flex;
+    flex-direction: column;
+}
+.booking-img{
+    position: relative;
+    height: 25rem;
+    overflow: hidden;
+}
+.booking-img img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+.view-booking-icon,
 .download{
     position: absolute;
-    right: 2%;
-    top: 2%;
-    width: 50px;
-    height: 50px;
-    line-height: 50px;
+    top: 1rem;
+    width: 45px;
+    height: 45px;
+    line-height: 48px;
     border-radius: 50%;
     text-align: center;
     color: #fff;
     background-image: var(--background-image);
-    font-size: 1.8rem;
+    font-size: 1.6rem;
+    z-index: 5;
+}
+.view-booking-icon{
+    left: 1rem;
+}
+.download{
+    right: 1rem;
+}
+.view-booking-icon:hover,
+.download:hover{
+    background-image: var(--background-hover);
 }
 .my-booking .box-container .box .detail{
     padding: 1rem;
 }
-.my-booking .box-container .content{
-    color: var(--color);
-    text-transform: capitalize;
-}
-.my-booking .box-container .content div:nth-child(1){
-    border-bottom: var(--border);
-}
-.my-booking .box-container .content div{
+.booking-title{
     display: flex;
-    align-items: center;
     justify-content: space-between;
-    line-height: 2;
+    align-items: center;
+    gap: .5rem;
+    border-bottom: var(--border);
+    padding-bottom: .8rem;
+    margin-bottom: .8rem;
 }
-.my-booking .box-container .content h2{
-    text-transform: capitalize;
+.booking-title h2{
     font-weight: 500;
     font-size: 1.1rem;
+    color: #fff;
 }
-.my-booking .box-container .content p{
-    margin: .5rem 0;
+.booking-title span{
+    color: var(--color);
+    font-size: .95rem;
+    white-space: nowrap;
+}
+.booking-info{
+    display: flex;
+    flex-direction: column;
+    gap: .4rem;
+}
+.booking-info p{
+    display: flex;
+    justify-content: space-between;
+    gap: .5rem;
+    font-size: .95rem;
+    line-height: 1.5;
+    color: var(--color);
+}
+.booking-info p span{
+    color: #fff;
+}
+.booking-status-box{
+    background-color: #03205599;
+    border: var(--border);
+    border-radius: .5rem;
+    text-align: center;
+    padding: .8rem;
+    margin: 1rem 0;
+}
+.booking-status-box h2{
+    font-size: 1rem;
+    font-weight: 500;
+    margin-bottom: .5rem;
+}
+.booking-status{
+    display: inline-block;
+    padding: .4rem 1rem;
+    border-radius: 2rem;
+    font-weight: 600;
+    text-transform: capitalize;
+}
+.booking-status.paid{
+    color: var(--green);
+}
+.booking-status.pending{
+    color: #ffd166;
+}
+.booking-status.cancelled,
+.booking-status.expired{
+    color: #ff5c5c;
 }
 .my-booking .box-container .box .btn{
     width: 100%;
-}
-.my-booking .box-container img{
-    width: 100%;
-    height: 25rem;
 }
 /*-----деталі бронювання-----*/
 .view-booking{

@@ -92,7 +92,6 @@
                             $movie_name = $fetch_movie['title'];
                             $movie_duration = $fetch_movie['duration'];
                         }
-
                         $status_class = '';
 
                         $select_bar_total = $conn->prepare("SELECT SUM(total_price) FROM booking_bar_items WHERE booking_id = ?");
@@ -103,7 +102,6 @@
                         if ($bar_total == '') {
                             $bar_total = 0;
                         }
-
                         $final_total = $fetch_booking['amount'] + $bar_total;
 
                         if($fetch_booking['status'] == 'оплачено'){
@@ -118,52 +116,48 @@
             ?>
 
             <div class="box">
-
-                <a href="view_booking.php?get_id=<?= $fetch_booking['id']; ?>">
-                    <img src="uploaded_files/<?= $fetch_img; ?>">
-                </a>
-
-                <?php if ($fetch_booking['status'] == 'оплачено') { ?>
-                    <a href="download_ticket.php?booking_id=<?= $fetch_booking['id']; ?>" class="download">
-                        <i class="bx bx-download"></i>
-                    </a>
-                <?php } ?>
-
-                <div class="detail">
-                    <div class="content">
-                        <div>
-                            <h2><?= $movie_name; ?></h2>
-                            <p><?= $movie_duration; ?></p>
-                        </div>
-                        <div>
-                            <p>Кількість : <?= $fetch_booking['total_seat']; ?></p>
-                            <p>Місце : <?= $fetch_booking['seat_details']; ?></p>
-                        </div>
-                        <div>
-                            <p>Квитки : <?= $fetch_booking['amount']; ?> грн</p>
-                            <p>Кінобар : <?= $bar_total; ?> грн</p>
-                            <p>Разом : <?= $final_total; ?> грн</p>
-                        </div>
+                <div class="box booking-card">
+                    <div class="booking-img">
+                        <img src="uploaded_files/<?= $fetch_img; ?>">
+                        <a href="view_booking.php?get_id=<?= $fetch_booking['id']; ?>" class="view-booking-icon">
+                            <i class="bx bx-show"></i>
+                        </a>
+                        <?php if ($fetch_booking['status'] == 'оплачено') { ?>
+                            <a href="download_ticket.php?booking_id=<?= $fetch_booking['id']; ?>" class="download">
+                                <i class="bx bx-download"></i>
+                            </a>
+                        <?php } ?>
                     </div>
-                    <div class="booking-status-box">
-                        <h2>Статус :</h2>
-                        <p>
+                    <div class="detail">
+                        <div class="booking-title">
+                            <h2><?= $movie_name; ?></h2>
+                            <span><?= $movie_duration; ?></span>
+                        </div>
+                        <div class="booking-info">
+                            <p><span>Кількість:</span> <?= $fetch_booking['total_seat']; ?></p>
+                            <p><span>Місця:</span> <?= $fetch_booking['seat_details']; ?></p>
+                            <p><span>Квитки:</span> <?= $fetch_booking['amount']; ?> грн</p>
+                            <p><span>Кінобар:</span> <?= $bar_total; ?> грн</p>
+                            <p><span>Разом:</span> <?= $final_total; ?> грн</p>
+                        </div>
+                        <div class="booking-status-box">
+                            <h2>Статус</h2>
                             <span class="booking-status <?= $status_class; ?>">
                                 <?= $fetch_booking['status']; ?>
                             </span>
-                        </p>
+                        </div>
+                        <?php if ($fetch_booking['status'] == 'оплачено') { ?>
+                            <a href="rating.php?get_id=<?= $fetch_booking['id']; ?>" class="btn">Дайте відгук</a>
+                        <?php } ?>
+                        <?php if ($fetch_booking['status'] == 'очікує оплату') { ?>
+                            <form action="" method="post">
+                                <input type="hidden" name="booking_id" value="<?= $fetch_booking['id']; ?>">
+                                <button type="submit" name="cancel_booking" class="btn" onclick="return confirm('Скасувати бронювання?');">
+                                    Скасувати
+                                </button>
+                            </form>
+                        <?php } ?>
                     </div>
-                    <?php if ($fetch_booking['status'] == 'оплачено') { ?>
-                        <a href="rating.php?get_id=<?= $fetch_booking['id']; ?>" class="btn">Дайте відгук</a>
-                    <?php } ?>
-                    <?php if ($fetch_booking['status'] == 'очікує оплату') { ?>
-                        <form action="" method="post">
-                            <input type="hidden" name="booking_id" value="<?= $fetch_booking['id']; ?>">
-                            <button type="submit" name="cancel_booking" class="btn" onclick="return confirm('Скасувати бронювання?');">
-                                Скасувати
-                            </button>
-                        </form>
-                    <?php } ?>
                 </div>
             </div>
             <?php
