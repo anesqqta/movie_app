@@ -617,6 +617,26 @@ header .btn{
 .dashboard-movies .box-container .box a:hover{
     color: var(--green);
 }
+.dashboard .box-container .box i{
+    font-size: 2.5rem;
+    color: var(--green);
+    margin-bottom: .5rem;
+}
+
+.dashboard .box-container .box:hover{
+    transform: translateY(-5px);
+    transition: .3s;
+}
+
+.dashboard .box-container .box:nth-child(2){
+    background-image: var(--background-image);
+}
+
+.dashboard .box-container .box:nth-child(2) i,
+.dashboard .box-container .box:nth-child(2) h3,
+.dashboard .box-container .box:nth-child(2) p{
+    color: #fff;
+}
 /*-----заброньовані місця на панельі керування-----*/
 .researved-seat{
     padding: 5% 2%;

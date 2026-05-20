@@ -55,7 +55,6 @@
             <li><a href="view_crew.php"><i class="bx bxs-user"></i>Переглянути знімальну групу</a></li>
             <li><a href="message.php"><i class="bx bxs-envelope"></i>Повідомлення</a></li>
             <li><a href="user_account.php"><i class="bx bxs-user"></i>Клієнти</a></li>
-            <li><a href="reserved_seat.php"><i class="bx bxs-user"></i>Зарезервовані місця</a></li>
             <li><a href="../components/admin_logout.php" onclick="return confirm('Вийти з профілю');"><i class="bx bxs-log-out"></i>Вийти</a>
         </ul>
     </div>
