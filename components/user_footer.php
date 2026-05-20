@@ -62,6 +62,5 @@
     </div>
     <div class="bottom">
         <p>copyright @ 2026 Anastaiia Semeniuk. Всі права захищено</p>
-        <a href="admin/register.php">Адмін</a>
     </div>
 </footer>

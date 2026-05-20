@@ -1,79 +1,91 @@
 <?php
     include 'components/connect.php';
-    if (isset($_COOKIE['user_id'])){
-        $user_id = $_COOKIE['user_id'];
-    }else{
-        $user_id = '';
+
+    if(isset($_COOKIE['user_id'])){
+        header('location:home.php');
+        exit();
     }
 
-    if (isset($_POST['login'])) {
-        $email = $_POST['email'];
-        $email = filter_var($email, FILTER_SANITIZE_STRING);
+    if(isset($_COOKIE['admin_id'])){
+        header('location:admin/dashboard.php');
+        exit();
+    }
 
+    if(isset($_POST['submit'])){
+
+        $email = filter_var($_POST['email'], FILTER_SANITIZE_STRING);
         $pass = sha1($_POST['pass']);
         $pass = filter_var($pass, FILTER_SANITIZE_STRING);
 
-        $select_user = $conn->prepare("SELECT * FROM users WHERE email = ? AND password = ?");
-        $select_user->execute([$email, $pass]);
-        $row = $select_user->fetch(PDO::FETCH_ASSOC);
+        // перевірка адміна
+        $select_admin = $conn->prepare("SELECT * FROM admin WHERE email = ? AND password = ?");
+        $select_admin->execute([$email, $pass]);
 
-        if ($select_user->rowCount() > 0) {
-            setcookie('user_id', $row['id'], time() + 60*60*24, '/');
-            header('location:home.php');
+        if($select_admin->rowCount() > 0){
+
+            $fetch_admin = $select_admin->fetch(PDO::FETCH_ASSOC);
+
+            setcookie('admin_id', $fetch_admin['id'], time() + 60*60*24*30, '/');
+
+            header('location:admin/dashboard.php');
+            exit();
+
         }else{
-            $warning_msg[] = 'Некоректний пароль або email';
+
+            // перевірка користувача
+            $select_user = $conn->prepare("SELECT * FROM users WHERE email = ? AND password = ?");
+            $select_user->execute([$email, $pass]);
+
+            if($select_user->rowCount() > 0){
+
+                $fetch_user = $select_user->fetch(PDO::FETCH_ASSOC);
+
+                setcookie('user_id', $fetch_user['id'], time() + 60*60*24*30, '/');
+
+                header('location:home.php');
+                exit();
+
+            }else{
+                $warning_msg[] = 'Невірний email або пароль!';
+            }
         }
     }
 ?>
 
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="utf-8">
-        <meta name = "viewport" content="width=device-width, initial-scale=1">
-        <!-- посилання на іконки  -->
-        <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
-        <link rel="stylesheet" type="text/css" href="css/user_style.css?v=<?php echo time(); ?>">
-        <title>BOLETO</title>
-    </head>
-    <body>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <?php include 'components/user_header.php'; ?>
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" type="text/css" href="css/user_style.css?v=<?php echo time(); ?>">
 
-    <div class="banner">
-        <div class="detail">
-            <h1>Увійти</h1>
-            <p>Увійдіть у свій акаунт, щоб бронювати квитки, переглядати замовлення та зберігати улюблені фільми</p>
-            <span><a href="home.php">Головна</a><i class="bx bxs-right-arrow-alt"></i>Увійти</span>
-        </div>
-    </div>
+    <title>BOLETO</title>
+</head>
+<body>
 
-    <!-- секція входу -->
-    <div class="form-container form-area">
-        <form action="" method="post" enctype="multipart/form-data" class="login">
-            <h3>Увійти</h3>
-
-            <div class="input-field">
+    <div class="form-area">
+        <section class="form-container">
+            <form action="" method="post" class="login">
+                <h3>увійти зараз</h3>
                 <p>Ваш email <span>*</span></p>
-                <input type="email" name="email" required maxlength="50" placeholder="Введіть email" class="box">
-            </div>
-            <div class="input-field">
+                <input type="email" name="email" placeholder="Введіть email" required class="box">
                 <p>Ваш пароль <span>*</span></p>
-                <input type="password" name="pass" required maxlength="20" placeholder="Введіть пароль" class="box">
-            </div>
-            <p class="link">Не маєте обліковий запис ? <a href="register.php">Зареєструватися</a></p>
-            <button type="submit" name="login" class="btn">увійти</button>
-        </form>
+                <input type="password" name="pass" placeholder="Введіть пароль" required class="box">
+                <input type="submit" name="submit" value="Увійти" class="btn">
+                <p class="link">Не маєте акаунта? <a href="register.php">Зареєструватись</a></p>
+            </form>
+        </section>
     </div>
 
-    <?php include 'components/user_footer.php'; ?>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
 
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
+    <script type="text/javascript">
+        <?php include 'js/user_script.js'; ?>
+    </script>
 
-        <script type="text/javascript">
-            <?php include 'js/user_script.js'; ?>
-        </script>
+    <?php include 'components/alert.php'; ?>
 
-        <?php include 'components/alert.php'; ?>
-    </body>
+</body>
 </html>

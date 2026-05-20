@@ -76,16 +76,6 @@
     </head>
     <body>
 
-    <?php include 'components/user_header.php'; ?>
-
-    <div class="banner">
-        <div class="detail">
-            <h1>Зареєструватися</h1>
-            <p>Створіть акаунт, щоб швидко бронювати квитки, отримувати персональні пропозиції та слідкувати за новими кінопрем’єрами</p>
-            <span><a href="home.php">Головна</a><i class="bx bxs-right-arrow-alt"></i>зареєструватися</span>
-        </div>
-    </div>
-
     <!-- секція реєстрації -->
     <div class="form-container form-area">
         <form action="" method="post" enctype="multipart/form-data" class="register">
@@ -124,8 +114,6 @@
             <button type="submit" name="register" class="btn">зареєструватися</button>
         </form>
     </div>
-    
-    <?php include 'components/user_footer.php'; ?>
 
         <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
 

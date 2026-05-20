@@ -1926,8 +1926,6 @@ form option{
 .review .form-container form .flex-btn .btn{
     width: 50%;
 }
-
-
 /*-----адаптивка-----*/
 @media (max-width:991px){
     #menu-btn{

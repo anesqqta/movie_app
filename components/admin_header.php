@@ -24,8 +24,8 @@
         <img src="../image/user.png">
         <h3 style="margin-bottom: .5rem;">Увійдіть або зареєструйтесь</h3>
         <div class="flex-btn">
-            <a href="login.php" class="btn">Увійти</a>
-            <a href="register.php" class="btn">зареєструватись</a>
+            <a href="../login.php" class="btn">Увійти</a>
+            <a href="../register.php" class="btn">зареєструватись</a>
         </div>
         <?php } ?>
     </div>
