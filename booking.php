@@ -88,8 +88,11 @@
             $cvv = $_POST['cvv'];
             $cvv = filter_var($cvv, FILTER_SANITIZE_STRING);
 
-            $insert_booking = $conn->prepare("INSERT INTO booking (user_id, show_id, movie_id, language, formate, date, time, seat_detail_id, total_seat, seat_details, amount, payment_method, nameon_card, card_details, expiration, cvv) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
-            $insert_booking->execute([$user_id, $show_id, $movie_id, $language, $formate, $date, $time, $seat_detail_id, $total_seats, $seat_detail, $total_price, $payment_method, $card_name, $card_details, $expiration, $cvv]);
+            $status = 'оплачено';
+            $payment_status = 'оплачено';
+
+            $insert_booking = $conn->prepare("INSERT INTO booking(user_id, show_id, movie_id, seat_detail_id, language, formate, date, time, total_seat, seat_details, amount, status, payment_method, nameon_card, card_details, expiration, cvv, payment_status) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+            $insert_booking->execute([$user_id, $show_id, $movie_id, $seat_detail_id, $language, $formate, $date, $time, $total_seats, $seat_detail, $total_price, $status, $payment_method, $card_name, $card_details, $expiration, $cvv, $payment_status]);
 
             header('location:my_booking.php');
         }else{

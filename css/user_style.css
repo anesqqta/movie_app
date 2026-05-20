@@ -1614,6 +1614,41 @@ form option{
     font-size: 2rem;
     margin-bottom: 2rem;
 }
+.booking-status-box{
+    background-color: #03205599;
+    border: var(--border);
+    border-radius: .5rem;
+    text-align: center;
+    padding: .8rem;
+    margin: 1rem 0;
+}
+
+.booking-status-box h2{
+    font-size: 1rem;
+    font-weight: 500;
+    margin-bottom: .5rem;
+}
+
+.booking-status{
+    display: inline-block;
+    padding: .4rem 1rem;
+    border-radius: 2rem;
+    font-weight: 600;
+    text-transform: capitalize;
+}
+
+.booking-status.paid{
+    color: var(--green);
+}
+
+.booking-status.pending{
+    color: #ffd166;
+}
+
+.booking-status.cancelled,
+.booking-status.expired{
+    color: #ff5c5c;
+}
 /*-----мої бронювання-----*/
 .my-booking{
     padding: 5%;

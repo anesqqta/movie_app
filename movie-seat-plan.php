@@ -30,7 +30,6 @@
     
     if (isset($_POST['select_seat'])) {
         if ($user_id != '') {
-            $id = unique_id();
 
             $total_seats = $_POST['total_seats'];
             $total_seats = filter_var($total_seats, FILTER_SANITIZE_STRING);
@@ -42,8 +41,8 @@
             $selected_seats = filter_var($selected_seats, FILTER_SANITIZE_STRING);
 
             //вставити деталі сидінь
-            $stmt = $conn->prepare("INSERT INTO seat_details (id, user_id, show_id, total_seat, selected_seats, amount) VALUES (?, ?, ?, ?, ?, ?)");
-            $stmt->execute([$id, $user_id, $show_id, $total_seats, $selected_seats, $total_price]);
+            $stmt = $conn->prepare("INSERT INTO seat_details (user_id, show_id, total_seat, selected_seats, amount) VALUES (?, ?, ?, ?, ?)");
+            $stmt->execute([$user_id, $show_id, $total_seats, $selected_seats, $total_price]);
 
             if ($stmt) {
                 header('location:booking.php?show_id='.$show_id);
