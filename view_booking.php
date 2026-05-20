@@ -45,10 +45,7 @@
         $hall_location = 'Не вказано';
         $hall_city = 'Не вказано';
 
-        $show_stmt = $conn->prepare("SELECT shows.*, halls.name, halls.location, halls.city 
-                                     FROM shows 
-                                     LEFT JOIN halls ON shows.hall_id = halls.id 
-                                     WHERE shows.id = ?");
+        $show_stmt = $conn->prepare("SELECT shows.*, halls.name, halls.location, halls.city FROM shows LEFT JOIN halls ON shows.hall_id = halls.id WHERE shows.id = ?");
         $show_stmt->execute([$show_id]);
 
         if ($show_stmt->rowCount() > 0) {
@@ -110,98 +107,86 @@
 </head>
 <body>
 
-<?php include 'components/user_header.php'; ?>
+    <?php include 'components/user_header.php'; ?>
 
-<div class="banner">
-    <div class="detail">
-        <h1>Деталі бронювання</h1>
-        <p>Перегляньте повну інформацію про ваше бронювання, обраний фільм, сеанс та заброньовані місця</p>
-        <span><a href="home.php">Головна</a><i class="bx bxs-right-arrow-alt"></i>Деталі бронювання</span>
+    <div class="banner">
+        <div class="detail">
+            <h1>Деталі бронювання</h1>
+            <p>Перегляньте повну інформацію про ваше бронювання, обраний фільм, сеанс та заброньовані місця</p>
+            <span><a href="home.php">Головна</a><i class="bx bxs-right-arrow-alt"></i>Деталі бронювання</span>
+        </div>
     </div>
-</div>
-
-<div class="view-booking">
-    <div class="heading">
-        <h1>Деталі бронювання</h1>
-    </div>
-
-    <div class="box-container">
-        <?php if ($select_booking->rowCount() > 0) { ?>
-
-        <div class="box">
-            <img src="uploaded_files/<?= $fetch_img; ?>">
-
-            <div class="head">
-                <div class="title">Назва фільму : <span><?= $movie_name; ?></span></div>
-                <div class="title">Тривалість : <span><?= $movie_duration; ?></span></div>
-                <div class="title">Рік випуску : <span><?= $release_year; ?></span></div>
-
-                <?php if ($fetch_booking['status'] == 'оплачено') { ?>
-                    <a href="download_ticket.php?booking_id=<?= $fetch_booking['id']; ?>">
-                        <i class="bx bx-download"></i>
+    <div class="view-booking">
+        <div class="heading">
+            <h1>Деталі бронювання</h1>
+        </div>
+        <div class="box-container">
+            <?php if ($select_booking->rowCount() > 0) { ?>
+            <div class="box">
+                <img src="uploaded_files/<?= $fetch_img; ?>">
+                <div class="head">
+                    <div class="title">Назва фільму : <span><?= $movie_name; ?></span></div>
+                    <div class="title">Тривалість : <span><?= $movie_duration; ?></span></div>
+                    <div class="title">Рік випуску : <span><?= $release_year; ?></span></div>
+                    <?php if ($fetch_booking['status'] == 'оплачено') { ?>
+                        <a href="download_ticket.php?booking_id=<?= $fetch_booking['id']; ?>">
+                            <i class="bx bx-download"></i>
+                        </a>
+                    <?php } ?>
+                    <a href="<?= $trailer_url; ?>">
+                        <img src="image/play-button.png" class="img">
                     </a>
-                <?php } ?>
-
-                <a href="<?= $trailer_url; ?>">
-                    <img src="image/play-button.png" class="img">
-                </a>
-            </div>
-
-            <div class="booking-summary">
-                <h3>Сумарне бронювання</h3>
-
-                <div class="detail">
-                    <p>Мова : <span><?= $fetch_booking['language']; ?></span></p>
-                    <p>Формат : <span><?= $fetch_booking['formate']; ?></span></p>
-                    <p>Назва залу : <span><?= $hall_name; ?></span></p>
-                    <p>Розташування : <span><?= $hall_location; ?></span></p>
-                    <p>Місто : <span><?= $hall_city; ?></span></p>
-                    <p>Кількість місць : <span><?= $fetch_booking['total_seat']; ?></span></p>
-                    <p>Місця : <span><?= $fetch_booking['seat_details']; ?></span></p>
-                    <p>Квитки : <span><?= $fetch_booking['amount']; ?> грн</span></p>
-                    <p>Кінобар : <span><?= $bar_total; ?> грн</span></p>
-                    <p>Разом : <span><?= $final_total; ?> грн</span></p>
-                    <p>Дата : <span><?= $fetch_booking['date']; ?></span></p>
-                    <p>Час : <span><?= $fetch_booking['time']; ?></span></p>
-                    <p>Статус оплати : <span><?= $fetch_booking['payment_status']; ?></span></p>
-                    <p>Статус бронювання : <span style="color: <?= $status_color; ?>"><?= $fetch_booking['status']; ?></span></p>
+                </div>
+                <div class="booking-summary">
+                    <h3>Сумарне бронювання</h3>
+                    <div class="detail">
+                        <p>Мова : <span><?= $fetch_booking['language']; ?></span></p>
+                        <p>Формат : <span><?= $fetch_booking['formate']; ?></span></p>
+                        <p>Назва залу : <span><?= $hall_name; ?></span></p>
+                        <p>Розташування : <span><?= $hall_location; ?></span></p>
+                        <p>Місто : <span><?= $hall_city; ?></span></p>
+                        <p>Кількість місць : <span><?= $fetch_booking['total_seat']; ?></span></p>
+                        <p>Місця : <span><?= $fetch_booking['seat_details']; ?></span></p>
+                        <p>Квитки : <span><?= $fetch_booking['amount']; ?> грн</span></p>
+                        <p>Кінобар : <span><?= $bar_total; ?> грн</span></p>
+                        <p>Разом : <span><?= $final_total; ?> грн</span></p>
+                        <p>Дата : <span><?= $fetch_booking['date']; ?></span></p>
+                        <p>Час : <span><?= $fetch_booking['time']; ?></span></p>
+                        <p>Статус оплати : <span><?= $fetch_booking['payment_status']; ?></span></p>
+                        <p>Статус бронювання : <span style="color: <?= $status_color; ?>"><?= $fetch_booking['status']; ?></span></p>
+                    </div>
+                </div>
+                <div class="flex-btn">
+                    <?php if($fetch_booking['status'] == 'очікує оплату') { ?>
+                        <form action="" method="post">
+                            <button type="submit" name="canceled" class="btn" onclick="return confirm('Ви хочете скасувати бронювання?')">
+                                Скасувати
+                            </button>
+                        </form>
+                    <?php } ?>
+                    <a href="my_booking.php" class="btn">Повернутись назад</a>
+                    <?php if($fetch_booking['status'] == 'оплачено') { ?>
+                        <a href="rating.php?get_id=<?= $fetch_booking['id']; ?>" class="btn">Написати відгук</a>
+                    <?php } ?>
                 </div>
             </div>
-
-            <div class="flex-btn">
-                <?php if($fetch_booking['status'] == 'очікує оплату') { ?>
-                    <form action="" method="post">
-                        <button type="submit" name="canceled" class="btn" onclick="return confirm('Ви хочете скасувати бронювання?')">
-                            Скасувати
-                        </button>
-                    </form>
-                <?php } ?>
-
-                <a href="my_booking.php" class="btn">Повернутись назад</a>
-
-                <?php if($fetch_booking['status'] == 'оплачено') { ?>
-                    <a href="rating.php?get_id=<?= $fetch_booking['id']; ?>" class="btn">Написати відгук</a>
-                <?php } ?>
-            </div>
+            <?php }else{ ?>
+                <div class="empty">
+                    <p>Бронювання не знайдено!</p>
+                </div>
+            <?php } ?>
         </div>
-
-        <?php }else{ ?>
-            <div class="empty">
-                <p>Бронювання не знайдено!</p>
-            </div>
-        <?php } ?>
     </div>
-</div>
 
-<?php include 'components/user_footer.php'; ?>
+    <?php include 'components/user_footer.php'; ?>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
 
-<script type="text/javascript">
-    <?php include 'js/user_script.js'; ?>
-</script>
+    <script type="text/javascript">
+        <?php include 'js/user_script.js'; ?>
+    </script>
 
-<?php include 'components/alert.php'; ?>
+    <?php include 'components/alert.php'; ?>
 
 </body>
 </html>
