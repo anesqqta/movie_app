@@ -1819,8 +1819,22 @@ form option{
 .view-booking .booking-summary{
     background-color: transparent;
 }
-.view-booking .btn{
-    width: 33%;
+.view-booking .flex-btn{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+    flex-wrap: wrap;
+}
+.view-booking .flex-btn form{
+    width: 18rem;
+    margin: 0;
+}
+.view-booking .flex-btn .btn{
+    width: 18rem;
+    margin: .5rem 0;
+    padding: .8rem 1rem;
+    font-size: 1rem;
 }
 /*-----кінобар-----*/
 .cinema-bar{
