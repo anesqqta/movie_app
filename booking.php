@@ -1,100 +1,125 @@
 <?php
     include 'components/connect.php';
+
     if (isset($_COOKIE['user_id'])){
         $user_id = $_COOKIE['user_id'];
     }else{
         $user_id = '';
+        header('location:login.php');
+        exit();
     }
 
     session_start();
 
-    //спочатку отримати show_id з URL-адреси, повернутися до сеансу
     if (isset($_GET['show_id'])) {
         $show_id = $_GET['show_id'];
+        $_SESSION['booking']['show_id'] = $show_id;
     }elseif(isset($_SESSION['booking']['show_id'])){
         $show_id = $_SESSION['booking']['show_id'];
     }else{
         die('Сеанс не вибрано');
     }
 
-    //отримати значення сеансу
     $language = $_SESSION['booking']['language'];
     $formate = $_SESSION['booking']['formate'];
     $time = $_SESSION['booking']['time'];
     $date = $_SESSION['booking']['date'];
     $movie_id = $_SESSION['booking']['movie_id'];
 
-    //отримати назву фільму
+    $movie_name = '';
+    $fetch_img = '';
+
     $movie_stmt = $conn->prepare("SELECT * FROM movies WHERE id = ?");
     $movie_stmt->execute([$movie_id]);
 
     if ($movie_stmt->rowCount() > 0) {
-        while($fetch_movie = $movie_stmt->fetch(PDO::FETCH_ASSOC)){
-            $fetch_img = $fetch_movie['thumbnail'];
-            $movie_name = $fetch_movie['title'];
-        }
+        $fetch_movie = $movie_stmt->fetch(PDO::FETCH_ASSOC);
+        $fetch_img = $fetch_movie['thumbnail'];
+        $movie_name = $fetch_movie['title'];
     }
-    
-    //отримати деталі сеансу
+
+    $hall_name = '';
+    $hall_location = '';
+    $hall_city = '';
+
     $show_stmt = $conn->prepare("SELECT * FROM shows WHERE id = ?");
     $show_stmt->execute([$show_id]);
 
     if ($show_stmt->rowCount() > 0) {
-        while($fetch_show = $show_stmt->fetch(PDO::FETCH_ASSOC)){
-            $hall_id = $fetch_show['hall_id'];
-            
-            $select_hall = $conn->prepare("SELECT * FROM halls WHERE id = ?");
-            $select_hall->execute([$hall_id]);
+        $fetch_show = $show_stmt->fetch(PDO::FETCH_ASSOC);
+        $hall_id = $fetch_show['hall_id'];
 
-            if ($select_hall->rowCount() > 0) {
-                while($fetch_hall = $select_hall->fetch(PDO::FETCH_ASSOC)){
-                    $hall_name = $fetch_hall['name'];
-                    $hall_location = $fetch_hall['location'];
-                    $hall_city = $fetch_hall['city'];
-                }
-            }
+        $select_hall = $conn->prepare("SELECT * FROM halls WHERE id = ?");
+        $select_hall->execute([$hall_id]);
+
+        if ($select_hall->rowCount() > 0) {
+            $fetch_hall = $select_hall->fetch(PDO::FETCH_ASSOC);
+            $hall_name = $fetch_hall['name'];
+            $hall_location = $fetch_hall['location'];
+            $hall_city = $fetch_hall['city'];
         }
     }
 
-    //отримати деталі місця
-    $select_seat = $conn->prepare("SELECT * FROM seat_details WHERE user_id = ?");
-    $select_seat->execute([$user_id]);
+    $seat_detail_id = '';
+    $total_seats = 0;
+    $seat_detail = '';
+    $total_price = 0;
+
+    $select_seat = $conn->prepare(
+        "SELECT * FROM seat_details 
+        WHERE user_id = ? AND show_id = ? 
+        ORDER BY id DESC LIMIT 1"
+    );
+    $select_seat->execute([$user_id, $show_id]);
 
     if ($select_seat->rowCount() > 0) {
-        while($fetch_seat = $select_seat->fetch(PDO::FETCH_ASSOC)){
-            $seat_detail_id = $fetch_seat['id'];
-            $total_seats = $fetch_seat['total_seat'];
-            $seat_detail = $fetch_seat['selected_seats'];
-            $total_price = $fetch_seat['amount'];
-        }
+        $fetch_seat = $select_seat->fetch(PDO::FETCH_ASSOC);
+        $seat_detail_id = $fetch_seat['id'];
+        $total_seats = $fetch_seat['total_seat'];
+        $seat_detail = $fetch_seat['selected_seats'];
+        $total_price = $fetch_seat['amount'];
     }
 
-    //запит на бронювання
     if (isset($_POST['booking'])) {
         if ($user_id != '') {
 
             $payment_method = $_POST['payment_method'];
             $payment_method = filter_var($payment_method, FILTER_SANITIZE_STRING);
 
-            $card_details = $_POST['card_details'];
-            $card_details = filter_var($card_details, FILTER_SANITIZE_STRING);
+            if ($payment_method == 'Онлайн оплата') {
 
-            $card_name = $_POST['card_name'];
-            $card_name = filter_var($card_name, FILTER_SANITIZE_STRING);
+                $card_details = $_POST['card_details'];
+                $card_details = filter_var($card_details, FILTER_SANITIZE_STRING);
 
-            $expiration = $_POST['expiration'];
-            $expiration = filter_var($expiration, FILTER_SANITIZE_STRING);
+                $card_name = $_POST['card_name'];
+                $card_name = filter_var($card_name, FILTER_SANITIZE_STRING);
 
-            $cvv = $_POST['cvv'];
-            $cvv = filter_var($cvv, FILTER_SANITIZE_STRING);
+                $expiration = $_POST['expiration'];
+                $expiration = filter_var($expiration, FILTER_SANITIZE_STRING);
 
-            $status = 'оплачено';
-            $payment_status = 'оплачено';
+                $cvv = $_POST['cvv'];
+                $cvv = filter_var($cvv, FILTER_SANITIZE_STRING);
 
-            $insert_booking = $conn->prepare("INSERT INTO booking(user_id, show_id, movie_id, seat_detail_id, language, formate, date, time, total_seat, seat_details, amount, status, payment_method, nameon_card, card_details, expiration, cvv, payment_status) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
-            $insert_booking->execute([$user_id, $show_id, $movie_id, $seat_detail_id, $language, $formate, $date, $time, $total_seats, $seat_detail, $total_price, $status, $payment_method, $card_name, $card_details, $expiration, $cvv, $payment_status]);
+                $status = 'оплачено';
+                $payment_status = 'оплачено';
+
+            }else{
+
+                $card_details = '';
+                $card_name = '';
+                $expiration = '';
+                $cvv = '';
+
+                $status = 'очікує оплату';
+                $payment_status = 'не оплачено';
+            }
+
+            $insert_booking = $conn->prepare("INSERT INTO booking (user_id, show_id, movie_id, seat_detail_id, language, formate, date, time, total_seat, seat_details, amount, status, payment_method, nameon_card, card_details, expiration, cvv, payment_status) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+            $insert_booking->execute([$user_id, $show_id, $movie_id, $seat_detail_id, $language, $formate, $date, $time, $total_seats, $seat_detail, $total_price, $status, $payment_method, $card_name, $card_details, $expiration, $cvv, $payment_status ]);
 
             header('location:my_booking.php');
+            exit();
+
         }else{
             $warning_msg[] = 'Увійдіть спочатку';
         }
@@ -103,94 +128,115 @@
 
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="utf-8">
-        <meta name = "viewport" content="width=device-width, initial-scale=1">
-        <!-- посилання на іконки  -->
-        <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
-        <link rel="stylesheet" type="text/css" href="css/user_style.css?v=<?php echo time(); ?>">
-        <title>BOLETO</title>
-    </head>
-    <body>
+<head>
+    <meta charset="utf-8">
+    <meta name = "viewport" content="width=device-width, initial-scale=1">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" type="text/css" href="css/user_style.css?v=<?php echo time(); ?>">
+    <title>BOLETO</title>
+</head>
+<body>
 
     <?php include 'components/user_header.php'; ?>
 
     <div class="banner">
         <div class="detail">
-            <h1>Бронювання</h1>
-            <p>Завершіть оформлення бронювання квитків та підготуйтеся до незабутнього перегляду улюбленого фільму</p>
+            <h1>Оформлення бронювання</h1>
+            <p>Перевірте дані бронювання та оберіть спосіб оплати</p>
             <span><a href="home.php">Головна</a><i class="bx bxs-right-arrow-alt"></i>Бронювання</span>
         </div>
     </div>
-
-    <!-- секція бронювання -->
     <div class="booking-movie-detail">
         <img src="uploaded_files/<?= $fetch_img; ?>">
-        <p>Назва фільму : <span><?= $movie_name; ?></span></p>
+        <p>Фільм : <span><?= $movie_name; ?></span></p>
     </div>
     <div class="booking-summary">
-        <h3>сумарне бронювання</h3>
+        <h3>Деталі бронювання</h3>
         <div class="detail">
-            <p>Мова : <span><?= $language; ?></span></p>
-            <p>Формат : <span><?= $formate; ?></span></p>
-            <p>Дата : <span><?= $date; ?></span></p>
-            <p>Час : <span><?= $time; ?></span></p>
-            <p>Назва залу : <span><?= $hall_name; ?></span></p>
-            <p>Розташування : <span><?= $hall_location; ?></span></p>
-            <p>Місто : <span><?= $hall_city; ?></span></p>
-            <p>Загальна кількість місць : <span><?= $total_seats; ?></span></p>
-            <p>Деталі місця : <span><?= $seat_detail; ?></span></p>
-            <p>Загальна сума : <span>$<?= $total_price; ?>/-</span></p>
+            <p>Мова <br><span><?= $language; ?></span></p>
+            <p>Формат <br><span><?= $formate; ?></span></p>
+            <p>Дата <br><span><?= $date; ?></span></p>
+            <p>Час <br><span><?= $time; ?></span></p>
+            <p>Зал <br><span><?= $hall_name; ?></span></p>
+            <p>Місто <br><span><?= $hall_city; ?></span></p>
+            <p>Місця <br><span><?= $seat_detail; ?></span></p>
+            <p>Кількість <br><span><?= $total_seats; ?></span></p>
+            <p>Сума <br><span><?= $total_price; ?> грн</span></p>
         </div>
     </div>
-    <div class="booking form-container">
-        <h3>Введіть дані вашої картки</h3>
-        <form action="" method="post" class="register">
-            <div class="flex">
-                <div class="col">
-                    <div class="input-field">
-                        <p>Варіант оплати <span>*</span></p>
-                        <select name="payment_method" class="box" required>
-                            <option selected disabled>Виберіть метод оплати</option>
-                            <option value="credit card">Кредитна картка</option>
-                            <option value="debit card">Дебетова картка</option>
-                            <option value="paypal">PayPal</option>
-                        </select>
-                    </div>
-                    <div class="input-field">
-                        <p>реквізити картки <span>*</span></p>
-                        <input type="number" name="card_details" class="box" required>
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="input-field">
-                        <p>Ім'я картки <span>*</span></p>
-                        <input type="text" name="card_name" class="box" required>
-                    </div>
-                    <div class="input-field">
-                        <p>закінчення терміну дії <span>*</span></p>
-                        <input type="date" name="expiration" min="<?php echo date('Y-m-d') ?>" class="box" required>
-                    </div>
-                </div>
-            </div>
+    <div class="form-container booking">
+        <form action="" method="post">
+            <h3>Оплата бронювання</h3>
+
             <div class="input-field">
-                <p>cvv <span>*</span></p>
-                <input type="text" name="cvv" class="box" required>
+                <p>Спосіб оплати <span>*</span></p>
+                <select name="payment_method" id="payment-method" class="box" required>
+                    <option value="" selected disabled>Оберіть спосіб оплати</option>
+                    <option value="Онлайн оплата">Онлайн оплата</option>
+                    <option value="Оплата в касі">Оплата в касі</option>
+                </select>
             </div>
-            <button type="submit" name="booking" class="btn">Оплатити</button>
+            <div id="card-fields">
+                <div class="input-field">
+                    <p>Ім’я на картці <span>*</span></p>
+                    <input type="text" name="card_name" class="box" placeholder="Введіть ім’я на картці">
+                </div>
+                <div class="input-field">
+                    <p>Номер картки <span>*</span></p>
+                    <input type="text" name="card_details" class="box" placeholder="0000 0000 0000 0000" maxlength="19">
+                </div>
+                <div class="flex">
+                    <div class="input-field">
+                        <p>Термін дії <span>*</span></p>
+                        <input type="text" name="expiration" class="box" placeholder="MM/YY" maxlength="5">
+                    </div>
+                    <div class="input-field">
+                        <p>CVV <span>*</span></p>
+                        <input type="text" name="cvv" class="box" placeholder="123" maxlength="3">
+                    </div>
+                </div>
+            </div>
+            <button type="submit" name="booking" class="btn">Підтвердити бронювання</button>
         </form>
     </div>
-    
 
     <?php include 'components/user_footer.php'; ?>
 
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
 
-        <script type="text/javascript">
-            <?php include 'js/user_script.js'; ?>
-        </script>
+    <script type="text/javascript">
+        <?php include 'js/user_script.js'; ?>
+    </script>
 
+    <script>
+        const paymentMethod = document.getElementById('payment-method');
+        const cardFields = document.getElementById('card-fields');
 
-        <?php include 'components/alert.php'; ?>
-    </body>
+        if (paymentMethod && cardFields) {
+            const cardInputs = cardFields.querySelectorAll('input');
+
+            cardFields.style.display = 'none';
+
+            paymentMethod.addEventListener('change', function(){
+                if (this.value === 'Онлайн оплата') {
+                    cardFields.style.display = 'block';
+
+                    cardInputs.forEach(input => {
+                        input.setAttribute('required', 'required');
+                    });
+                }else{
+                    cardFields.style.display = 'none';
+
+                    cardInputs.forEach(input => {
+                        input.removeAttribute('required');
+                        input.value = '';
+                    });
+                }
+            });
+        }
+    </script>
+
+    <?php include 'components/alert.php'; ?>
+
+</body>
 </html>
