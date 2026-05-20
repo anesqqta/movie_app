@@ -95,6 +95,17 @@
 
                         $status_class = '';
 
+                        $select_bar_total = $conn->prepare("SELECT SUM(total_price) FROM booking_bar_items WHERE booking_id = ?");
+                        $select_bar_total->execute([$fetch_booking['id']]);
+
+                        $bar_total = $select_bar_total->fetchColumn();
+
+                        if ($bar_total == '') {
+                            $bar_total = 0;
+                        }
+
+                        $final_total = $fetch_booking['amount'] + $bar_total;
+
                         if($fetch_booking['status'] == 'оплачено'){
                             $status_class = 'paid';
                         }elseif($fetch_booking['status'] == 'очікує оплату'){
@@ -129,8 +140,9 @@
                             <p>Місце : <?= $fetch_booking['seat_details']; ?></p>
                         </div>
                         <div>
-                            <p>Сума : <?= $fetch_booking['amount']; ?> грн</p>
-                            <p>Оплата : <?= $fetch_booking['payment_status']; ?></p>
+                            <p>Квитки : <?= $fetch_booking['amount']; ?> грн</p>
+                            <p>Кінобар : <?= $bar_total; ?> грн</p>
+                            <p>Разом : <?= $final_total; ?> грн</p>
                         </div>
                     </div>
                     <div class="booking-status-box">
