@@ -1,5 +1,6 @@
 <?php
     include 'components/connect.php';
+    include 'components/auto_cancel.php';
 
     if (isset($_COOKIE['user_id'])){
         $user_id = $_COOKIE['user_id'];
@@ -165,7 +166,7 @@
         </div>
     </div>
     <div class="form-container booking">
-        <form action="" method="post">
+        <form action="" method="post" style="max-width: 600px !important; width: 100% !important; margin: 0 auto !important;">
             <h3>Оплата бронювання</h3>
 
             <div class="input-field">

@@ -1622,13 +1622,11 @@ form option{
     padding: .8rem;
     margin: 1rem 0;
 }
-
 .booking-status-box h2{
     font-size: 1rem;
     font-weight: 500;
     margin-bottom: .5rem;
 }
-
 .booking-status{
     display: inline-block;
     padding: .4rem 1rem;
@@ -1636,15 +1634,12 @@ form option{
     font-weight: 600;
     text-transform: capitalize;
 }
-
 .booking-status.paid{
     color: var(--green);
 }
-
 .booking-status.pending{
     color: #ffd166;
 }
-
 .booking-status.cancelled,
 .booking-status.expired{
     color: #ff5c5c;
