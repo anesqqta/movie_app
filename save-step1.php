@@ -5,11 +5,14 @@
         die('Фільм не вибрано');
     }
 
-    $_SESSION['booking']['language'] = $_POST['language'];
-    $_SESSION['booking']['formate'] = $_POST['formate'];
-    $_SESSION['booking']['time'] = $_POST['time'];
-    $_SESSION['booking']['date'] = $_POST['date'];
+    if (isset($_POST['language']) && isset($_POST['formate'])) {
+        $_SESSION['booking']['language'] = $_POST['language'];
+        $_SESSION['booking']['formate'] = $_POST['formate'];
 
-    header("location: select-show.php");
-    exit();
+        header("location: select-show.php");
+        exit();
+    }else{
+        header("location: select-language.php");
+        exit();
+    }
 ?>

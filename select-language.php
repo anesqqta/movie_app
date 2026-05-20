@@ -74,48 +74,6 @@
                             </select>
                         </div>
                     </div>
-                    <div class="col">
-                        <div class="input-field">
-                            <p>Виберіть час показу <span>*</span></p>
-                            <select name="time" required class="box">
-                            <option selected disabled>Виберіть час показу</option>
-                            <?php
-                                $select_time = $conn->prepare("SELECT DISTINCT show_time FROM shows WHERE movie_id = ? ORDER BY show_time ASC");
-                                $select_time->execute([$movie_id]);
-
-                                if ($select_time->rowCount() > 0) {
-                                    while($fetch_time = $select_time->fetch(PDO::FETCH_ASSOC)){
-                            ?>
-                            <option value="<?= $fetch_time['show_time']; ?>"><?= $fetch_time['show_time']; ?></option>
-                            <?php
-                                    }
-                                }
-                            ?>
-                        </select>
-                        </div>
-                        <div class="input-field">
-                            <p>Дата <span>*</span></p>
-                            <select name="date" required class="box">
-                                <option selected disabled>Виберіть дату</option>
-                                <?php
-                                    $today = date('Y-m-d');
-                                    $select_date = $conn->prepare("SELECT DISTINCT show_date FROM shows WHERE movie_id = ? AND STR_TO_DATE(show_date, '%Y-%m-%d') >= ? ORDER BY STR_TO_DATE(show_date, '%Y-%m-%d') ASC");
-                                    $select_date->execute([$movie_id, $today]);
-
-                                    if ($select_date->rowCount() > 0) {
-                                        while($fetch_date = $select_date->fetch(PDO::FETCH_ASSOC)){
-                                ?>
-                                <option value="<?= $fetch_date['show_date']; ?>">
-                                    <?= date('d.m.Y', strtotime($fetch_date['show_date'])); ?>
-                                </option>
-                                <?php
-                                        }
-                                    }
-                                ?>
-                            </select>
-                        </div>
-                        <br><br>
-                    </div>
                 </div>
                 <div class="flex-btn">
                     <a href="fetch_movie.php" class="btn">Повернутись назад</a>
