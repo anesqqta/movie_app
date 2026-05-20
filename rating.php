@@ -11,18 +11,14 @@
     if (isset($_GET['get_id']) && !empty($_GET['get_id'])) {
         $booking_id = $_GET['get_id'];
 
-        $select_booking = $conn->prepare("SELECT movie_id FROM booking WHERE id = ?");
-        $select_booking->execute([$booking_id]);
+        $check_booking = $conn->prepare("SELECT booking.*, movies.title FROM booking JOIN movies ON booking.movie_id = movies.id WHERE booking.id = ? AND booking.user_id = ? AND booking.status = ?");
+        $check_booking->execute([$get_id, $user_id, 'оплачено']);
 
-        if ($select_booking->rowCount() > 0) {
-            $fetch_booking = $select_booking->fetch(PDO::FETCH_ASSOC);
-            $movie_id = $fetch_booking['movie_id'];
-        }else{
-            $warning_msg[] = 'Бронювання не знайдено';
+        if ($check_booking->rowCount() == 0) {
+            $warning_msg[] = 'Ви можете залишити відгук тільки після оплаченого бронювання';
+            header('location:my_booking.php');
+            exit();
         }
-    }else{
-        header('location:my_booking.php');
-        exit();
     }
 
     //отримати фільм
