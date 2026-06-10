@@ -72,7 +72,7 @@
     <div class="detail">
         <h1>Редагувати члена знімальної групи</h1>
         <p>Оновіть інформацію про члена знімальної групи у системі</p>
-        <span><a href="dashboard.php">Адмін</a><i class="bx bxs-right-arrow-alt"></i>Редагувати члена знімальної групи</span>
+        <span><a href="view_crew.php">Редагувати члена знімальної групи</a><i class="bx bxs-right-arrow-alt"></i>Редагувати члена знімальної групи</span>
     </div>
 </div>
 

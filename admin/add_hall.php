@@ -51,7 +51,7 @@
         <div class="detail">
             <h1>Додавання залу</h1>
             <p>Додавайте нові кінозали, вказуйте їх характеристики, місткість та розташування для подальшого використання у сеансах</p>
-            <span><a href="dashboard.php">Адмін</a><i class="bx bxs-right-arrow-alt"></i>Додавання залу</span>
+            <span><a href="view_hall.php">Переглянути зали</a><i class="bx bxs-right-arrow-alt"></i>Додавання залу</span>
         </div>
     </div>
 

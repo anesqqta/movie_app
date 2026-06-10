@@ -67,7 +67,7 @@
     <div class="detail">
         <h1>Редагувати зал</h1>
         <p>Оновіть інформацію про зал кінотеатру</p>
-        <span><a href="dashboard.php">Адмін</a><i class="bx bxs-right-arrow-alt"></i>Редагувати зал</span>
+        <span><a href="view_hall.php">Редагувати зал</a><i class="bx bxs-right-arrow-alt"></i>Редагувати зал</span>
     </div>
 </div>
 

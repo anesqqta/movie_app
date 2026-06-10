@@ -60,7 +60,7 @@
         <div class="detail">
             <h1>Додавання члену команди</h1>
             <p>Додавайте нових членів команди, заповнюйте інформацію про них та пов’язуйте з відповідними фільмами</p>
-            <span><a href="dashboard.php">Адмін</a><i class="bx bxs-right-arrow-alt"></i>Додавання члену команди</span>
+            <span><a href="view_crew.php">Переглянути знімальну групу</a><i class="bx bxs-right-arrow-alt"></i>Додавання члену команди</span>
         </div>
     </div>
 

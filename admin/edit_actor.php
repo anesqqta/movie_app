@@ -89,7 +89,7 @@
     <div class="detail">
         <h1>Редагувати актора</h1>
         <p>Оновіть інформацію про актора у системі</p>
-        <span><a href="dashboard.php">Адмін</a><i class="bx bxs-right-arrow-alt"></i>Редагувати актора</span>
+        <span><a href="view_actors.php">Редагувати актора</a><i class="bx bxs-right-arrow-alt"></i>Редагувати актора</span>
     </div>
 </div>
 

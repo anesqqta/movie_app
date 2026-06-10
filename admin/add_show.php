@@ -49,7 +49,7 @@
         <div class="detail">
             <h1>Додавання сеансу</h1>
             <p>Створюйте нові сеанси, обирайте фільм, зал, дату та час показу для формування розкладу</p>
-            <span><a href="dashboard.php">Адмін</a><i class="bx bxs-right-arrow-alt"></i>Додавання сеансу</span>
+            <span><a href="view_show.php">Переглянути сеанси</a><i class="bx bxs-right-arrow-alt"></i>Додавання сеансу</span>
         </div>
     </div>
 

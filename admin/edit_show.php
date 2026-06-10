@@ -62,7 +62,7 @@
     <div class="detail">
         <h1>Редагувати сеанс</h1>
         <p>Оновіть дані сеансу, дату, час, зал та кількість доступних місць</p>
-        <span><a href="dashboard.php">Адмін</a><i class="bx bxs-right-arrow-alt"></i>Редагувати сеанс</span>
+        <span><a href="view_show.php">Редагувати сеанс</a><i class="bx bxs-right-arrow-alt"></i>Редагувати сеанс</span>
     </div>
 </div>
 

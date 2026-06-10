@@ -109,7 +109,7 @@
         <div class="detail">
             <h1>Редагувати фільм</h1>
             <p>Оновлюйте інформацію про фільм, змінюйте опис, тривалість, зображення та інші дані в каталозі</p>
-            <span><a href="dashboard.php">Адмін</a><i class="bx bxs-right-arrow-alt"></i>Редагувати фільм</span>
+            <span><a href="view_movie.php">Редагувати фільм</a><i class="bx bxs-right-arrow-alt"></i>Редагувати фільм</span>
         </div>
     </div>
 

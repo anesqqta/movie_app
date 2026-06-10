@@ -127,7 +127,7 @@
         <div class="detail">
             <h1>Додавання фільму</h1>
             <p>Додавайте нові кінопрем’єри, заповнюйте інформацію про фільми та керуйте каталогом у системі</p>
-            <span><a href="dashboard.php">Адмін</a><i class="bx bxs-right-arrow-alt"></i>Додавання фільму</span>
+            <span><a href="view_movie.php">Переглянути фільми</a><i class="bx bxs-right-arrow-alt"></i>Додавання фільму</span>
         </div>
     </div>
 

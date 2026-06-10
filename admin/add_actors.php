@@ -60,7 +60,7 @@
         <div class="detail">
             <h1>Додавання актора</h1>
             <p>Додавайте нових акторів, заповнюйте інформацію про них та пов’язуйте з відповідними фільмами</p>
-            <span><a href="dashboard.php">Адмін</a><i class="bx bxs-right-arrow-alt"></i>Додавання актора</span>
+            <span><a href="view_ators.php">Переглянути акторів</a><i class="bx bxs-right-arrow-alt"></i>Додавання актора</span>
         </div>
     </div>
 
