@@ -134,7 +134,7 @@
     <!-- секція додавання фільму-->
     <div class="form-container">
         <form action="" method="post" enctype="multipart/form-data" class="register">
-            <h3>add movie</h3>
+            <h3>Додавання фільму</h3>
             <div class="flex">
                 <div class="col">
                     <div class="input-field">

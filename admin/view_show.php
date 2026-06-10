@@ -47,6 +47,10 @@
             <span><a href="dashboard.php">Адмін</a><i class="bx bxs-right-arrow-alt"></i>Переглянути сеанси</span>
         </div>
     </div>
+    <div class="heading">
+            <h1>Переглянути фільми</h1>
+            <a href="add_show.php" class="btn">+</a>
+        </div>
 
     <div class="search-form">
         <form action="" method="get">
