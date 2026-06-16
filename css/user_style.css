@@ -1927,7 +1927,60 @@ form option{
     width: 50%;
 }
 /*-----адаптивка-----*/
-@media (max-width:991px){
+html,
+body{
+    width: 100%;
+    max-width: 100%;
+    overflow-x: hidden;
+}
+img,
+video{
+    max-width: 100%;
+}
+input,
+select,
+textarea,
+button{
+    max-width: 100%;
+    font-family: inherit;
+}
+@media (max-width: 1200px){
+    .read-movie,
+    .reviews-container,
+    .view-booking,
+    .show-container,
+    .select-container,
+    .booking-movie-detail,
+    .booking-summary,
+    .bar-order{
+        width: 95%;
+        max-width: 95%;
+    }
+    .box-container{
+        grid-template-columns: repeat(auto-fit, minmax(18rem, 1fr));
+    }
+    .show-movie .box-container,
+    .my-booking .box-container{
+        grid-template-columns: repeat(auto-fit, minmax(18rem, 1fr));
+    }
+}
+/* ---------- більший планшет ---------- */
+@media (max-width: 991px){
+    body{
+        font-size: 15px;
+        line-height: 1.6;
+    }
+    .header{
+        padding: .35rem 2%;
+    }
+    .header .flex{
+        padding: .4rem .6rem;
+        gap: .5rem;
+    }
+    .header .flex .logo img{
+        max-width: 145px;
+        height: auto;
+    }
     #menu-btn{
         display: inline-block;
     }
@@ -1937,49 +1990,251 @@ form option{
         top: 100%;
         left: 0;
         right: 0;
-        background-color: #fff;
-        border-top: 1px solid #fff3;
-        padding: 1rem 2rem;
+        background: var(--blue);
+        border-top: var(--border);
+        padding: 1rem;
         clip-path: polygon(0 0, 100% 0, 100% 0, 0 0);
-        transition: .5s ease;
+        transition: .25s ease;
+        box-shadow: var(--box-shadow);
     }
     .header .flex .navbar.active{
         clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
     }
     .header .flex .navbar a{
         display: block;
-        margin: 1.5rem 0;
-        padding: 1rem;
-        background-color: var(--background);
+        margin: .65rem 0;
+        padding: .85rem;
+        background: var(--background);
+        border: var(--border);
+        border-radius: .7rem;
         text-align: center;
-        border-radius: .5rem;
         color: #fff;
     }
-    .header .flex .navbar a:hover{
-        color: #000;
+    .header .flex .icons{
+        align-items: center;
+        gap: .15rem;
     }
-    /*-----вибір сеансу-----*/
-    .show-container{
+    .header .flex .icons div,
+    .header .flex .icons a{
+        font-size: 1.65rem;
+        margin-left: .25rem;
+    }
+    .header .flex sup{
+        top: 10%;
+        width: 18px;
+        height: 18px;
+        line-height: 18px;
+        font-size: .8rem;
+    }
+    .header .flex .search_form{
+        width: 94%;
+        right: 3%;
+        padding: .8rem;
+    }
+    /* хедер / профіль */
+    .header .flex .profile{
+        position: absolute;
+        top: 110%;
+        right: .5rem;
+        left: auto;
+        width: 20rem;
+        max-width: calc(100vw - 1rem);
+        padding: 1.2rem;
+        background: var(--blue);
+        border: var(--border);
+        color: #fff;
+        z-index: 2000;
+    }
+    .header .flex .profile h3{
+        color: #fff;
+        font-size: 1.15rem;
+        line-height: 1.4;
+    }
+    .header .flex .profile .flex-btn{
+        display: flex;
+        flex-wrap: wrap;
+        gap: .6rem;
+    }
+    .header .flex .profile .flex-btn .btn{
+        flex: 1 1 8rem;
+        padding: .65rem 1rem;
+        margin: 0;
+        font-size: .95rem;
+    }
+    .banner{
+        min-height: 35vh;
+        padding: 5rem 1rem 2rem;
+        background-size: cover;
+    }
+    .banner .detail h1{
+        font-size: 2rem;
+        line-height: 1.25;
+    }
+    .banner .detail p{
+        max-width: 42rem;
+        margin-inline: auto;
+    }
+    /* головна */
+    .home-section{
+        margin-top: 4.2rem;
+    }
+    .slider,
+    .slider__slider{
+        height: 75vh;
+        max-height: 75vh;
+    }
+    .slider__slider{
+        background-position: center;
+    }
+    .slider__slider .slider-detail{
+        top: 30%;
+        left: 5%;
+        right: 5%;
+        text-align: center !important;
+    }
+    .slider__slider .slider-detail h1{
+        font-size: 2rem;
+    }
+    .slider__slider .slider-detail .detail{
+        flex-direction: column;
+        gap: .2rem;
+    }
+    .counter{
+        padding: 4rem 1rem;
+    }
+    .counter .box-container{
+        grid-template-columns: repeat(auto-fit, minmax(13rem, 1fr));
+    }
+    .sub-banner{
         width: 95%;
     }
+    .about .box-container{
+        min-height: auto;
+        padding: 3rem 1rem;
+    }
+    /* фільм карта */
+    .show-movie{
+        padding: 4rem 1rem;
+    }
+    .show-movie .box-container,
+    .my-booking .box-container{
+        grid-template-columns: repeat(auto-fit, minmax(17rem, 1fr));
+    }
+    .show-movie .box-container .box{
+        margin: 1rem auto;
+        width: 100%;
+        max-width: 22rem;
+    }
+    .show-movie .box-container .img1{
+        height: 24rem;
+        object-fit: cover;
+    }
+    /* про нас / контакти */
+    .who,
+    .mission,
+    .service,
+    .address,
+    .help .container,
+    .testimonial-container .testimonial{
+        padding: 4rem 1rem;
+    }
+    .help .box-container,
+    .service .box-container,
+    .address .box-container{
+        grid-template-columns: repeat(auto-fit, minmax(18rem, 1fr));
+    }
+    .testimonial-container .container .testimonial-item{
+        max-width: 82vw;
+    }
+    .contact img{
+        width: 100%;
+    }
+    /* форма */
+    .form-container{
+        padding: 6rem 1rem 2rem;
+        min-height: auto;
+    }
+    .form-container .login,
+    .form-container .register,
+    .form-container form{
+        width: 95%;
+        max-width: 42rem;
+    }
+    .form-container .flex{
+        flex-direction: column;
+        gap: 0;
+    }
+    .form-container form{
+        padding: 1.5rem;
+    }
+    .form-img{
+        display: none;
+    }
+    /* деталі фільму */
+    .read-movie,
+    .reviews-container,
+    .view-booking{
+        width: 95%;
+    }
+    .read-movie .content{
+        padding: 0 1.5rem;
+    }
+    .read-movie .screenshot{
+        grid-template-columns: repeat(auto-fit, minmax(18rem, 1fr));
+    }
+    .read-movie .btn{
+        width: 60%;
+    }
+    .big-image,
+    .big-image img,
+    .view-booking img{
+        height: 24rem;
+        object-fit: cover;
+    }
+    .read-movie .head,
+    .view-booking .head{
+        gap: 1rem;
+        padding: 2rem 1rem;
+    }
+    /* вибір мови / вибір сеансу */
+    .select-container,
+    .show-container{
+        width: 95%;
+        margin: 1.5rem auto;
+    }
+    .select-container img,
     .show-container img{
         height: 18rem;
         object-fit: cover;
     }
+    .select-container .form{
+        padding: 1rem;
+    }
+    .select-container .flex{
+        flex-direction: column;
+        gap: 0;
+    }
+    .select-container .flex-btn{
+        display: flex;
+        gap: 1rem;
+        flex-wrap: wrap;
+    }
+    .select-container .flex-btn .btn,
+    .select-container .flex-btn button{
+        flex: 1 1 13rem;
+        width: auto;
+        min-width: 0;
+        margin: .5rem 0;
+    }
     .show-container .movie-detail{
-        width: 80%;
+        width: 85%;
         left: 50%;
         transform: translateX(-50%);
-        top: 5%;
         padding: 1rem;
     }
     .show-container .movie-detail h1{
-        font-size: 1.8rem;
+        font-size: 1.6rem;
         line-height: 1.3;
-    }
-    .show-container .movie-detail p{
-        font-size: .8rem;
-        line-height: 1.6;
     }
     .show-container .head{
         flex-direction: column;
@@ -1987,88 +2242,558 @@ form option{
         text-align: center;
     }
     .show-date-box{
-        padding: 1.5rem;
-    }
-    .show-date-box h2{
-        text-align: center;
-        border-left: none;
-        padding-left: 0;
-        font-size: 1.7rem;
+        margin: 1.5rem 0;
+        padding: 1.2rem;
     }
     .show-time-card .detail{
         grid-template-columns: 1fr;
         text-align: center;
-        padding: 1.2rem;
-    }
-    .show-time-card h3{
-        font-size: 2.2rem;
-    }
-    .show-time-card p{
-        width: 100%;
     }
     .show-time-card .btn{
         width: 100%;
     }
+    /* місця */
+    .select-seat{
+        padding: 4rem 1rem;
+    }
+    .select-seat h1::before,
+    .select-seat h1::after{
+        display: none;
+    }
+    #seat-map,
+    .seat-map{
+        width: 100%;
+        overflow-x: auto;
+        margin: 1rem 0;
+        padding-bottom: 1rem;
+    }
+    #seat-chart{
+        grid-template-columns: repeat(5, 64px);
+        gap: 12px;
+        justify-content: center;
+        align-items: center;
+        min-width: 370px;
+        width: max-content;
+        margin: 1rem auto;
+    }
+    .seat{
+        width: 49px;
+        height: 39px;
+        background-size: contain;
+    }
+    #seat-chart .detail,
+    .select-seat .detail{
+        grid-column: 1 / -1;
+        width: min(100%, 28rem);
+        margin: 1.5rem auto 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 1rem;
+        padding: 1.2rem;
+        border-radius: 1rem;
+        background: #03205599;
+        border: var(--border);
+        box-shadow: var(--box-shadow);
+    }
+    #seat-chart .detail > div,
+    .select-seat .detail > div{
+        flex: 1 1 10rem;
+        text-align: center;
+        font-size: 1.1rem;
+        line-height: 1.5;
+    }
+    #seat-chart .detail .btn,
+    .select-seat .detail .btn{
+        flex: 1 1 12rem;
+        margin: 0;
+    }
+    /* бронювання */
+    .booking-movie-detail{
+        flex-direction: column;
+        text-align: center;
+        gap: 1rem;
+        padding: 1.2rem;
+    }
+    .booking-summary{
+        padding: 1.2rem;
+    }
+    .booking-summary .detail{
+        grid-template-columns: repeat(auto-fit, minmax(12rem, 1fr));
+    }
+    .booking-summary .detail p{
+        margin: .6rem;
+        padding: 1.2rem .8rem;
+    }
+    .booking.form-container form,
+    .form-container.booking form{
+        max-width: 38rem !important;
+        width: 95% !important;
+    }
+    /* мої бронювання / переглянути бронювання */
+    .booking-img{
+        height: 22rem;
+    }
+    .booking-title{
+        gap: .7rem;
+    }
+    .view-booking .flex-btn{
+        gap: 1rem;
+    }
+    .view-booking .flex-btn form,
+    .view-booking .flex-btn .btn{
+        width: 16rem;
+    }
+    /* кінобар */
+    .cinema-bar{
+        padding: 4rem 1rem;
+    }
+    .cinema-bar .box-container{
+        grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
+    }
+    .bar-item{
+        grid-template-columns: 1fr 1fr 1fr auto;
+    }
+    /* відгук */
+    .reviews-container .box-container{
+        padding: 1rem;
+    }
+    .reviews-container .box-container .box .ratings{
+        position: static;
+        margin-bottom: .7rem;
+    }
+    .reviews-container .box-container .box .detail .box-detail{
+        flex-direction: column;
+        text-align: center;
+    }
+    .reviews-container .box-container .box .img-box{
+        margin: 0 auto 1rem;
+    }
+    .review .img-box{
+        width: 95%;
+    }
 }
-@media (max-width:768px){
-
+/* ---------- планшет ---------- */
+@media (max-width: 768px){
+    .heading h1{
+        font-size: 1.6rem;
+    }
+    .heading span{
+        font-size: 16px;
+    }
+    .btn{
+        padding: .75rem 1.4rem;
+        font-size: 1rem;
+    }
+    .header .flex{
+        padding: .45rem .35rem;
+    }
+    .header .flex .logo img{
+        max-width: 125px;
+    }
+    .header .flex .icons div,
+    .header .flex .icons a{
+        font-size: 1.5rem;
+        margin-left: .15rem;
+    }
+    .header .flex .profile{
+        position: fixed;
+        top: 5.2rem;
+        left: 1rem;
+        right: 1rem;
+        width: auto;
+        max-width: none;
+        transform-origin: top center;
+    }
+    .header .flex .profile img{
+        width: 5.5rem;
+        height: 5.5rem;
+    }
+    .banner{
+        min-height: 30vh;
+        padding-top: 5rem;
+    }
+    .banner .detail h1{
+        font-size: 1.65rem;
+    }
+    .banner .detail p,
+    .banner .detail span{
+        font-size: .9rem;
+    }
+    .home-section{
+        margin-top: 4rem;
+    }
+    .slider,
+    .slider__slider{
+        height: 65vh;
+        max-height: 65vh;
+    }
+    .slider__slider .slider-detail{
+        top: 26%;
+    }
+    .slider__slider .slider-detail h1{
+        font-size: 1.55rem;
+    }
+    .slider__slider .slider-detail p{
+        font-size: .9rem;
+        margin: .45rem 0;
+    }
+    .left-arrow,
+    .right-arrow{
+        width: 32px;
+        height: 32px;
+        line-height: 32px;
+    }
+    .counter .box-container,
+    .show-movie .box-container,
+    .my-booking .box-container,
+    footer .content{
+        grid-template-columns: 1fr;
+    }
+    .counter .box-container .item{
+        padding: 1.4rem 1rem;
+    }
+    .counter .box-container .item h1{
+        font-size: 2.2rem;
+    }
+    .sub-banner{
+        width: 95%;
+    }
+    .show-movie .box-container .box,
+    .my-booking .box-container .box{
+        width: 100%;
+        max-width: 24rem;
+        margin: 1rem auto;
+    }
+    .show-movie .box-container .img1{
+        height: 22rem;
+        object-fit: cover;
+    }
+    footer{
+        padding-top: 4rem;
+    }
+    footer .content{
+        text-align: center;
+    }
+    footer .bottom{
+        flex-direction: column;
+        gap: .7rem;
+        padding: 1.2rem;
+    }
+    footer .bottom a{
+        position: static;
+    }
+    .form-container .login,
+    .form-container .register,
+    .form-container form{
+        width: 100%;
+    }
+    .form-container form h3{
+        font-size: 1.6rem;
+    }
+    .form-container form p{
+        font-size: 1rem;
+    }
+    .read-movie .head,
+    .view-booking .head{
+        flex-direction: column;
+        text-align: center;
+        gap: 1rem;
+        padding: 1.4rem 1rem;
+    }
+    .read-movie .content{
+        padding: 0 1rem;
+    }
+    .read-movie h1{
+        font-size: 1.35rem;
+        margin: 2rem 0;
+    }
+    .big-image,
+    .big-image img,
+    .view-booking img{
+        height: 18rem;
+    }
+    .read-movie .screenshot{
+        grid-template-columns: 1fr;
+    }
+    .read-movie .btn{
+        width: 100%;
+    }
+    .read-movie .cast-section{
+        grid-template-columns: repeat(auto-fit, minmax(8rem, 1fr));
+    }
+    .select-container img,
     .show-container img{
         height: 15rem;
     }
+    .select-container .form{
+        padding: 1rem;
+    }
+    .select-container .flex-btn{
+        flex-direction: row;
+        gap: .8rem;
+    }
+    .select-container .flex-btn .btn,
+    .select-container .flex-btn button{
+        flex: 1 1 10rem;
+        padding: .85rem 1rem;
+        font-size: 1rem;
+        line-height: 1.35;
+    }
     .show-container .movie-detail{
         position: relative;
+        width: 95%;
         top: auto;
         left: auto;
         transform: none;
-        width: 95%;
-        margin: -4rem auto 1rem auto;
+        margin: -3rem auto 1rem;
     }
     .show-container .movie-detail h1{
-        font-size: 1.5rem;
+        font-size: 1.35rem;
     }
     .show-date-box{
-        margin: 1rem;
         padding: 1rem;
     }
     .show-date-box h2{
         font-size: 1.5rem;
-    }
-    .show-time-card .detail{
-        gap: .8rem;
+        text-align: center;
+        border-left: none;
+        padding-left: 0;
     }
     .show-time-card h3{
-        font-size: 1.8rem;
+        font-size: 1.7rem;
     }
     .show-time-card p{
         font-size: .95rem;
-        padding: .7rem;
+        padding: .75rem;
+    }
+    #seat-chart{
+        grid-template-columns: repeat(5, 58px);
+        gap: 10px;
+        min-width: 330px;
+    }
+    #seat-chart .detail,
+    .select-seat .detail{
+        width: 100%;
+        flex-direction: column;
+        padding: 1.1rem;
+    }
+    #seat-chart .detail > div,
+    .select-seat .detail > div{
+        width: 100%;
+        font-size: 1.1rem;
+    }
+    #seat-chart .detail span,
+    .select-seat .detail span{
+        display: block;
+        font-size: 1.45rem;
+        margin-top: .25rem;
+        color: var(--green);
+    }
+    #seat-chart .detail .btn,
+    .select-seat .detail .btn{
+        width: 100%;
+    }
+    .screen{
+        width: 90%;
+    }
+    .booking-movie-detail p{
+        font-size: 1.1rem;
+    }
+    .booking-summary h3,
+    .booking h3{
+        font-size: 1.55rem;
+    }
+    .booking-summary .detail{
+        grid-template-columns: 1fr;
+    }
+    .booking-img{
+        height: 20rem;
+    }
+    .booking-title{
+        flex-direction: column;
+        text-align: center;
+    }
+    .booking-info p{
+        flex-direction: column;
+        text-align: center;
+        gap: .15rem;
+    }
+    .view-booking .flex-btn form,
+    .view-booking .flex-btn .btn{
+        width: 100%;
     }
     .bar-item{
         grid-template-columns: 1fr;
         text-align: center;
     }
+    .profile{
+        width: 95%;
+        max-width: 95%;
+        margin-top: 6rem;
+    }
+    .profile .details{
+        grid-template-columns: 1fr;
+    }
+    .review .img-box{
+        flex-direction: column;
+        text-align: center;
+        gap: 1rem;
+    }
+    .review .form-container form .flex-btn{
+        flex-direction: column;
+    }
+    .review .form-container form .flex-btn .btn{
+        width: 100%;
+    }
 }
-@media (max-width:450px){
-    .show-container .movie-detail{
-        padding: .8rem;
+/* ---------- телефон ---------- */
+@media (max-width: 480px){
+    .header .flex .logo img{
+        max-width: 105px;
     }
-    .show-container .movie-detail h1{
-        font-size: 1.3rem;
+    .header .flex .icons div,
+    .header .flex .icons a{
+        font-size: 1.35rem;
     }
-    .show-container .movie-detail p{
-        font-size: .75rem;
+    .header .flex .profile{
+        top: 4.8rem;
+        left: .6rem;
+        right: .6rem;
+        padding: 1rem;
     }
-    .show-date-box h2{
-        font-size: 1.3rem;
+    .header .flex .profile .flex-btn{
+        flex-direction: column;
+        width: 100%;
     }
-    .show-time-card h3{
-        font-size: 1.5rem;
+    .header .flex .profile .flex-btn .btn{
+        width: 100%;
+        flex: none;
     }
-    .show-time-card p{
+    .banner .detail h1{
+        font-size: 1.4rem;
+    }
+    .slider,
+    .slider__slider{
+        height: 56vh;
+        max-height: 56vh;
+    }
+    .slider__slider .slider-detail{
+        top: 23%;
+    }
+    .slider__slider .slider-detail h1{
+        font-size: 1.15rem;
+    }
+    .slider__slider .slider-detail p{
+        font-size: .78rem;
+    }
+    .slider__slider .slider-detail .btn{
+        padding: .55rem 1rem;
         font-size: .85rem;
     }
-    .show-time-card .btn{
-        font-size: .9rem;
-        padding: .8rem;
+    .heading h1{
+        font-size: 1.35rem;
+    }
+    .show-movie .box-container .img1,
+    .booking-img{
+        height: 18rem;
+    }
+    .big-image,
+    .big-image img,
+    .view-booking img{
+        height: 14rem;
+    }
+    .select-container img,
+    .show-container img{
+        height: 12rem;
+    }
+    .select-container .flex-btn{
+        gap: .7rem;
+    }
+    .select-container .flex-btn .btn,
+    .select-container .flex-btn button{
+        font-size: .95rem;
+        padding: .8rem .7rem;
+    }
+    .select-seat{
+        padding: 3rem .7rem;
+    }
+    .select-seat h1{
+        font-size: 1.25rem;
+    }
+    #seat-map,
+    .seat-map{
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+    #seat-chart{
+        grid-template-columns: repeat(5, 52px);
+        gap: 7px;
+        min-width: 292px;
+    }
+    .seat{
+        width: 44px;
+        height: 35px;
+        font-size: .78rem;
+    }
+    #seat-chart .detail,
+    .select-seat .detail{
+        padding: 1rem;
+        margin-top: 1rem;
+    }
+    .booking-summary,
+    .booking-movie-detail,
+    .bar-order{
+        padding: 1rem;
+    }
+    .booking-summary h3,
+    .booking h3{
+        font-size: 1.3rem;
+    }
+    .form-container form{
+        padding: 1rem;
+    }
+    .form-container form h3{
+        font-size: 1.35rem;
+    }
+    .cinema-bar{
+        padding: 4rem .8rem 2rem;
+    }
+    .cinema-bar .box-container{
+        grid-template-columns: 1fr;
+    }
+    .reviews-container .box-container .box .user{
+        flex-direction: column;
+        text-align: center;
+        gap: .6rem;
+    }
+    footer{
+        padding-top: 3rem;
+    }
+    footer .content .box{
+        margin: .6rem;
+    }
+}
+@media (max-width: 360px){
+    .header .flex .logo img{
+        max-width: 92px;
+    }
+    .header .flex .icons div,
+    .header .flex .icons a{
+        font-size: 1.2rem;
+    }
+    #seat-chart{
+        grid-template-columns: repeat(5, 48px);
+        gap: 5px;
+        min-width: 265px;
+    }
+    .seat{
+        width: 40px;
+        height: 32px;
+        font-size: .72rem;
+    }
+    .select-container .flex-btn{
+        flex-direction: column;
     }
 }
