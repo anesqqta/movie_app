@@ -18,6 +18,29 @@
 
         $success_msg[] = 'Бронювання видалено';
     }
+
+    if (isset($_POST['mark_paid'])) {
+        $booking_id = $_POST['booking_id'];
+        $booking_id = filter_var($booking_id, FILTER_SANITIZE_STRING);
+
+        $check_booking = $conn->prepare("SELECT ticket_code FROM booking WHERE id = ?");
+        $check_booking->execute([$booking_id]);
+        $booking_data = $check_booking->fetch(PDO::FETCH_ASSOC);
+
+        if ($booking_data) {
+            if (empty($booking_data['ticket_code'])) {
+                $ticket_code = 'TKT-' . strtoupper(substr(md5(uniqid(rand(), true)), 0, 12));
+            } else {
+                $ticket_code = $booking_data['ticket_code'];
+            }
+
+            $update_booking = $conn->prepare("UPDATE booking SET status = ?, payment_status = ?, ticket_code = ? WHERE id = ?");
+
+            $update_booking->execute(['оплачено', 'оплачено', $ticket_code, $booking_id]);
+
+            $success_msg[] = 'Бронювання позначено як оплачено';
+        }
+    }
 ?>
 
 <!DOCTYPE html>
@@ -78,6 +101,13 @@
             <td><?= $fetch_booking['status']; ?></td>
             <td><?= $fetch_booking['payment_status']; ?></td>
             <td>
+                <?php if ($fetch_booking['payment_status'] != 'оплачено') { ?>
+                    <form action="" method="post" style="margin-bottom: .5rem;">
+                        <input type="hidden" name="booking_id" value="<?= $fetch_booking['id']; ?>">
+                        <button type="submit" name="mark_paid" onclick="return confirm('Позначити це бронювання як оплачено?');" class="btn">Позначити як оплачено</button>
+                    </form>
+                <?php } ?>
+
                 <form action="" method="post">
                     <input type="hidden" name="booking_id" value="<?= $fetch_booking['id']; ?>">
                     <button type="submit" name="delete" onclick="return confirm('Видалити це бронювання?');" class="btn">Видалити</button>
