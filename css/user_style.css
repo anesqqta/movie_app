@@ -1926,6 +1926,67 @@ form option{
 .review .form-container form .flex-btn .btn{
     width: 50%;
 }
+/*-----перевірка квитка-----*/
+.ticket-check{
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 6rem 1rem 2rem;
+    background: #001232;
+}
+.ticket-box{
+    width: 100%;
+    max-width: 650px;
+    background: #032055;
+    border: 1px solid #12387e;
+    box-shadow: 2px 2px 5px rgba(0,0,0,.4);
+    border-radius: 1rem;
+    padding: 2rem;
+    text-align: center;
+    color: #dbe2fb;
+}
+.ticket-box h1{
+    margin-bottom: 1rem;
+    font-size: 2rem;
+}
+.ticket-status{
+    display: inline-block;
+    padding: .7rem 1.5rem;
+    border-radius: 2rem;
+    margin: 1rem 0;
+    font-weight: bold;
+}
+.valid{
+    color: #31d7a9;
+    border: 1px solid #31d7a9;
+}
+.invalid{
+    color: #ff5c5c;
+    border: 1px solid #ff5c5c;
+}
+.used{
+    color: #ffd166;
+    border: 1px solid #ffd166;
+}
+.ticket-info{
+    margin-top: 1.5rem;
+    text-align: left;
+}
+.ticket-info p{
+    background: #001232;
+    padding: .8rem 1rem;
+    margin: .6rem 0;
+    border-radius: .5rem;
+    border: 1px solid #12387e;
+}
+.ticket-info span{
+    color: #31d7a9;
+    font-weight: 600;
+}
+.ticket-box .btn{
+    margin-top: 1.5rem;
+}
 /*-----адаптивка-----*/
 html,
 body{
