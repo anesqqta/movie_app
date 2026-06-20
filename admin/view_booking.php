@@ -71,7 +71,7 @@
 
     <div class="box-container" style="overflow-x: auto;">
     <?php
-        $select_bookings = $conn->prepare(" SELECT booking.*, movies.title AS movie_title, halls.name AS hall_name FROM booking JOIN movies ON booking.movie_id = movies.id JOIN shows ON booking.show_id = shows.id JOIN halls ON shows.hall_id = halls.id ORDER BY booking.id DESC");
+        $select_bookings = $conn->prepare(" SELECT booking.*, movies.title AS movie_title, halls.name AS hall_name, users.name AS user_name, users.email AS user_email FROM booking JOIN movies ON booking.movie_id = movies.id JOIN shows ON booking.show_id = shows.id JOIN halls ON shows.hall_id = halls.id JOIN users ON booking.user_id = users.id ORDER BY booking.id DESC ");
         $select_bookings->execute();
 
         if ($select_bookings->rowCount() > 0) {
@@ -79,6 +79,9 @@
 
     <table cellspacing="0" style="width: 100%;">
         <tr>
+            <th>ID</th>
+            <th>Користувач</th>
+            <th>Email</th>
             <th>Фільм</th>
             <th>Зал</th>
             <th>Дата</th>
@@ -92,7 +95,10 @@
 
         <?php while($fetch_booking = $select_bookings->fetch(PDO::FETCH_ASSOC)){ ?>
         <tr>
+            <td>#<?= $fetch_booking['id']; ?></td>
             <td><?= $fetch_booking['movie_title']; ?></td>
+            <td><?= $fetch_booking['user_name']; ?></td>
+            <td><?= $fetch_booking['user_email']; ?></td>
             <td><?= $fetch_booking['hall_name']; ?></td>
             <td><?= $fetch_booking['date']; ?></td>
             <td><?= $fetch_booking['time']; ?></td>
