@@ -104,6 +104,8 @@
                 $status = 'оплачено';
                 $payment_status = 'оплачено';
 
+                $ticket_code = 'TKT-' . strtoupper(substr(md5(uniqid(rand(), true)), 0, 12));
+
             }else{
 
                 $card_details = '';
@@ -113,10 +115,12 @@
 
                 $status = 'очікує оплату';
                 $payment_status = 'не оплачено';
+
+                $ticket_code = NULL;
             }
 
-            $insert_booking = $conn->prepare("INSERT INTO booking (user_id, show_id, movie_id, seat_detail_id, language, formate, date, time, total_seat, seat_details, amount, status, payment_method, nameon_card, card_details, expiration, cvv, payment_status) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
-            $insert_booking->execute([$user_id, $show_id, $movie_id, $seat_detail_id, $language, $formate, $date, $time, $total_seats, $seat_detail, $total_price, $status, $payment_method, $card_name, $card_details, $expiration, $cvv, $payment_status ]);
+            $insert_booking = $conn->prepare("INSERT INTO booking (user_id, show_id, movie_id, seat_detail_id, language, formate, date, time, total_seat, seat_details, amount, status, payment_method, nameon_card, card_details, expiration, cvv, payment_status, ticket_code) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+            $insert_booking->execute([$user_id, $show_id, $movie_id, $seat_detail_id, $language, $formate, $date, $time, $total_seats, $seat_detail, $total_price, $status, $payment_method, $card_name, $card_details, $expiration, $cvv, $payment_status, $ticket_code]);
 
             $booking_id = $conn->lastInsertId();
 
