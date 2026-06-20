@@ -1,5 +1,6 @@
 <?php
     include 'components/connect.php';
+    include 'components/send_ticket_email.php';
 
     if (isset($_COOKIE['user_id'])){
         $user_id = $_COOKIE['user_id'];
@@ -78,6 +79,32 @@
         $delete_item->execute([$item_id, $booking_id]);
 
         $success_msg[] = 'Товар видалено із замовлення';
+    }
+
+    if (isset($_POST['finish_order'])) {
+        $select_booking_status = $conn->prepare("SELECT payment_status, ticket_code, ticket_sent FROM booking WHERE id = ? AND user_id = ?");
+        $select_booking_status->execute([$booking_id, $user_id]);
+
+        if ($select_booking_status->rowCount() > 0) {
+            $booking_status = $select_booking_status->fetch(PDO::FETCH_ASSOC);
+
+            if ($booking_status['payment_status'] == 'оплачено') {
+
+                if (empty($booking_status['ticket_code'])) {
+                    $ticket_code = 'TKT-' . strtoupper(substr(md5(uniqid(rand(), true)), 0, 12));
+
+                    $update_ticket = $conn->prepare("UPDATE booking SET ticket_code = ? WHERE id = ?");
+                    $update_ticket->execute([$ticket_code, $booking_id]);
+                }
+
+                if ($booking_status['ticket_sent'] == 0) {
+                    sendTicketEmail($conn, $booking_id);
+                }
+            }
+        }
+
+        header('location:my_booking.php');
+        exit();
     }
 
     $select_items = $conn->prepare("SELECT booking_bar_items.*, cinema_bar.name FROM booking_bar_items JOIN cinema_bar ON booking_bar_items.product_id = cinema_bar.id WHERE booking_bar_items.booking_id = ?");
@@ -166,8 +193,13 @@
                 <h3>Сума кінобару: <span><?= $bar_total; ?> грн</span></h3>
             </div>
             <div class="flex-btn">
-                <a href="my_booking.php" class="btn">Завершити</a>
-                <a href="my_booking.php" class="btn">Пропустити</a>
+                <form action="" method="post">
+                    <button type="submit" name="finish_order" class="btn">Завершити</button>
+                </form>
+
+                <form action="" method="post">
+                    <button type="submit" name="finish_order" class="btn">Пропустити</button>
+                </form>
             </div>
         </div>
     </section>

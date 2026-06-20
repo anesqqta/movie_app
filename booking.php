@@ -1,6 +1,7 @@
 <?php
     include 'components/connect.php';
     include 'components/auto_cancel.php';
+    include 'components/send_ticket_email.php';
 
     if (isset($_COOKIE['user_id'])){
         $user_id = $_COOKIE['user_id'];
