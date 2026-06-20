@@ -23,22 +23,32 @@
         $booking_id = $_POST['booking_id'];
         $booking_id = filter_var($booking_id, FILTER_SANITIZE_STRING);
 
-        $check_booking = $conn->prepare("SELECT ticket_code FROM booking WHERE id = ?");
+        $check_booking = $conn->prepare("SELECT * FROM booking WHERE id = ?");
         $check_booking->execute([$booking_id]);
         $booking_data = $check_booking->fetch(PDO::FETCH_ASSOC);
 
         if ($booking_data) {
-            if (empty($booking_data['ticket_code'])) {
-                $ticket_code = 'TKT-' . strtoupper(substr(md5(uniqid(rand(), true)), 0, 12));
+
+            $show_datetime = strtotime($booking_data['date'] . ' ' . $booking_data['time']);
+            $current_datetime = time();
+
+            if ($booking_data['status'] == 'скасовано' || $booking_data['status'] == 'анульовано') {
+                $warning_msg[] = 'Неможливо оплатити скасоване або анульоване бронювання';
+            } elseif ($show_datetime < $current_datetime) {
+                $warning_msg[] = 'Неможливо оплатити бронювання, оскільки сеанс уже пройшов';
             } else {
-                $ticket_code = $booking_data['ticket_code'];
+                if (empty($booking_data['ticket_code'])) {
+                    $ticket_code = 'TKT-' . strtoupper(substr(md5(uniqid(rand(), true)), 0, 12));
+                } else {
+                    $ticket_code = $booking_data['ticket_code'];
+                }
+
+                $update_booking = $conn->prepare("UPDATE booking SET status = ?, payment_status = ?, ticket_code = ? WHERE id = ?");
+
+                $update_booking->execute(['оплачено', 'оплачено', $ticket_code, $booking_id]);
+
+                $success_msg[] = 'Бронювання позначено як оплачено';
             }
-
-            $update_booking = $conn->prepare("UPDATE booking SET status = ?, payment_status = ?, ticket_code = ? WHERE id = ?");
-
-            $update_booking->execute(['оплачено', 'оплачено', $ticket_code, $booking_id]);
-
-            $success_msg[] = 'Бронювання позначено як оплачено';
         }
     }
 ?>
@@ -80,9 +90,9 @@
     <table cellspacing="0" style="width: 100%;">
         <tr>
             <th>ID</th>
+            <th>Фільм</th>
             <th>Користувач</th>
             <th>Email</th>
-            <th>Фільм</th>
             <th>Зал</th>
             <th>Дата</th>
             <th>Час</th>
@@ -107,7 +117,17 @@
             <td><?= $fetch_booking['status']; ?></td>
             <td><?= $fetch_booking['payment_status']; ?></td>
             <td>
-                <?php if ($fetch_booking['payment_status'] != 'оплачено') { ?>
+                <?php
+                    $show_datetime = strtotime($fetch_booking['date'] . ' ' . $fetch_booking['time']);
+                    $is_available_for_payment = (
+                        $fetch_booking['payment_status'] != 'оплачено' &&
+                        $fetch_booking['status'] != 'скасовано' &&
+                        $fetch_booking['status'] != 'анульовано' &&
+                        $show_datetime >= time()
+                    );
+                ?>
+
+                <?php if ($is_available_for_payment) { ?>
                     <form action="" method="post" style="margin-bottom: .5rem;">
                         <input type="hidden" name="booking_id" value="<?= $fetch_booking['id']; ?>">
                         <button type="submit" name="mark_paid" onclick="return confirm('Позначити це бронювання як оплачено?');" class="btn">Позначити як оплачено</button>
