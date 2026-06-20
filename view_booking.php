@@ -156,6 +156,29 @@
                         <p>Статус бронювання : <span style="color: <?= $status_color; ?>"><?= $fetch_booking['status']; ?></span></p>
                     </div>
                 </div>
+
+                <?php if ($fetch_booking['payment_status'] == 'оплачено' && !empty($fetch_booking['ticket_code'])) { ?>
+
+                <?php 
+                    $verify_link = 'https://localhost/movie_app/verify_ticket.php?code=' . $fetch_booking['ticket_code'];
+                    $qr_link = 'https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=' . urlencode($verify_link);
+                ?>
+
+                <div class="qr-ticket-box">
+                    <h3>QR-код квитка</h3>
+                    <img src="<?= $qr_link; ?>" alt="QR-код квитка">
+                    <p>Покажіть цей QR-код при вході до залу</p>
+                </div>
+
+            <?php } else { ?>
+
+                <div class="qr-ticket-box">
+                    <h3>QR-код недоступний</h3>
+                    <p>Квиток буде доступний після оплати бронювання.</p>
+                </div>
+
+            <?php } ?>
+
                 <div class="flex-btn">
                     <?php if($fetch_booking['status'] == 'очікує оплату') { ?>
                         <form action="" method="post">

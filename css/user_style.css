@@ -1987,6 +1987,34 @@ form option{
 .ticket-box .btn{
     margin-top: 1.5rem;
 }
+.qr-ticket-box{
+    max-width: 25rem;
+    margin: 2rem auto;
+    padding: 1.5rem;
+    text-align: center;
+    background-color: #03205599;
+    border: 1px solid #12387e;
+    border-radius: .8rem;
+    box-shadow: 2px 2px 5px rgba(0,0,0,.4);
+}
+.qr-ticket-box h3{
+    font-size: 1.5rem;
+    font-weight: 500;
+    color: #fff;
+    margin-bottom: 1rem;
+}
+.qr-ticket-box img{
+    width: 200px;
+    height: 200px;
+    padding: .5rem;
+    background: #fff;
+    border-radius: .5rem;
+    margin-bottom: 1rem;
+}
+.qr-ticket-box p{
+    color: #dbe2fb;
+    font-size: 1rem;
+}
 /*-----адаптивка-----*/
 html,
 body{
