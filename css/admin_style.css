@@ -1049,3 +1049,33 @@ header .btn{
     line-height: 2;
     margin-bottom: 1rem;
 }
+.admin-filter-form{
+    width: 95%;
+    margin: 1rem auto 2rem;
+    padding: 1rem;
+    background-color: #03205599;
+    border: 1px solid #12387e;
+    border-radius: .7rem;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: .8rem;
+    align-items: center;
+}
+.admin-filter-form input,
+.admin-filter-form select{
+    width: 100%;
+    padding: .8rem 1rem;
+    border-radius: .5rem;
+    border: 1px solid #12387e;
+    background-color: #001232;
+    color: #dbe2fb;
+    font-size: 1rem;
+}
+.admin-filter-form input::placeholder{
+    color: #9aa8d9;
+}
+.admin-filter-form .btn{
+    width: 100%;
+    text-align: center;
+    padding: .8rem 1rem;
+}

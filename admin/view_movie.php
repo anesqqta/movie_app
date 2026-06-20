@@ -44,6 +44,16 @@
         }
     }
 
+    $search = isset($_GET['search']) ? trim($_GET['search']) : '';
+    $status_filter = isset($_GET['status']) ? $_GET['status'] : '';
+    $genre_filter = isset($_GET['genre']) ? trim($_GET['genre']) : '';
+    $sort_filter = isset($_GET['sort']) ? $_GET['sort'] : 'newest';
+
+    $search = filter_var($search, FILTER_SANITIZE_STRING);
+    $status_filter = filter_var($status_filter, FILTER_SANITIZE_STRING);
+    $genre_filter = filter_var($genre_filter, FILTER_SANITIZE_STRING);
+    $sort_filter = filter_var($sort_filter, FILTER_SANITIZE_STRING);
+
 ?>
 
 <!DOCTYPE html>
@@ -75,10 +85,60 @@
             <a href="add_movie.php" class="btn">+</a>
         </div>
 
+        <form action="" method="get" class="admin-filter-form">
+        <input type="text" name="search" placeholder="Пошук за назвою фільму" value="<?= htmlspecialchars($search); ?>">
+
+        <select name="status">
+            <option value="">Усі статуси</option>
+            <option value="active" <?= ($status_filter == 'active') ? 'selected' : ''; ?>>Активні</option>
+            <option value="deactive" <?= ($status_filter == 'deactive') ? 'selected' : ''; ?>>Неактивні</option>
+        </select>
+
+        <input type="text" name="genre" placeholder="Фільтр за жанром" value="<?= htmlspecialchars($genre_filter); ?>">
+
+        <select name="sort">
+            <option value="newest" <?= ($sort_filter == 'newest') ? 'selected' : ''; ?>>Новіші спочатку</option>
+            <option value="oldest" <?= ($sort_filter == 'oldest') ? 'selected' : ''; ?>>Старіші спочатку</option>
+            <option value="year_desc" <?= ($sort_filter == 'year_desc') ? 'selected' : ''; ?>>Рік: новіші</option>
+            <option value="year_asc" <?= ($sort_filter == 'year_asc') ? 'selected' : ''; ?>>Рік: старіші</option>
+        </select>
+
+        <button type="submit" class="btn">Застосувати</button>
+        <a href="view_movie.php" class="btn">Скинути</a>
+    </form>
+
         <div class="box-container" style="overflow-x: auto;">
             <?php
-                $select_movies = $conn->prepare("SELECT * FROM movies ORDER BY id DESC");
-                $select_movies->execute();
+                $query = "SELECT * FROM movies WHERE 1=1";
+                $params = [];
+
+                if (!empty($search)) { 
+                    $query .= " AND title LIKE ?";
+                    $params[] = "%".$search."%";
+                }
+
+                if (!empty($status_filter)) {
+                    $query .= " AND status = ?";
+                    $params[] = $status_filter;
+                }
+
+                if (!empty($genre_filter)) {
+                    $query .= " AND genre LIKE ?";
+                    $params[] = "%".$genre_filter."%";
+                }
+
+                if ($sort_filter == 'oldest') {
+                    $query .= " ORDER BY id ASC";
+                } elseif ($sort_filter == 'year_desc') {
+                    $query .= " ORDER BY release_year DESC";
+                } elseif ($sort_filter == 'year_asc') {
+                    $query .= " ORDER BY release_year ASC";
+                } else {
+                    $query .= " ORDER BY id DESC";
+                }
+
+                $select_movies = $conn->prepare($query);
+                $select_movies->execute($params);
 
                 if ($select_movies->rowCount() > 0) {
             ?>
