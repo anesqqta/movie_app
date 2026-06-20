@@ -1,5 +1,6 @@
 <?php
     include '../components/connect.php';
+    include '../components/send_ticket_email.php';
 
     if (isset($_COOKIE['admin_id'])){
         $admin_id = $_COOKIE['admin_id'];
@@ -46,6 +47,8 @@
                 $update_booking = $conn->prepare("UPDATE booking SET status = ?, payment_status = ?, ticket_code = ? WHERE id = ?");
 
                 $update_booking->execute(['оплачено', 'оплачено', $ticket_code, $booking_id]);
+
+                sendTicketEmail($conn, $booking_id);
 
                 $success_msg[] = 'Бронювання позначено як оплачено';
             }
