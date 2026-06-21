@@ -34,7 +34,7 @@ function sendTicketEmail($conn, $booking_id){
         return false;
     }
 
-    $verify_link = 'https://cinema-boleto.42web.io/verify_ticket.php?code=' . $ticket['ticket_code'];
+    $verify_link = 'https://localhost/movie_app/verify_ticket.php?code=' . $ticket['ticket_code'];
     $qr_link = 'https://api.qrserver.com/v1/create-qr-code/?size=220x220&data=' . urlencode($verify_link);
 
     $mail = new PHPMailer(true);
